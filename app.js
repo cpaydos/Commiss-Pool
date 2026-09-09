@@ -67,7 +67,7 @@ function renderDistribution(){
   if(mode==='bonus'){
     for(const e of DATA.entries){const team=e.bonus.team;counts.set(team,(counts.get(team)||0)+1);total++;}
   }else if(mode==='totals'){
-    for(const e of DATA.entries){for(const p of e.picks){if(p.kind!=='total')continue;const label=`${p.direction==='over'?'Over':'Under'} ${gameById[p.gameId].total}`;counts.set(label,(counts.get(label)||0)+1);total++;}}
+    for(const e of DATA.entries){for(const p of e.picks){if(p.kind!=='total')continue;const g=gameById[p.gameId];const label=`${favoriteOf(g)} ${g.total} — ${p.direction==='over'?'Over':'Under'}`;counts.set(label,(counts.get(label)||0)+1);total++;}}
   }else{
     for(const e of DATA.entries){for(const p of e.picks){if(p.kind!=='spread')continue;counts.set(p.team,(counts.get(p.team)||0)+1);total++;}}
   }
