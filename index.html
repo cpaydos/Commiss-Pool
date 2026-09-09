@@ -34,6 +34,7 @@
         <button class="tab active" data-tab="leaderboard">Leaderboard</button>
         <button class="tab" data-tab="bonus">Bonus</button>
         <button class="tab" data-tab="games">Games</button>
+        <button class="tab" data-tab="distribution">Distribution</button>
       </div>
 
       <section id="leaderboard" class="panel active-panel">
@@ -63,6 +64,19 @@
           <select id="gameFilter"><option value="all">All games</option><option value="live">Live</option><option value="final">Final</option><option value="upcoming">Upcoming</option></select>
         </div>
         <div id="gameList" class="game-list"></div>
+      </section>
+
+      <section id="distribution" class="panel">
+        <div class="section-heading">
+          <div><h2>Pick Distribution</h2><p>See which teams are most popular this week.</p></div>
+        </div>
+        <div class="distribution-switch" role="tablist" aria-label="Distribution type">
+          <button class="dist-switch active" data-dist="spread">Spread picks</button>
+          <button class="dist-switch" data-dist="bonus">Bonus picks</button>
+          <button class="dist-switch" data-dist="totals">Totals</button>
+        </div>
+        <div id="distributionSummary" class="distribution-summary"></div>
+        <div id="distributionList" class="distribution-list"></div>
       </section>
 
       <section class="feed-status">

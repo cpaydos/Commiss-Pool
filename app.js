@@ -45,7 +45,7 @@ function record(e){
   return {r,w:r.filter(x=>x==='win').length,l:r.filter(x=>x==='loss').length,live:r.filter(x=>x==='live').length,pending:r.filter(x=>x==='pending').length};
 }
 function sortEntries(arr){return arr.sort((a,b)=>{const ra=record(a),rb=record(b); if(rb.w!==ra.w)return rb.w-ra.w; if(ra.l!==rb.l)return ra.l-rb.l; if(rb.live!==ra.live)return rb.live-ra.live; return a.id-b.id;});}
-function render(){renderLeaderboard();renderBonus();renderGames();updateHero();}
+function render(){renderLeaderboard();renderBonus();renderGames();renderDistribution();updateHero();}
 function renderLeaderboard(){
   const q=$('search').value.toLowerCase(); const f=$('statusFilter').value;
   let arr=sortEntries([...DATA.entries]).filter(e=>e.name.toLowerCase().includes(q));
@@ -58,6 +58,24 @@ function renderBonus(){
   const arr=DATA.entries.map(e=>({e,s:bonusStatus(e)})).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});
   const alive=arr.filter(x=>x.s!=='eliminated').length; $('bonusAlive').textContent=`${alive} alive`;
   $('bonusList').innerHTML=arr.map(({e,s})=>`<div class="bonus-row"><div><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${esc(e.bonus.team)}${e.autoPick?' · auto-pick':''}</div></div><div class="${s==='eliminated'?'eliminated':s==='alive'?'alive':''}">${s==='eliminated'?'OUT':s==='alive'?'ALIVE':s.toUpperCase()}</div></div>`).join('');
+}
+
+function renderDistribution(){
+  const mode=document.querySelector('.dist-switch.active')?.dataset.dist||'spread';
+  const counts=new Map();
+  let total=0;
+  if(mode==='bonus'){
+    for(const e of DATA.entries){const team=e.bonus.team;counts.set(team,(counts.get(team)||0)+1);total++;}
+  }else if(mode==='totals'){
+    for(const e of DATA.entries){for(const p of e.picks){if(p.kind!=='total')continue;const label=`${p.direction==='over'?'Over':'Under'} ${gameById[p.gameId].total}`;counts.set(label,(counts.get(label)||0)+1);total++;}}
+  }else{
+    for(const e of DATA.entries){for(const p of e.picks){if(p.kind!=='spread')continue;counts.set(p.team,(counts.get(p.team)||0)+1);total++;}}
+  }
+  const sorted=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+  const summary=$('distributionSummary');
+  const label=mode==='bonus'?'Bonus picks':mode==='totals'?'Total picks':'Spread picks';
+  summary.innerHTML=`<div><strong>${total}</strong><span>${label}</span></div><div><strong>${sorted.length}</strong><span>different selections</span></div><div><strong>${sorted[0]?.[1]||0}</strong><span>most popular</span></div>`;
+  $('distributionList').innerHTML=sorted.map(([name,count],i)=>{const pct=total?count/total*100:0;return `<div class="distribution-row"><div class="distribution-rank">${i+1}</div><div class="distribution-main"><div class="distribution-name">${esc(name)}</div><div class="distribution-bar"><span style="width:${Math.max(pct,1)}%"></span></div></div><div class="distribution-count"><strong>${count}</strong><small>${pct.toFixed(1)}%</small></div></div>`}).join('')||'<div class="empty">No distribution data.</div>';
 }
 function renderGames(){
   const sf=$('sportFilter').value, gf=$('gameFilter').value;
@@ -83,5 +101,5 @@ async function refreshScores(){
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
-$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));document.querySelectorAll('[data-close-test]').forEach(x=>x.onclick=()=>$('testModal').classList.add('hidden'));
+$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution();});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));document.querySelectorAll('[data-close-test]').forEach(x=>x.onclick=()=>$('testModal').classList.add('hidden'));
 render();refreshScores();setInterval(refreshScores,30000);
