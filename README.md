@@ -15,7 +15,6 @@ Mobile-first web app for the 2026 pool using the supplied Week 1 lines and Week 
 - Entry detail view
 - Bonus leaderboard
 - Games view
-- Local Test Mode for entering temporary final scores before sharing the app
 
 ## Important Week 1 line interpretation
 The commissioner's sheet uses capitalization to identify the HOME team. The numeric spread is the line attached to the first team in the sheet (e.g. `JAGUARS 7.5 Browns` is Jaguars -7.5 / Browns +7.5). The app stores that locked line and never replaces it with a moving sportsbook line.
