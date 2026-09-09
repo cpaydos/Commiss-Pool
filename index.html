@@ -67,6 +67,7 @@
 
       <section class="feed-status">
         <div><span id="feedIndicator" class="status-dot"></span><span id="feedStatus">Score feed not checked yet</span></div>
+        <button id="testModeBtn" class="text-btn">Test mode</button>
       </section>
     </main>
   </div>
@@ -76,6 +77,17 @@
     <div class="modal-card">
       <button class="modal-close" data-close>×</button>
       <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div id="testModal" class="modal hidden">
+    <div class="modal-backdrop" data-close-test></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close-test>×</button>
+      <h2>Test Mode</h2>
+      <p class="muted">Enter temporary scores to verify the leaderboard. These stay only on this device and can be cleared.</p>
+      <div id="testGameList" class="test-game-list"></div>
+      <div class="modal-actions"><button id="clearTests" class="secondary-btn">Clear test scores</button><button id="applyTests" class="primary-btn">Apply</button></div>
     </div>
   </div>
 

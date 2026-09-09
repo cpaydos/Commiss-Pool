@@ -3033,11 +3033,11 @@ window.POOL_DATA = {
           "gameId": "nfl-2026-09-13-lions-saints"
         },
         {
-          "raw": "RAIDERS",
-          "team": "RAIDERS",
+          "raw": "RAVENS",
+          "team": "RAVENS",
           "kind": "spread",
           "direction": null,
-          "gameId": "nfl-2026-09-13-raiders-dolphins"
+          "gameId": "nfl-2026-09-13-ravens-colts"
         },
         {
           "raw": "USC",
@@ -4101,7 +4101,7 @@ window.POOL_DATA = {
     },
     {
       "id": 83,
-      "name": "LYNN SHORE SEA",
+      "name": "LYNN SHORE SEA LIONS",
       "bonus": {
         "raw": "PITT",
         "team": "PITT",
@@ -5000,28 +5000,28 @@ window.POOL_DATA = {
           "gameId": "nfl-2026-09-13-bears-panthers"
         },
         {
-          "raw": "BENGALS",
-          "team": "BENGALS",
+          "raw": "TEXANS",
+          "team": "TEXANS",
           "kind": "spread",
           "direction": null,
-          "gameId": "nfl-2026-09-13-bengals-buccaneers"
+          "gameId": "nfl-2026-09-14-cowboys-giants"
         },
         {
-          "raw": "BILLS",
-          "team": "BILLS",
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
           "kind": "spread",
           "direction": null,
-          "gameId": "nfl-2026-09-13-bills-texans"
+          "gameId": "nfl-2026-09-14-vikings-packers"
         },
         {
-          "raw": "CHARGERS",
-          "team": "CHARGERS",
+          "raw": "BOISE ST",
+          "team": "BOISE ST",
           "kind": "spread",
           "direction": null,
-          "gameId": "nfl-2026-09-13-chargers-cardinals"
+          "gameId": "ncaa-2026-09-12-boise-st-utah"
         }
       ],
-      "autoPick": true
+      "autoPick": false
     },
     {
       "id": 105,
@@ -5739,7 +5739,7 @@ window.POOL_DATA = {
     },
     {
       "id": 122,
-      "name": "Entry 122",
+      "name": "THE MAD LOOPER",
       "bonus": {
         "raw": "BENGALS",
         "team": "BENGALS",
@@ -6415,16 +6415,16 @@ window.POOL_DATA = {
     "regularPicks": 548,
     "bonusPicks": 137,
     "regularDistribution": {
-      "BENGALS": 20,
+      "BENGALS": 19,
       "EAGLES": 23,
       "JAGUARS": 20,
-      "RAVENS": 12,
+      "RAVENS": 13,
       "COLTS": 8,
       "SAINTS": 2,
       "KENNESAW ST": 1,
       "SAM HOUSTON": 1,
       "PANTHERS": 5,
-      "TEXANS": 11,
+      "TEXANS": 12,
       "ARIZONA ST": 1,
       "UTSA": 1,
       "MICHIGAN": 1,
@@ -6439,7 +6439,7 @@ window.POOL_DATA = {
       "RAMS OVER": 1,
       "VIKINGS OVER": 1,
       "JETS": 5,
-      "RAIDERS": 14,
+      "RAIDERS": 13,
       "BOISE ST OVER": 1,
       "BUCCANEERS": 7,
       "STEELERS": 21,
@@ -6447,10 +6447,10 @@ window.POOL_DATA = {
       "COMMANDERS": 6,
       "SEAHAWKS": 16,
       "TITANS": 12,
-      "VIKINGS": 9,
-      "BILLS": 23,
+      "VIKINGS": 10,
+      "BILLS": 22,
       "OREGON": 5,
-      "CHARGERS": 8,
+      "CHARGERS": 7,
       "LIONS": 26,
       "RAMS": 17,
       "BYU": 4,
@@ -6490,7 +6490,7 @@ window.POOL_DATA = {
       "SYRACUSE": 2,
       "BEARS OVER": 2,
       "USC": 4,
-      "BOISE ST": 5,
+      "BOISE ST": 6,
       "CHIEFS OVER": 1,
       "OREGON ST": 1,
       "UCONN": 1,
