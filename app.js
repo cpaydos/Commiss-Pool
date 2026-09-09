@@ -1,5 +1,13 @@
 const DATA=window.POOL_DATA;
+// In the Week 1 line sheet, an ALL-CAPS first team is the home team.
+// Normalize those games so display, spread scoring, bonus scoring, and ESPN matching agree.
+for (const g of DATA.games) {
+  if (g.away === g.away.toUpperCase() && g.home !== g.home.toUpperCase()) {
+    [g.away, g.home] = [g.home, g.away];
+  }
+}
 const state={scores:{},lastUpdated:null,testMode:false,testScores:JSON.parse(localStorage.getItem('commiss_test_scores')||'{}')};
+
 const $=id=>document.getElementById(id);
 const norm=s=>s.toUpperCase().replace(/[^A-Z0-9]/g,'');
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
