@@ -16,8 +16,8 @@ window.POOL_DATA = {
       "id": "nfl-2026-09-10-rams-49ers",
       "sport": "NFL",
       "date": "2026-09-10",
-      "away": "Rams",
-      "home": "49ers",
+      "away": "49ers",
+      "home": "Rams",
       "spread": 3.5,
       "total": 48.5
     },
