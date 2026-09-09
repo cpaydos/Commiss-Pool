@@ -1,15 +1,8 @@
 const DATA=window.POOL_DATA;
-// In the Week 1 line sheet, an ALL-CAPS first team is the home team.
-// Normalize those games so display, spread scoring, bonus scoring, and ESPN matching agree.
-for (const g of DATA.games) {
-  if (g.away === g.away.toUpperCase() && g.home !== g.home.toUpperCase()) {
-    [g.away, g.home] = [g.home, g.away];
-  }
-}
 const state={scores:{},lastUpdated:null,testMode:false,testScores:JSON.parse(localStorage.getItem('commiss_test_scores')||'{}')};
-
 const $=id=>document.getElementById(id);
 const norm=s=>s.toUpperCase().replace(/[^A-Z0-9]/g,'');
+const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
 const aliases={
   'MIDD TENN':'MIDDLE TENNESSEE','EASTERN MICH':'EASTERN MICHIGAN','BOISE ST':'BOISE STATE','NORTH DAKOTA ST':'NORTH DAKOTA STATE','KANSAS ST':'KANSAS STATE','OKLAHOMA ST':'OKLAHOMA STATE','OREGON ST':'OREGON STATE','ARIZONA ST':'ARIZONA STATE','GEORGIA ST':'GEORGIA STATE','WASHINGTON ST':'WASHINGTON STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','APP ST':'APPALACHIAN STATE','SOUTH FLORIDA':'SOUTH FLORIDA','FLORIDA ATLANTIC':'FLORIDA ATLANTIC','SAM HOUSTON':'SAM HOUSTON','OLD DOMINION':'OLD DOMINION','UCF':'UCF','UTSA':'UTSA','UL-MONROE':'UL MONROE','SAN DIEGO ST':'SAN DIEGO STATE','FRESNO ST':'FRESNO STATE','BOSTON COLLEGE':'BOSTON COLLEGE'
@@ -30,12 +23,12 @@ function classifyPick(p,g){
     if(total===g.total) return 'loss';
     return p.direction==='over' ? (total>g.total?'win':'loss') : (total<g.total?'win':'loss');
   }
-  const awayPick=norm(p.team)===norm(g.away);
-  const margin=awayPick ? away-home : home-away;
-  const cover=awayPick ? margin>g.spread : margin+g.spread>0;
-  if(awayPick && margin===g.spread) return 'loss';
-  if(!awayPick && margin===-g.spread) return 'loss';
-  return cover?'win':'loss';
+  const favorite=norm(favoriteOf(g));
+  const pickIsFavorite=norm(p.team)===favorite;
+  const favoriteMargin=norm(g.home)===favorite ? home-away : away-home;
+  if(pickIsFavorite) return favoriteMargin===g.spread?'loss':(favoriteMargin>g.spread?'win':'loss');
+  const underdogMargin=-favoriteMargin;
+  return underdogMargin===-g.spread?'loss':(underdogMargin+g.spread>0?'win':'loss');
 }
 function bonusStatus(e){
   const p=e.bonus,g=gameById[p.gameId],sc=state.testScores[g.id]||state.scores[g.id];
@@ -69,11 +62,11 @@ function renderBonus(){
 function renderGames(){
   const sf=$('sportFilter').value, gf=$('gameFilter').value;
   const games=DATA.games.filter(g=>sf==='all'||g.sport===sf).filter(g=>{const s=gameStatus(g);return gf==='all'||(gf==='live'&&s==='in')||(gf==='final'&&s==='final')||(gf==='upcoming'&&s==='scheduled')});
-  $('gameList').innerHTML=games.map(g=>{const sc=state.testScores[g.id]||state.scores[g.id]||{status:'scheduled'};return `<div class="game-row"><div class="game-top"><div><div class="game-status ${sc.status||''}">${sc.status==='in'?'LIVE':sc.status==='final'?'FINAL':formatDate(g.date)}</div><div class="game-teams">${esc(g.away)} @ ${esc(g.home)}</div></div><div class="game-score">${sc.awayScore!=null?`${sc.awayScore} - ${sc.homeScore}`:'-'}</div></div><div class="game-line">Official: ${esc(g.away)} ${g.spread} · Total ${g.total}</div></div>`}).join('');
+  $('gameList').innerHTML=games.map(g=>{const sc=state.testScores[g.id]||state.scores[g.id]||{status:'scheduled'};return `<div class="game-row"><div class="game-top"><div><div class="game-status ${sc.status||''}">${sc.status==='in'?'LIVE':sc.status==='final'?'FINAL':formatDate(g.date)}</div><div class="game-teams">${esc(g.away)} @ ${esc(g.home)}</div></div><div class="game-score">${sc.awayScore!=null?`${sc.awayScore} - ${sc.homeScore}`:'-'}</div></div><div class="game-line">Official: ${esc(favoriteOf(g))} -${g.spread} · Total ${g.total}</div></div>`}).join('');
 }
 function gameStatus(g){const s=state.testScores[g.id]||state.scores[g.id];return s?.status||'scheduled'}
 function updateHero(){const rs=DATA.entries.map(record);$('fourZeroCount').textContent=rs.filter(r=>r.w===4&&r.l===0).length;$('gamesDone').textContent=`${Object.values(state.testScores).concat(Object.values(state.scores)).filter((x,i,a)=>x.status==='final'&&a.findIndex(y=>y===x)===i).length}/65`;}
-function openEntry(id){const e=DATA.entries.find(x=>x.id===id);const r=record(e);$('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map((p,i)=>{const g=gameById[p.gameId],res=classifyPick(p,g),sc=state.testScores[g.id]||state.scores[g.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(g.away)?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus.team)}</div><div class="pick-sub">Outright win required · max favorite ${DATA.bonusMax}</div></div><div class="${bonusStatus(e)==='eliminated'?'result-loss':bonusStatus(e)==='alive'?'result-win':'result-pending'}">${bonusStatus(e).toUpperCase()}</div></div>`; $('entryModal').classList.remove('hidden');}
+function openEntry(id){const e=DATA.entries.find(x=>x.id===id);const r=record(e);$('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map((p,i)=>{const g=gameById[p.gameId],res=classifyPick(p,g),sc=state.testScores[g.id]||state.scores[g.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus.team)}</div><div class="pick-sub">Outright win required · max favorite ${DATA.bonusMax}</div></div><div class="${bonusStatus(e)==='eliminated'?'result-loss':bonusStatus(e)==='alive'?'result-win':'result-pending'}">${bonusStatus(e).toUpperCase()}</div></div>`; $('entryModal').classList.remove('hidden');}
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
 async function refreshScores(){

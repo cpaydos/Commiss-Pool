@@ -7,19 +7,21 @@ window.POOL_DATA = {
       "id": "nfl-2026-09-09-seahawks-patriots",
       "sport": "NFL",
       "date": "2026-09-09",
-      "away": "SEAHAWKS",
-      "home": "Patriots",
+      "away": "Patriots",
+      "home": "SEAHAWKS",
       "spread": 3.5,
-      "total": 44.5
+      "total": 44.5,
+      "favorite": "SEAHAWKS"
     },
     {
       "id": "nfl-2026-09-10-rams-49ers",
       "sport": "NFL",
       "date": "2026-09-10",
       "away": "49ers",
-      "home": "Rams",
+      "home": "RAMS",
       "spread": 3.5,
-      "total": 48.5
+      "total": 48.5,
+      "favorite": "Rams"
     },
     {
       "id": "nfl-2026-09-13-bears-panthers",
@@ -28,16 +30,18 @@ window.POOL_DATA = {
       "away": "Bears",
       "home": "PANTHERS",
       "spread": 2.5,
-      "total": 47.5
+      "total": 47.5,
+      "favorite": "Bears"
     },
     {
       "id": "nfl-2026-09-13-bengals-buccaneers",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "BENGALS",
-      "home": "Buccaneers",
+      "away": "Buccaneers",
+      "home": "BENGALS",
       "spread": 3.5,
-      "total": 50.5
+      "total": 50.5,
+      "favorite": "BENGALS"
     },
     {
       "id": "nfl-2026-09-13-bills-texans",
@@ -46,16 +50,18 @@ window.POOL_DATA = {
       "away": "Bills",
       "home": "TEXANS",
       "spread": 1.5,
-      "total": 44.5
+      "total": 44.5,
+      "favorite": "Bills"
     },
     {
       "id": "nfl-2026-09-13-chargers-cardinals",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "CHARGERS",
-      "home": "Cardinals",
+      "away": "Cardinals",
+      "home": "CHARGERS",
       "spread": 10.5,
-      "total": 46.5
+      "total": 46.5,
+      "favorite": "CHARGERS"
     },
     {
       "id": "nfl-2026-09-13-cowboys-giants",
@@ -64,43 +70,48 @@ window.POOL_DATA = {
       "away": "Cowboys",
       "home": "GIANTS",
       "spread": 2.5,
-      "total": 48.5
+      "total": 48.5,
+      "favorite": "Cowboys"
     },
     {
       "id": "nfl-2026-09-13-eagles-commanders",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "EAGLES",
-      "home": "Commanders",
+      "away": "Commanders",
+      "home": "EAGLES",
       "spread": 5.5,
-      "total": 44.5
+      "total": 44.5,
+      "favorite": "EAGLES"
     },
     {
       "id": "nfl-2026-09-13-jaguars-browns",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "JAGUARS",
-      "home": "Browns",
+      "away": "Browns",
+      "home": "JAGUARS",
       "spread": 7.5,
-      "total": 40.5
+      "total": 40.5,
+      "favorite": "JAGUARS"
     },
     {
       "id": "nfl-2026-09-13-lions-saints",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "LIONS",
-      "home": "Saints",
+      "away": "Saints",
+      "home": "LIONS",
       "spread": 7.0,
-      "total": 49.5
+      "total": 49.5,
+      "favorite": "LIONS"
     },
     {
       "id": "nfl-2026-09-13-raiders-dolphins",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "RAIDERS",
-      "home": "Dolphins",
+      "away": "Dolphins",
+      "home": "RAIDERS",
       "spread": 3.5,
-      "total": 40.5
+      "total": 40.5,
+      "favorite": "RAIDERS"
     },
     {
       "id": "nfl-2026-09-13-ravens-colts",
@@ -109,52 +120,58 @@ window.POOL_DATA = {
       "away": "Ravens",
       "home": "COLTS",
       "spread": 3.5,
-      "total": 48.5
+      "total": 48.5,
+      "favorite": "Ravens"
     },
     {
       "id": "nfl-2026-09-13-steelers-falcons",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "STEELERS",
-      "home": "Falcons",
+      "away": "Falcons",
+      "home": "STEELERS",
       "spread": 3.5,
-      "total": 42.5
+      "total": 42.5,
+      "favorite": "STEELERS"
     },
     {
       "id": "nfl-2026-09-13-titans-jets",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "TITANS",
-      "home": "Jets",
+      "away": "Jets",
+      "home": "TITANS",
       "spread": 1.5,
-      "total": 39.5
+      "total": 39.5,
+      "favorite": "TITANS"
     },
     {
       "id": "nfl-2026-09-13-vikings-packers",
       "sport": "NFL",
       "date": "2026-09-13",
-      "away": "VIKINGS",
-      "home": "Packers",
+      "away": "Packers",
+      "home": "VIKINGS",
       "spread": 1.5,
-      "total": 46.5
+      "total": 46.5,
+      "favorite": "VIKINGS"
     },
     {
       "id": "nfl-2026-09-14-chiefs-broncos",
       "sport": "NFL",
       "date": "2026-09-14",
-      "away": "CHIEFS",
-      "home": "Broncos",
+      "away": "Broncos",
+      "home": "CHIEFS",
       "spread": 3.0,
-      "total": 42.5
+      "total": 42.5,
+      "favorite": "CHIEFS"
     },
     {
       "id": "ncaa-2026-09-11-bostoncollege-rutgers",
       "sport": "NCAA",
       "date": "2026-09-11",
-      "away": "BOSTON COLLEGE",
-      "home": "Rutgers",
+      "away": "Rutgers",
+      "home": "BOSTON COLLEGE",
       "spread": 3.5,
-      "total": 55.5
+      "total": 55.5,
+      "favorite": "BOSTON COLLEGE"
     },
     {
       "id": "ncaa-2026-09-11-missouri-kansas",
@@ -163,7 +180,8 @@ window.POOL_DATA = {
       "away": "Missouri",
       "home": "KANSAS",
       "spread": 6.5,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "Missouri"
     },
     {
       "id": "ncaa-2026-09-12-alabama-kentucky",
@@ -172,151 +190,168 @@ window.POOL_DATA = {
       "away": "Alabama",
       "home": "KENTUCKY",
       "spread": 10.5,
-      "total": 48.5
+      "total": 48.5,
+      "favorite": "Alabama"
     },
     {
       "id": "ncaa-2026-09-12-army-southflorida",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "ARMY",
-      "home": "South Florida",
+      "away": "South Florida",
+      "home": "ARMY",
       "spread": 3.0,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "ARMY"
     },
     {
       "id": "ncaa-2026-09-12-auburn-southernmiss",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "AUBURN",
-      "home": "Southern Miss",
+      "away": "Southern Miss",
+      "home": "AUBURN",
       "spread": 29.5,
-      "total": 52.5
+      "total": 52.5,
+      "favorite": "AUBURN"
     },
     {
       "id": "ncaa-2026-09-12-boisest-memphis",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "BOISE ST",
-      "home": "Memphis",
+      "away": "Memphis",
+      "home": "BOISE ST",
       "spread": 7.5,
-      "total": 52.5
+      "total": 52.5,
+      "favorite": "BOISE ST"
     },
     {
       "id": "ncaa-2026-09-12-byu-arizona",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "BYU",
-      "home": "Arizona",
+      "away": "Arizona",
+      "home": "BYU",
       "spread": 7.0,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "BYU"
     },
     {
       "id": "ncaa-2026-09-12-clemson-georgiasouthern",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "CLEMSON",
-      "home": "Georgia Southern",
+      "away": "Georgia Southern",
+      "home": "CLEMSON",
       "spread": 23.5,
-      "total": 56.5
+      "total": 56.5,
+      "favorite": "CLEMSON"
     },
     {
       "id": "ncaa-2026-09-12-eastcarolina-appst",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "EAST CAROLINA",
-      "home": "App St",
+      "away": "App St",
+      "home": "EAST CAROLINA",
       "spread": 9.5,
-      "total": 55.5
+      "total": 55.5,
+      "favorite": "EAST CAROLINA"
     },
     {
       "id": "ncaa-2026-09-12-fiu-buffalo",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "FIU",
-      "home": "Buffalo",
+      "away": "Buffalo",
+      "home": "FIU",
       "spread": 10.5,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "FIU"
     },
     {
       "id": "ncaa-2026-09-12-fresnost-sacramentost",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "FRESNO ST",
-      "home": "Sacramento St",
+      "away": "Sacramento St",
+      "home": "FRESNO ST",
       "spread": 18.5,
-      "total": 48.5
+      "total": 48.5,
+      "favorite": "FRESNO ST"
     },
     {
       "id": "ncaa-2026-09-12-georgia-westernkentucky",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "GEORGIA",
-      "home": "Western Kentucky",
+      "away": "Western Kentucky",
+      "home": "GEORGIA",
       "spread": 39.5,
-      "total": 52.5
+      "total": 52.5,
+      "favorite": "GEORGIA"
     },
     {
       "id": "ncaa-2026-09-12-hawaii-newmexicost",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "HAWAII",
-      "home": "New Mexico St",
+      "away": "New Mexico St",
+      "home": "HAWAII",
       "spread": 10.0,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "HAWAII"
     },
     {
       "id": "ncaa-2026-09-12-illinois-duke",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "ILLINOIS",
-      "home": "Duke",
+      "away": "Duke",
+      "home": "ILLINOIS",
       "spread": 7.5,
-      "total": 54.5
+      "total": 54.5,
+      "favorite": "ILLINOIS"
     },
     {
       "id": "ncaa-2026-09-12-iowa-iowast",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "IOWA",
-      "home": "Iowa St",
+      "away": "Iowa St",
+      "home": "IOWA",
       "spread": 14.5,
-      "total": 41.5
+      "total": 41.5,
+      "favorite": "IOWA"
     },
     {
       "id": "ncaa-2026-09-12-kansasst-washingtonst",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "KANSAS ST",
-      "home": "Washington St",
+      "away": "Washington St",
+      "home": "KANSAS ST",
       "spread": 19.5,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "KANSAS ST"
     },
     {
       "id": "ncaa-2026-09-12-kennesawst-georgiast",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "KENNESAW ST",
-      "home": "Georgia St",
+      "away": "Georgia St",
+      "home": "KENNESAW ST",
       "spread": 9.5,
-      "total": 50.5
+      "total": 50.5,
+      "favorite": "KENNESAW ST"
     },
     {
       "id": "ncaa-2026-09-12-lsu-louisianatech",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "LSU",
-      "home": "Louisiana Tech",
+      "away": "Louisiana Tech",
+      "home": "LSU",
       "spread": 31.5,
-      "total": 55.5
+      "total": 55.5,
+      "favorite": "LSU"
     },
     {
       "id": "ncaa-2026-09-12-marshall-middtenn",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "MARSHALL",
-      "home": "Midd Tenn",
+      "away": "Midd Tenn",
+      "home": "MARSHALL",
       "spread": 17.5,
-      "total": 57.5
+      "total": 57.5,
+      "favorite": "MARSHALL"
     },
     {
       "id": "ncaa-2026-09-12-maryland-uconn",
@@ -325,16 +360,18 @@ window.POOL_DATA = {
       "away": "Maryland",
       "home": "UCONN",
       "spread": 13.5,
-      "total": 53.5
+      "total": 53.5,
+      "favorite": "Maryland"
     },
     {
       "id": "ncaa-2026-09-12-michiganst-easternmich",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "MICHIGAN ST",
-      "home": "Eastern Mich",
+      "away": "Eastern Mich",
+      "home": "MICHIGAN ST",
       "spread": 17.5,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "MICHIGAN ST"
     },
     {
       "id": "ncaa-2026-09-12-mississippist-minnesota",
@@ -343,7 +380,8 @@ window.POOL_DATA = {
       "away": "Mississippi St",
       "home": "MINNESOTA",
       "spread": 1.5,
-      "total": 55.5
+      "total": 55.5,
+      "favorite": "Mississippi St"
     },
     {
       "id": "ncaa-2026-09-12-navy-floridaatlantic",
@@ -352,16 +390,18 @@ window.POOL_DATA = {
       "away": "Navy",
       "home": "FLORIDA ATLANTIC",
       "spread": 6.5,
-      "total": 57.5
+      "total": 57.5,
+      "favorite": "Navy"
     },
     {
       "id": "ncaa-2026-09-12-nebraska-bowlinggreen",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "NEBRASKA",
-      "home": "Bowling Green",
+      "away": "Bowling Green",
+      "home": "NEBRASKA",
       "spread": 28.5,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "NEBRASKA"
     },
     {
       "id": "ncaa-2026-09-12-northdakotast-airforce",
@@ -370,25 +410,28 @@ window.POOL_DATA = {
       "away": "North Dakota St",
       "home": "AIR FORCE",
       "spread": 6.5,
-      "total": 49.5
+      "total": 49.5,
+      "favorite": "North Dakota St"
     },
     {
       "id": "ncaa-2026-09-12-notredame-rice",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "NOTRE DAME",
-      "home": "Rice",
+      "away": "Rice",
+      "home": "NOTRE DAME",
       "spread": 44.5,
-      "total": 52.5
+      "total": 52.5,
+      "favorite": "NOTRE DAME"
     },
     {
       "id": "ncaa-2026-09-12-ohio-jacksonvillest",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "OHIO",
-      "home": "Jacksonville St",
+      "away": "Jacksonville St",
+      "home": "OHIO",
       "spread": 1.5,
-      "total": 50.5
+      "total": 50.5,
+      "favorite": "OHIO"
     },
     {
       "id": "ncaa-2026-09-12-oklahoma-michigan",
@@ -397,16 +440,18 @@ window.POOL_DATA = {
       "away": "Oklahoma",
       "home": "MICHIGAN",
       "spread": 4.5,
-      "total": 44.5
+      "total": 44.5,
+      "favorite": "Oklahoma"
     },
     {
       "id": "ncaa-2026-09-12-olemiss-charlotte",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "OLE MISS",
-      "home": "Charlotte",
+      "away": "Charlotte",
+      "home": "OLE MISS",
       "spread": 46.5,
-      "total": 61.5
+      "total": 61.5,
+      "favorite": "OLE MISS"
     },
     {
       "id": "ncaa-2026-09-12-oregon-oklahomast",
@@ -415,7 +460,8 @@ window.POOL_DATA = {
       "away": "Oregon",
       "home": "OKLAHOMA ST",
       "spread": 22.5,
-      "total": 59.5
+      "total": 59.5,
+      "favorite": "Oregon"
     },
     {
       "id": "ncaa-2026-09-12-pennst-temple",
@@ -424,25 +470,28 @@ window.POOL_DATA = {
       "away": "Penn St",
       "home": "TEMPLE",
       "spread": 21.5,
-      "total": 50.5
+      "total": 50.5,
+      "favorite": "Penn St"
     },
     {
       "id": "ncaa-2026-09-12-pitt-ucf",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "PITT",
-      "home": "Ucf",
+      "away": "Ucf",
+      "home": "PITT",
       "spread": 8.5,
-      "total": 56.5
+      "total": 56.5,
+      "favorite": "PITT"
     },
     {
       "id": "ncaa-2026-09-12-syracuse-california",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "SYRACUSE",
-      "home": "California",
+      "away": "California",
+      "home": "SYRACUSE",
       "spread": 1.5,
-      "total": 52.5
+      "total": 52.5,
+      "favorite": "SYRACUSE"
     },
     {
       "id": "ncaa-2026-09-12-tennessee-georgiatech",
@@ -451,25 +500,28 @@ window.POOL_DATA = {
       "away": "Tennessee",
       "home": "GEORGIA TECH",
       "spread": 13.5,
-      "total": 55.5
+      "total": 55.5,
+      "favorite": "Tennessee"
     },
     {
       "id": "ncaa-2026-09-12-texas-ohiost",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "TEXAS",
-      "home": "Ohio St",
+      "away": "Ohio St",
+      "home": "TEXAS",
       "spread": 1.5,
-      "total": 47.5
+      "total": 47.5,
+      "favorite": "TEXAS"
     },
     {
       "id": "ncaa-2026-09-12-texasam-arizonast",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "TEXAS A&M",
-      "home": "Arizona St",
+      "away": "Arizona St",
+      "home": "TEXAS A&M",
       "spread": 14.5,
-      "total": 50.5
+      "total": 50.5,
+      "favorite": "TEXAS A&M"
     },
     {
       "id": "ncaa-2026-09-12-texastech-oregonst",
@@ -478,16 +530,18 @@ window.POOL_DATA = {
       "away": "Texas Tech",
       "home": "OREGON ST",
       "spread": 25.5,
-      "total": 50.5
+      "total": 50.5,
+      "favorite": "Texas Tech"
     },
     {
       "id": "ncaa-2026-09-12-tulane-southalabama",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "TULANE",
-      "home": "South Alabama",
+      "away": "South Alabama",
+      "home": "TULANE",
       "spread": 10.0,
-      "total": 52.5
+      "total": 52.5,
+      "favorite": "TULANE"
     },
     {
       "id": "ncaa-2026-09-12-tulsa-samhouston",
@@ -496,25 +550,28 @@ window.POOL_DATA = {
       "away": "Tulsa",
       "home": "SAM HOUSTON",
       "spread": 14.0,
-      "total": 52.5
+      "total": 52.5,
+      "favorite": "Tulsa"
     },
     {
       "id": "ncaa-2026-09-12-uab-ulmonroe",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "UAB",
-      "home": "Ul-Monroe",
+      "away": "Ul-Monroe",
+      "home": "UAB",
       "spread": 10.0,
-      "total": 56.5
+      "total": 56.5,
+      "favorite": "UAB"
     },
     {
       "id": "ncaa-2026-09-12-ucla-sandiegost",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "UCLA",
-      "home": "San Diego St",
+      "away": "San Diego St",
+      "home": "UCLA",
       "spread": 10.0,
-      "total": 50.5
+      "total": 50.5,
+      "favorite": "UCLA"
     },
     {
       "id": "ncaa-2026-09-12-unlv-northtexas",
@@ -523,25 +580,28 @@ window.POOL_DATA = {
       "away": "Unlv",
       "home": "NORTH TEXAS",
       "spread": 5.5,
-      "total": 58.5
+      "total": 58.5,
+      "favorite": "Unlv"
     },
     {
       "id": "ncaa-2026-09-12-usc-louisiana",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "USC",
-      "home": "Louisiana",
+      "away": "Louisiana",
+      "home": "USC",
       "spread": 28.5,
-      "total": 60.5
+      "total": 60.5,
+      "favorite": "USC"
     },
     {
       "id": "ncaa-2026-09-12-utah-arkansas",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "UTAH",
-      "home": "Arkansas",
+      "away": "Arkansas",
+      "home": "UTAH",
       "spread": 11.5,
-      "total": 56.5
+      "total": 56.5,
+      "favorite": "UTAH"
     },
     {
       "id": "ncaa-2026-09-12-utsa-texasst",
@@ -550,25 +610,28 @@ window.POOL_DATA = {
       "away": "Utsa",
       "home": "TEXAS ST",
       "spread": 1.5,
-      "total": 64.5
+      "total": 64.5,
+      "favorite": "Utsa"
     },
     {
       "id": "ncaa-2026-09-12-vanderbilt-delaware",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "VANDERBILT",
-      "home": "Delaware",
+      "away": "Delaware",
+      "home": "VANDERBILT",
       "spread": 20.5,
-      "total": 54.5
+      "total": 54.5,
+      "favorite": "VANDERBILT"
     },
     {
       "id": "ncaa-2026-09-12-virginiatech-olddominion",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "VIRGINIA TECH",
-      "home": "Old Dominion",
+      "away": "Old Dominion",
+      "home": "VIRGINIA TECH",
       "spread": 17.5,
-      "total": 51.5
+      "total": 51.5,
+      "favorite": "VIRGINIA TECH"
     },
     {
       "id": "ncaa-2026-09-12-wakeforest-purdue",
@@ -577,16 +640,18 @@ window.POOL_DATA = {
       "away": "Wake Forest",
       "home": "PURDUE",
       "spread": 4.5,
-      "total": 49.5
+      "total": 49.5,
+      "favorite": "Wake Forest"
     },
     {
       "id": "ncaa-2026-09-12-washington-utahst",
       "sport": "NCAA",
       "date": "2026-09-12",
-      "away": "WASHINGTON",
-      "home": "Utah St",
+      "away": "Utah St",
+      "home": "WASHINGTON",
       "spread": 27.5,
-      "total": 56.5
+      "total": 56.5,
+      "favorite": "WASHINGTON"
     }
   ],
   "entries": [
