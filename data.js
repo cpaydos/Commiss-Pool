@@ -5004,21 +5004,21 @@ window.POOL_DATA = {
           "team": "TEXANS",
           "kind": "spread",
           "direction": null,
-          "gameId": "nfl-2026-09-14-cowboys-giants"
+          "gameId": "nfl-2026-09-13-bills-texans"
         },
         {
           "raw": "VIKINGS",
           "team": "VIKINGS",
           "kind": "spread",
           "direction": null,
-          "gameId": "nfl-2026-09-14-vikings-packers"
+          "gameId": "nfl-2026-09-13-vikings-packers"
         },
         {
           "raw": "BOISE ST",
           "team": "BOISE ST",
           "kind": "spread",
           "direction": null,
-          "gameId": "ncaa-2026-09-12-boise-st-utah"
+          "gameId": "ncaa-2026-09-12-boisest-memphis"
         }
       ],
       "autoPick": false
