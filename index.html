@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0b1020" />
-  <title>Commiss Pool — Week 1</title>
+  <title>Commiss Pool</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -31,7 +31,8 @@
       </section>
 
       <div class="tabs" role="tablist">
-        <button class="tab active" data-tab="leaderboard">Leaderboard</button>
+        <button class="tab active" data-tab="leaderboard">Current Week</button>
+        <button class="tab" data-tab="overall">Overall</button>
         <button class="tab" data-tab="bonus">Bonus</button>
         <button class="tab" data-tab="games">Games</button>
         <button class="tab" data-tab="distribution">Distribution</button>
@@ -46,8 +47,21 @@
             <option value="done">Completed</option>
             <option value="pending">Upcoming</option>
           </select>
+          <label class="check-label"><input id="favoriteFilter" type="checkbox" /> <span>★ Favorites</span></label>
         </div>
         <div id="leaderboardList" class="leaderboard-list"></div>
+      </section>
+
+      <section id="overall" class="panel">
+        <div class="section-heading">
+          <div><h2>Overall Leaderboard</h2><p id="overallContext">Season Total</p></div>
+        </div>
+        <div class="overall-toolbar">
+          <select id="overallWeek" aria-label="Leaderboard week"></select>
+          <label class="check-label"><input id="overallFavoriteFilter" type="checkbox" /> <span>★ Favorites</span></label>
+        </div>
+        <div class="history-note">Completed weeks will show as <strong>Final</strong> once locked.</div>
+        <div id="overallList" class="overall-list"></div>
       </section>
 
       <section id="bonus" class="panel">

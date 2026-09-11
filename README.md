@@ -1,41 +1,41 @@
-# Commiss Pool — Week 1 MVP
+# Commiss Fantasy Football Pool — V2 Base
 
-Mobile-first web app for the 2026 pool using the supplied Week 1 lines and Week 1 picks.
+Mobile-first private pool web app.
 
-## Included
-- 137 entries
-- 548 regular picks + 137 Bonus picks
-- Week 1 official lines
-- Push = loss scoring
-- Spread + Over/Under scoring
-- Bonus = outright win; tie/loss eliminates
-- Commissioner auto-pick flag for entries 58 and 104 based on red selections in the supplied PDF
-- Live NFL/NCAA score refresh via ESPN's public scoreboard endpoints
-- Search/filter leaderboard
-- Entry detail view
-- Bonus leaderboard
-- Games view
+## Current V2 additions
+- Current Week remains the default landing view.
+- Overall Leaderboard tab defaults to Season Total.
+- Overall Leaderboard supports Season Total, First Half, Second Half, and individual weeks 1–18.
+- Future weeks are disabled until they become active.
+- Completed weeks can be marked/represented as Final/locked.
+- Favorites: star entries and filter to starred friends. Favorites persist in the browser using localStorage.
+- Individual entry detail remains available from leaderboards.
+- Existing Bonus, Games, Distribution, and ESPN live-score functionality is preserved.
 
-## Important Week 1 line interpretation
-The commissioner's sheet uses capitalization to identify the HOME team. The numeric spread is the line attached to the first team in the sheet (e.g. `JAGUARS 7.5 Browns` is Jaguars -7.5 / Browns +7.5). The app stores that locked line and never replaces it with a moving sportsbook line.
+## Season architecture
+- First Half = Weeks 1–9.
+- Second Half = Weeks 10–18.
+- The app treats the halves separately so rules such as the Bonus reset can be implemented cleanly.
+- Payout/point logic is intentionally not included yet; it will be added from the official Commiss distribution.
 
-## Test locally
-From this folder, run:
+## Historical data
+The UI is ready to consume `POOL_DATA.history` when future weekly results are added. A history week should contain rows like:
 
+```js
+DATA.history = {
+  1: [
+    { id: 1, name: 'ENTRY NAME', w: 4, l: 0, bonus: 'alive' }
+  ]
+};
+```
+
+For the current live Week 1, the app temporarily derives the week from the live ESPN scores. Once Week 1 is finalized, its results should be embedded as locked historical data rather than relying on live scores.
+
+## Local run
 ```bash
 python3 -m http.server 8080
 ```
+Open `http://localhost:8080`.
 
-Then open `http://localhost:8080`.
-
-For iPhone testing, deploy this folder as a static site (GitHub Pages, Netlify, Vercel, etc.). The app itself has no server-side requirements.
-
-## Score feed
-The MVP uses ESPN's scoreboard endpoint because it does not require an API key. A future production version should move score fetching behind a small serverless proxy so the data source can be swapped without changing the app.
-
-## Next build items
-- Import the commissioner's PDFs instead of embedding Week 1 data
-- Add the season/half point-dollar distribution
-- Add Week 2+ setup
-- Add permanent database/auth if the group wants shared access
-- Add final-score verification workflow against the commissioner's finalized sheet
+## Deployment
+The intended deployment is Vercel connected to the GitHub repository. Existing production URL remains unchanged when the repository is updated.
