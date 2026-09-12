@@ -347,6 +347,7 @@ window.POOL_DATA = {
       "id": "ncaa-2026-09-12-marshall-middtenn",
       "sport": "NCAA",
       "date": "2026-09-12",
+      "startTime": "2026-09-12T19:00:00-04:00",
       "away": "Midd Tenn",
       "home": "MARSHALL",
       "spread": 17.5,

@@ -8,7 +8,7 @@ const SEASON={currentWeek:1,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,1
 const aliases={
   'MIDD TENN':'MIDDLE TENNESSEE','EASTERN MICH':'EASTERN MICHIGAN','BOISE ST':'BOISE STATE','NORTH DAKOTA ST':'NORTH DAKOTA STATE','KANSAS ST':'KANSAS STATE','OKLAHOMA ST':'OKLAHOMA STATE','OREGON ST':'OREGON STATE','ARIZONA ST':'ARIZONA STATE','GEORGIA ST':'GEORGIA STATE','WASHINGTON ST':'WASHINGTON STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','APP ST':'APPALACHIAN STATE','SOUTH FLORIDA':'SOUTH FLORIDA','FLORIDA ATLANTIC':'FLORIDA ATLANTIC','SAM HOUSTON':'SAM HOUSTON','OLD DOMINION':'OLD DOMINION','UCF':'UCF','UTSA':'UTSA','UL-MONROE':'UL MONROE','SAN DIEGO ST':'SAN DIEGO STATE','FRESNO ST':'FRESNO STATE','BOSTON COLLEGE':'BOSTON COLLEGE','FIU':'FLORIDA INTERNATIONAL','PITT':'PITTSBURGH','UCONN':'CONNECTICUT','PENN ST':'PENN STATE','MISSISSIPPI ST':'MISSISSIPPI STATE','SACRAMENTO ST':'SACRAMENTO STATE','JACKSONVILLE ST':'JACKSONVILLE STATE','GEORGIA ST':'GEORGIA STATE','FRESNO ST':'FRESNO STATE','HAWAII':'HAWAI’I','NEW MEXICO ST':'NEW MEXICO STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','UCF':'CENTRAL FLORIDA','UAB':'UAB','UCF':'UCF','UCLA':'UCLA','USC':'USC'
 };
-function teamMatches(line,espn){const a=norm(line),b=norm(espn),aa=norm(aliases[line]||line);return a===b||aa===b||b.includes(a)||b.includes(aa)||a.includes(b)}
+function teamMatches(line,espn){const a=norm(line),b=norm(espn);const aliasKey=Object.keys(aliases).find(k=>norm(k)===a);const alias=aliasKey?aliases[aliasKey]:line;const aa=norm(alias);return a===b||aa===b||b.includes(a)||b.includes(aa)||a.includes(b)||aa.includes(b)}
 function classifyPick(p,g){
   const sc=state.scores[g.id];
   if(!sc||sc.status==='scheduled')return 'pending';
