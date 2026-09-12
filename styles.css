@@ -50,3 +50,5 @@
 @media(max-width:500px){.tabs .tab{font-size:9px;padding:10px 2px}.overall-toolbar{align-items:stretch}.check-label{padding:0 7px}.overall-toolbar select{min-width:0}}
 
 .pick-time{font-size:.78rem;font-weight:700;letter-spacing:.02em;margin:.28rem 0 .12rem;color:#aab5ca}
+.distribution-row{cursor:pointer;transition:transform .12s ease,border-color .12s ease}.distribution-row:active{transform:scale(.995)}
+.distribution-person{display:flex;align-items:center;justify-content:space-between;padding:11px 4px;border-bottom:1px solid var(--line);cursor:pointer}.distribution-person>div:first-child{display:flex;align-items:center;gap:8px;min-width:0}.distribution-person-arrow{font-size:24px;color:var(--muted);padding-left:8px}

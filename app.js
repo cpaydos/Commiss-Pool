@@ -84,7 +84,43 @@ function populateOverallSelector(){
   sel.innerHTML=options.map(([v,l])=>{const n=v.startsWith('week')?Number(v.slice(4)):0;const available=v==='season'||(v==='first'&&SEASON.currentWeek>=1)||(v==='second'&&SEASON.currentWeek>=10)||(n>0&&n<=SEASON.currentWeek);return `<option value="${v}" ${available?'':'disabled'}>${l}</option>`}).join('');sel.value='season'
 }
 function renderBonus(){const arr=DATA.entries.map(e=>({e,s:bonusStatus(e)})).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const alive=arr.filter(x=>x.s!=='eliminated').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusList').innerHTML=arr.map(({e,s})=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${esc(e.bonus.team)}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${s==='eliminated'?'eliminated':s==='alive'?'alive':''}">${s==='eliminated'?'OUT':s==='alive'?'ALIVE':s.toUpperCase()}</div></div>`).join('');bindStars($('bonusList'))}
-function renderDistribution(){const mode=document.querySelector('.dist-switch.active')?.dataset.dist||'spread',counts=new Map();let total=0;if(mode==='bonus'){for(const e of DATA.entries){const team=e.bonus.team;counts.set(team,(counts.get(team)||0)+1);total++}}else if(mode==='totals'){for(const e of DATA.entries)for(const p of e.picks)if(p.kind==='total'){const g=gameById[p.gameId],label=`${favoriteOf(g)} ${g.total} — ${p.direction==='over'?'Over':'Under'}`;counts.set(label,(counts.get(label)||0)+1);total++}}else{for(const e of DATA.entries)for(const p of e.picks)if(p.kind==='spread'){counts.set(p.team,(counts.get(p.team)||0)+1);total++}}const sorted=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));const label=mode==='bonus'?'Bonus picks':mode==='totals'?'Total picks':'Spread picks';$('distributionSummary').innerHTML=`<div><strong>${total}</strong><span>${label}</span></div><div><strong>${sorted.length}</strong><span>different selections</span></div><div><strong>${sorted[0]?.[1]||0}</strong><span>most popular</span></div>`;$('distributionList').innerHTML=sorted.map(([name,count],i)=>{const pct=total?count/total*100:0;return `<div class="distribution-row"><div class="distribution-rank">${i+1}</div><div class="distribution-main"><div class="distribution-name">${esc(name)}</div><div class="distribution-bar"><span style="width:${Math.max(pct,1)}%"></span></div></div><div class="distribution-count"><strong>${count}</strong><small>${pct.toFixed(1)}%</small></div></div>`}).join('')||'<div class="empty">No distribution data.</div>'}
+function distributionMatches(mode,name){
+  const matches=[];
+  for(const e of DATA.entries){
+    if(mode==='bonus'){
+      if(e.bonus.team===name)matches.push(e);
+    }else if(mode==='totals'){
+      for(const p of e.picks){
+        if(p.kind!=='total')continue;
+        const g=gameById[p.gameId],label=`${favoriteOf(g)} ${g.total} — ${p.direction==='over'?'Over':'Under'}`;
+        if(label===name){matches.push(e);break}
+      }
+    }else{
+      if(e.picks.some(p=>p.kind==='spread'&&p.team===name))matches.push(e);
+    }
+  }
+  return matches;
+}
+function showDistributionDetail(mode,name,count){
+  const entries=distributionMatches(mode,name);
+  const modeLabel=mode==='bonus'?'Bonus picks':mode==='totals'?'Total picks':'Spread picks';
+  $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(name)}</h2><div class="detail-record">${count} ${count===1?'entry':'entries'}</div><div class="entry-meta">${modeLabel} · Tap a name to view their picks</div></div>${entries.map(e=>`<div class="distribution-person" data-entry="${e.id}"><div>${starButton(e)}<div><div class="entry-name">${esc(e.name)}</div><div class="entry-meta">Entry ${e.id}</div></div></div><div class="distribution-person-arrow">›</div></div>`).join('')||'<div class="empty">No matching entries.</div>'}`;
+  $('entryModal').classList.remove('hidden');
+  const list=$('modalContent');
+  list.querySelectorAll('.distribution-person').forEach(x=>x.onclick=ev=>{if(ev.target.closest('[data-star]'))return;openEntry(+x.dataset.entry)});
+  bindStars(list);
+}
+function renderDistribution(){
+  const mode=document.querySelector('.dist-switch.active')?.dataset.dist||'spread',counts=new Map();let total=0;
+  if(mode==='bonus'){for(const e of DATA.entries){const team=e.bonus.team;counts.set(team,(counts.get(team)||0)+1);total++}}
+  else if(mode==='totals'){for(const e of DATA.entries)for(const p of e.picks)if(p.kind==='total'){const g=gameById[p.gameId],label=`${favoriteOf(g)} ${g.total} — ${p.direction==='over'?'Over':'Under'}`;counts.set(label,(counts.get(label)||0)+1);total++}}
+  else{for(const e of DATA.entries)for(const p of e.picks)if(p.kind==='spread'){counts.set(p.team,(counts.get(p.team)||0)+1);total++}}
+  const sorted=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+  const label=mode==='bonus'?'Bonus picks':mode==='totals'?'Total picks':'Spread picks';
+  $('distributionSummary').innerHTML=`<div><strong>${total}</strong><span>${label}</span></div><div><strong>${sorted.length}</strong><span>different selections</span></div><div><strong>${sorted[0]?.[1]||0}</strong><span>most popular</span></div>`;
+  $('distributionList').innerHTML=sorted.map(([name,count],i)=>{const pct=total?count/total*100:0;return `<div class="distribution-row" data-dist-item="${esc(name)}" data-dist-mode="${mode}" data-dist-count="${count}" role="button" tabindex="0"><div class="distribution-rank">${i+1}</div><div class="distribution-main"><div class="distribution-name">${esc(name)}</div><div class="distribution-bar"><span style="width:${Math.max(pct,1)}%"></span></div></div><div class="distribution-count"><strong>${count}</strong><small>${pct.toFixed(1)}%</small></div></div>`}).join('')||'<div class="empty">No distribution data.</div>';
+  document.querySelectorAll('[data-dist-item]').forEach(row=>{const open=()=>showDistributionDetail(row.dataset.distMode,row.dataset.distItem,Number(row.dataset.distCount));row.onclick=open;row.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}}});
+}
 function gameStartTime(g){const sc=state.scores[g.id];return sc?.startTime||g.startTime||null}
 function formatGameDateTime(g){const iso=gameStartTime(g);if(!iso)return formatDate(g.date);const d=new Date(iso);return d.toLocaleString('en-US',{timeZone:'America/New_York',weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).replace(',', ' ·')+' ET'}
 function formatLiveDetail(g){const sc=state.scores[g.id];if(!sc||sc.status!=='in')return null;let period=sc.period?`${sc.period}${sc.period===1?'st':sc.period===2?'nd':sc.period===3?'rd':'th'} Q`:'';let clock=sc.displayClock||sc.clock||'';if(clock){clock=clock.replace(/^.*?\s(?=\d+:\d+$)/,'');}return [period,clock].filter(Boolean).join(' · ')||'LIVE'}
