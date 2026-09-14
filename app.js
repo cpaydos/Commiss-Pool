@@ -1,5 +1,6 @@
 const DATA=window.POOL_DATA;
 const state={scores:{},lastUpdated:null,overallView:'season'};
+const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3250]]};
 const $=id=>document.getElementById(id);
 const norm=s=>s.toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
@@ -29,7 +30,13 @@ function isFavorite(id){return getFavorites().has(String(id))}
 function getFavorites(){try{return new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String))}catch{return new Set()}}
 function toggleFavorite(id){const f=getFavorites();const key=String(id);f.has(key)?f.delete(key):f.add(key);localStorage.setItem('commissFavorites',JSON.stringify([...f]));render()}
 function starButton(e){return `<button class="star-btn ${isFavorite(e.id)?'starred':''}" data-star="${e.id}" aria-label="${isFavorite(e.id)?'Remove':'Add'} ${esc(e.name)} ${isFavorite(e.id)?'from':'to'} favorites">${isFavorite(e.id)?'★':'☆'}</button>`}
-function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();updateHero()}
+function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();updateHero()}
+function renderPayouts(){
+  $('payoutSummary').innerHTML=`<div class=\"payout-stat\"><strong>$${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class=\"payout-stat\"><strong>$${PAYOUTS.half.reduce((a,x)=>a+x[1],0).toLocaleString()}</strong><span>Half prizes</span></div><div class=\"payout-stat\"><strong>$${(PAYOUTS.weekly*18+PAYOUTS.half.reduce((a,x)=>a+x[1],0)*2).toLocaleString()}</strong><span>Listed prizes</span></div>`;
+  const fours=DATA.entries.filter(e=>record(e).w===4&&record(e).l===0).length;
+  $('weeklyPayout').innerHTML=fours?`<div class=\"payout-row payout-highlight\"><div><strong>Current Week 4–0</strong><small>${fours} ${fours===1?'entry':'entries'} · $2,500 ÷ ${fours}</small></div><strong>$${(PAYOUTS.weekly/fours).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} each</strong></div>`:`<div class=\"payout-row\"><div><strong>$2,500 bounty</strong><small>No 4–0 entries yet</small></div><strong>Pending</strong></div>`;
+  $('halfPayouts').innerHTML=PAYOUTS.half.map(([name,amt])=>`<div class=\"payout-row\"><div><strong>${esc(name)}</strong><small>Per half · awarded in Weeks 1–9 and 10–18</small></div><strong>$${amt.toLocaleString()}</strong></div>`).join('');
+}
 function renderLeaderboard(){
   const q=$('search').value.toLowerCase(),f=$('statusFilter').value,favOnly=$('favoriteFilter').checked;
   let arr=sortEntries([...DATA.entries]).filter(e=>e.name.toLowerCase().includes(q));
