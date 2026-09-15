@@ -9172,8 +9172,8 @@ window.POOL_DATA = {
         },
         "ncaa-2026-09-12-alabama-kentucky": {
           "status": "final",
-          "awayScore": 17,
-          "homeScore": 45
+          "awayScore": 45,
+          "homeScore": 17
         },
         "ncaa-2026-09-12-army-southflorida": {
           "status": "final",
@@ -9914,8 +9914,8 @@ window.POOL_DATA = {
         {
           "id": 73,
           "name": "JOE VALLACHI'S SON",
-          "w": 3,
-          "l": 1,
+          "w": 4,
+          "l": 0,
           "bonus": "alive"
         },
         {
