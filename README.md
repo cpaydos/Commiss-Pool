@@ -44,3 +44,8 @@ Open `http://localhost:8080`.
 
 ## Deployment
 The intended deployment is Vercel connected to the GitHub repository. Existing production URL remains unchanged when the repository is updated.
+
+
+## Week 2 ESPN matching fix
+- Eastern Mich now matches ESPN's Eastern Michigan / E Michigan / EMU naming variants.
+- Service worker cache bumped to v3 so the updated app shell is picked up after deployment.
