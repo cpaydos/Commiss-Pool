@@ -167,7 +167,7 @@ async function refreshScores(){
   const dates='20260917-20260921',games=DATA.games||[];
   const urls=[
     `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`,
-    `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&limit=1000`
+    `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&groups=80&limit=1000`
   ];
   try{
     // Treat NFL and college feeds independently. One transient ESPN failure
