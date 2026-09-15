@@ -73,10 +73,10 @@
 
       <section id="bonus" class="panel">
         <div class="section-heading">
-          <div><h2>Bonus Pool</h2><p>Week 2 max favorite: 8 points</p></div>
-          <div id="bonusAlive" class="pill">0 alive</div>
+          <div><h2>Bonus Pool</h2><p id="bonusContext">Week 2 · historical survival</p></div>
+          <div id="bonusAlive" class="pill">0 alive · 0 out</div>
         </div>
-        <div id="bonusList" class="bonus-list"></div>
+        <div class="overall-toolbar"><select id="bonusWeek" aria-label="Bonus history week"></select></div><div id="bonusList" class="bonus-list"></div>
       </section>
 
       <section id="games" class="panel">
@@ -108,6 +108,8 @@
         <div id="payoutSummary" class="payout-summary"></div>
         <div class="section-heading"><div><h3>Weekly Bounty</h3><p>2,500 every week · split among 4–0 entries</p></div></div>
         <div id="weeklyPayout" class="payout-card"></div>
+        <div class="section-heading"><div><h3>Weekly Payout History</h3><p>See who earned the 2,500 bounty each week.</p></div></div>
+        <div id="weeklyPayoutHistory" class="payout-list"></div>
         <div class="section-heading"><div><h3>Each 9-Week Half</h3><p>Prizes are awarded once in each half</p></div></div>
         <div id="halfPayouts" class="payout-list"></div>
         <div class="payout-note">Tie rules: 47th is the 47th entry in the final standings by alphabetical order. Last Place is split among tied lowest records. Back-to-Back 0’s requires consecutive 0–4 weeks; if multiple entries qualify in the same week, the pot is split. For 1st/2nd/3rd, tied prize money rolls down into the tied position(s) and is split equally.</div>
