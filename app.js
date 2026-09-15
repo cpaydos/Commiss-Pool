@@ -1,8 +1,9 @@
 const DATA=window.POOL_DATA;
-const state={scores:{},historyScores:{},lastUpdated:null,overallView:'season'};
+const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{});
+const state={scores:{},historyScores:staticHistoryScores,lastUpdated:null,overallView:'season'};
 const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3250]]};
 const $=id=>document.getElementById(id);
-const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+const norm=s=>s.toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
 const SEASON={currentWeek:2,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1]};
@@ -39,8 +40,9 @@ function renderPayouts(){
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0);
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
   else if(!fours.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} · Final</strong><small>No entries finished 4–0.</small></div><strong>0</strong></div>`;
-  else{const share=PAYOUTS.weekly/fours.length;$('weeklyPayout').innerHTML=`<div class="payout-row payout-highlight"><div><strong>Week ${week} · ${fours.length} ${fours.length===1?'winner':'winners'} at 4–0</strong><small>2,500 split equally · ${share.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} each</small></div><strong>2,500</strong></div>${fours.map(r=>`<div class="payout-row payout-winner-row" data-entry="${r.id}" data-week="${week}"><div><strong>${esc(r.name)}</strong><small>4–0 · Tap to view winning picks</small></div><strong>${share.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>`).join('')}`}
-  $('weeklyPayout').querySelectorAll('[data-entry]').forEach(x=>x.onclick=ev=>{if(ev.target.closest('[data-star]'))return;openEntry(+x.dataset.entry,Number(x.dataset.week))});
+  else{const share=PAYOUTS.weekly/fours.length;$('weeklyPayout').innerHTML=`<div class="payout-row payout-highlight"><div><strong>Week ${week} · ${fours.length} ${fours.length===1?'winner':'winners'} at 4–0</strong><small>2,500 split equally · ${share.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} each</small></div><strong>2,500</strong></div>${fours.map(r=>`<div class="payout-row payout-entry" data-entry="${r.id}" data-week="${week}" role="button" tabindex="0"><div><strong>${esc(r.name)}</strong><small>Week ${week} record · Tap to view picks</small></div><strong>${share.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>`).join('')}`}
+  bindEntryRows($('weeklyPayout'));bindStars($('weeklyPayout'));
+  $('weeklyPayout').querySelectorAll('.payout-entry').forEach(row=>row.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();row.click()}});
   $('halfPayouts').innerHTML=PAYOUTS.half.map(([name,amt])=>`<div class="payout-row"><div><strong>${esc(name)}</strong><small>Per half · awarded in Weeks 1–9 and 10–18</small></div><strong>${amt.toLocaleString()}</strong></div>`).join('');
 }
 function renderLeaderboard(){
@@ -160,7 +162,55 @@ function openEntry(id,week=null){
   $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${week?` · Week ${week} · Final`:''}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map(p=>{const g=gm[p.gameId],res=classifyPick(p,g,scoreMap),sc=scoreMap[g?.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-time">${week?formatDate(g.date):formatGameTimeDisplay(g)}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus?.team||'Not loaded')}</div><div class="pick-sub">Outright win required · max favorite ${weekBonusMax}</div></div><div class="${bstat==='eliminated'?'result-loss':bstat==='alive'?'result-win':'result-pending'}">${bstat.toUpperCase()}</div></div>`;$('entryModal').classList.remove('hidden')}
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
-async function refreshScores(){setFeed('Fetching live scores…','');try{const ranges=[{key:'historyScores',dates:'20260909-20260914',games:DATA.history?.[1]?.games||[]},{key:'scores',dates:'20260917-20260921',games:DATA.games}];const foundCurrent={},foundHistory={};for(const range of ranges){const urls=[`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${range.dates}&limit=500`,`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${range.dates}&limit=1000`];const payloads=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('score feed HTTP '+r.status);return r.json()})));const target=range.key==='scores'?foundCurrent:foundHistory;for(const data of payloads)for(const ev of data.events||[]){const comp=ev.competitions?.[0];if(!comp)continue;const teams=comp.competitors||[];if(teams.length<2)continue;const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');if(!home||!away)continue;const matches=range.games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));for(const g of matches){const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';target[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null}}}}state.scores=foundCurrent;state.historyScores=foundHistory;state.lastUpdated=new Date();setFeed(`Live feed connected · ${Object.keys(foundCurrent).length} Week 2 games matched`,'ok');render()}catch(err){console.error(err);setFeed('Live feed unavailable — will retry automatically','bad');render()}}
+async function refreshScores(){
+  setFeed('Fetching live scores…','');
+  const dates='20260917-20260921',games=DATA.games||[];
+  const urls=[
+    `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`,
+    `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&groups=80&limit=1000`
+  ];
+  try{
+    // Treat NFL and college feeds independently. One transient ESPN failure
+    // should never make the entire Week 2 feed look unavailable.
+    const results=await Promise.allSettled(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{
+      if(!r.ok)throw new Error('score feed HTTP '+r.status);
+      return r.json();
+    })));
+    const foundCurrent={};
+    for(const result of results){
+      if(result.status!=='fulfilled'){
+        console.warn('ESPN feed failed:',result.reason);
+        continue;
+      }
+      const data=result.value;
+      for(const ev of data.events||[]){
+        const comp=ev.competitions?.[0]; if(!comp)continue;
+        const teams=comp.competitors||[]; if(teams.length<2)continue;
+        const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');
+        if(!home||!away)continue;
+        const matches=games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));
+        for(const g of matches){
+          const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';
+          foundCurrent[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
+        }
+      }
+    }
+    // Preserve previously matched times/scores through transient ESPN failures.
+    state.scores=Object.assign({},state.scores,foundCurrent);
+    state.historyScores=Object.assign({},staticHistoryScores,state.historyScores);
+    state.lastUpdated=new Date();
+    const matched=games.filter(g=>state.scores[g.id]).length;
+    if(matched>0) setFeed(`Live feed connected · ${matched}/${games.length} Week 2 games matched`,'ok');
+    else setFeed('Live feed unavailable — will retry automatically','bad');
+    render();
+  }catch(err){
+    console.error(err);
+    const matched=games.filter(g=>state.scores[g.id]).length;
+    if(matched>0) setFeed(`Live feed connected · ${matched}/${games.length} Week 2 games matched`,'ok');
+    else setFeed('Live feed unavailable — will retry automatically','bad');
+    render();
+  }
+}
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
 $('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));

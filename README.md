@@ -46,6 +46,4 @@ Open `http://localhost:8080`.
 The intended deployment is Vercel connected to the GitHub repository. Existing production URL remains unchanged when the repository is updated.
 
 
-## Week 2 ESPN matching fix
-- Eastern Mich now matches ESPN's Eastern Michigan / E Michigan / EMU naming variants.
-- Service worker cache bumped to v3 so the updated app shell is picked up after deployment.
+Week 1 is now permanently finalized with embedded final scores. Historical Week 1 does not depend on a live ESPN request.
