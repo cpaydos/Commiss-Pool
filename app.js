@@ -164,35 +164,50 @@ function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;',
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
 async function refreshScores(){
   setFeed('Fetching live scores…','');
+  const dates='20260917-20260921',games=DATA.games||[];
+  const urls=[
+    `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`,
+    `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&limit=1000`
+  ];
   try{
-    const dates='20260917-20260921', games=DATA.games||[], foundCurrent={};
-    const urls=[
-      `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`,
-      `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&limit=1000`
-    ];
-    const results=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{
+    // Treat NFL and college feeds independently. One transient ESPN failure
+    // should never make the entire Week 2 feed look unavailable.
+    const results=await Promise.allSettled(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{
       if(!r.ok)throw new Error('score feed HTTP '+r.status);
       return r.json();
     })));
-    for(const data of results) for(const ev of data.events||[]){
-      const comp=ev.competitions?.[0]; if(!comp)continue;
-      const teams=comp.competitors||[]; if(teams.length<2)continue;
-      const home=teams.find(t=>t.homeAway==='home'), away=teams.find(t=>t.homeAway==='away');
-      if(!home||!away)continue;
-      const matches=games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));
-      for(const g of matches){
-        const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';
-        foundCurrent[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
+    const foundCurrent={};
+    for(const result of results){
+      if(result.status!=='fulfilled'){
+        console.warn('ESPN feed failed:',result.reason);
+        continue;
+      }
+      const data=result.value;
+      for(const ev of data.events||[]){
+        const comp=ev.competitions?.[0]; if(!comp)continue;
+        const teams=comp.competitors||[]; if(teams.length<2)continue;
+        const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');
+        if(!home||!away)continue;
+        const matches=games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));
+        for(const g of matches){
+          const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';
+          foundCurrent[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
+        }
       }
     }
-    state.scores=foundCurrent;
+    // Preserve previously matched times/scores through transient ESPN failures.
+    state.scores=Object.assign({},state.scores,foundCurrent);
     state.historyScores=Object.assign({},staticHistoryScores,state.historyScores);
     state.lastUpdated=new Date();
-    setFeed(`Live feed connected · ${Object.keys(foundCurrent).length} Week 2 games matched`,'ok');
+    const matched=games.filter(g=>state.scores[g.id]).length;
+    if(matched>0) setFeed(`Live feed connected · ${matched}/${games.length} Week 2 games matched`,'ok');
+    else setFeed('Live feed unavailable — will retry automatically','bad');
     render();
   }catch(err){
     console.error(err);
-    setFeed('Live feed unavailable — will retry automatically','bad');
+    const matched=games.filter(g=>state.scores[g.id]).length;
+    if(matched>0) setFeed(`Live feed connected · ${matched}/${games.length} Week 2 games matched`,'ok');
+    else setFeed('Live feed unavailable — will retry automatically','bad');
     render();
   }
 }
