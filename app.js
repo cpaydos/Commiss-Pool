@@ -164,84 +164,88 @@ function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;',
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
 async function refreshScores(){
   setFeed('Fetching live scores…','');
-  try {
-    const urls = [
-      // Pool Week 2 uses NFL Week 2.
-      'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?season=2026&seasontype=2&week=2&limit=500',
+  try{
+    // Pool Week 2 spans NFL Week 2 and College Football Week 3.
+    // ESPN's week-based college endpoint is returning only a partial slate,
+    // so fetch each pool date individually. Exact-date scoreboard requests
+    // are documented to return the full day's events.
+    const dates=[...new Set(DATA.games.map(g=>g.date))].sort();
+    const requests=[];
+    for(const date of dates){
+      const ymd=date.replace(/-/g,'');
+      requests.push({sport:'NFL',date,url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${ymd}&limit=500`});
+      requests.push({sport:'NCAA',date,url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${ymd}&groups=80&limit=1000`});
+    }
 
-      // Pool Week 2 uses College Football Week 3. Request all FBS games.
-      'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?season=2026&seasontype=2&week=3&groups=80&limit=1000'
-    ];
-
-    const payloads = await Promise.all(
-      urls.map(u => fetch(u,{cache:'no-store'}).then(r => {
-        if (!r.ok) throw new Error('score feed HTTP '+r.status);
-        return r.json();
+    const settled=await Promise.allSettled(
+      requests.map(r=>fetch(r.url,{cache:'no-store'}).then(async response=>{
+        if(!response.ok) throw new Error(`HTTP ${response.status}`);
+        return {...r,data:await response.json()};
       }))
     );
 
-    const foundCurrent = {};
+    const foundCurrent={};
+    let espnEvents=0;
+    let successfulFeeds=0;
+    const feedErrors=[];
 
-    for (const data of payloads) {
-      for (const ev of data.events || []) {
-        const comp = ev.competitions?.[0];
-        if (!comp) continue;
+    for(const result of settled){
+      if(result.status==='rejected'){
+        feedErrors.push(String(result.reason?.message||result.reason));
+        continue;
+      }
 
-        const teams = comp.competitors || [];
-        if (teams.length < 2) continue;
+      successfulFeeds++;
+      const {data}=result.value;
+      espnEvents += (data.events||[]).length;
 
-        const home = teams.find(t => t.homeAway === 'home');
-        const away = teams.find(t => t.homeAway === 'away');
-        if (!home || !away) continue;
+      for(const ev of data.events||[]){
+        const comp=ev.competitions?.[0];
+        if(!comp) continue;
+        const teams=comp.competitors||[];
+        if(teams.length<2) continue;
 
-        const awayName = away.team?.displayName || away.team?.shortDisplayName || '';
-        const homeName = home.team?.displayName || home.team?.shortDisplayName || '';
+        const home=teams.find(t=>t.homeAway==='home');
+        const away=teams.find(t=>t.homeAway==='away');
+        if(!home||!away) continue;
 
-        const matches = DATA.games.filter(g =>
-          teamMatches(g.away,awayName) &&
+        const awayName=away.team?.displayName||away.team?.shortDisplayName||'';
+        const homeName=home.team?.displayName||home.team?.shortDisplayName||'';
+
+        const matches=DATA.games.filter(g=>
+          teamMatches(g.away,awayName)&&
           teamMatches(g.home,homeName)
         );
 
-        for (const g of matches) {
-          const status =
-            ev.status?.type?.state === 'post' ? 'final' :
-            ev.status?.type?.state === 'in' ? 'in' :
-            'scheduled';
-
-          foundCurrent[g.id] = {
+        for(const g of matches){
+          const stateName=ev.status?.type?.state;
+          const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
+          foundCurrent[g.id]={
             status,
-            awayScore: Number(away.score || 0),
-            homeScore: Number(home.score || 0),
-            clock: ev.status?.type?.shortDetail || ev.status?.displayClock || '',
-            displayClock: ev.status?.displayClock || '',
-            period: ev.status?.period || ev.status?.type?.period || null,
-            startTime: ev.date || comp.date || null
+            awayScore:Number(away.score||0),
+            homeScore:Number(home.score||0),
+            clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',
+            displayClock:ev.status?.displayClock||'',
+            period:ev.status?.period||ev.status?.type?.period||null,
+            startTime:ev.date||comp.date||null
           };
         }
       }
     }
 
-    // Temporary diagnostics: tell us exactly which pool games still fail to match.
-    const unmatched = DATA.games
-      .filter(g => !foundCurrent[g.id])
-      .map(g => `${g.away} @ ${g.home}`);
+    const unmatched=DATA.games
+      .filter(g=>!foundCurrent[g.id])
+      .map(g=>`${g.away} @ ${g.home}`);
 
-    console.log('ESPN Week 2 pool-game matching:', {
-      poolGames: DATA.games.length,
-      matched: Object.keys(foundCurrent).length,
-      unmatched: unmatched.length,
-      unmatchedGames: unmatched
-    });
+    console.log('ESPN daily diagnostic',{dates,requests:requests.length,successfulFeeds,feedErrors,espnEvents,poolGames:DATA.games.length,matched:Object.keys(foundCurrent).length,unmatchedGames:unmatched});
 
-    state.scores = foundCurrent;
-    state.lastUpdated = new Date();
+    state.scores=foundCurrent;
+    state.lastUpdated=new Date();
 
-    setFeed(
-      `Live feed connected · ${Object.keys(foundCurrent).length}/${DATA.games.length} Week 2 games matched`,
-      'ok'
-    );
+    const feedNote=feedErrors.length?` · ${feedErrors.length} feed errors`:'';
+    setFeed(`ESPN returned ${espnEvents} events · ${Object.keys(foundCurrent).length}/${DATA.games.length} matched${feedNote}`,'ok');
     render();
-  } catch(err) {
+  }catch(err){
     console.error(err);
     setFeed('Live feed unavailable — will retry automatically','bad');
     render();
