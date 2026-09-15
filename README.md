@@ -16,7 +16,12 @@ Mobile-first private pool web app.
 - First Half = Weeks 1–9.
 - Second Half = Weeks 10–18.
 - The app treats the halves separately so rules such as the Bonus reset can be implemented cleanly.
-- Payout/point logic is intentionally not included yet; it will be added from the official Commiss distribution.
+- Week 1 is locked/final historical data and remains viewable while Week 2 is current.
+- Week 1 entry details can be opened from the Overall history and show the original four picks, bonus, official line, final score, and result.
+- Week 1 results also show the full game slate and the 2,500 weekly bounty split among the 4–0 finishers.
+- Payouts includes a weekly history selector for completed/current weeks.
+- Bonus includes a historical week selector and carries Week 1 survival into the Week 2 pool; 7 Week 1 bonus entries are marked out and 130 remain eligible.
+- Payout/point logic uses the official Commiss prize structure.
 
 ## Historical data
 The UI is ready to consume `POOL_DATA.history` when future weekly results are added. A history week should contain rows like:
