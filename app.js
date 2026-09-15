@@ -165,9 +165,11 @@ function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefin
 async function refreshScores(){
   setFeed('Fetching live scores…','');
   const dates='20260917-20260921',games=DATA.games||[];
+  // Use same-origin Vercel API routes for ESPN. This avoids browser-side
+  // CORS/rate-limit failures that were leaving all 57 college games unmatched.
   const urls=[
-    `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`,
-    `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&groups=80&limit=1000`
+    `/api/espn?league=nfl&dates=${dates}`,
+    `/api/espn?league=college&dates=${dates}`
   ];
   try{
     // Treat NFL and college feeds independently. One transient ESPN failure
