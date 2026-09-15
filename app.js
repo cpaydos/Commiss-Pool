@@ -243,7 +243,7 @@ async function refreshScores(){
     state.lastUpdated=new Date();
 
     const feedNote=feedErrors.length?` · ${feedErrors.length} feed errors`:'';
-    setFeed(`ESPN returned ${espnEvents} events · ${Object.keys(foundCurrent).length}/${DATA.games.length} matched${feedNote}`,'ok');
+    setFeed(`${Object.keys(foundCurrent).length}/${DATA.games.length} games connected${feedNote}`,'ok');
     render();
   }catch(err){
     console.error(err);
