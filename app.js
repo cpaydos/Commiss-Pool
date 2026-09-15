@@ -104,7 +104,7 @@ function populateOverallSelector(){
   const options=[['season','Season Total'],['first','First Half'],...SEASON.firstHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`]),['second','Second Half'],...SEASON.secondHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`])];
   sel.innerHTML=options.map(([v,l])=>{const n=v.startsWith('week')?Number(v.slice(4)):0;const available=v==='season'||(v==='first'&&SEASON.currentWeek>=1)||(v==='second'&&SEASON.currentWeek>=10)||(n>0&&n<=SEASON.currentWeek);return `<option value="${v}" ${available?'':'disabled'}>${l}</option>`}).join('');sel.value='season'
 }
-const FINAL_BONUS_OUT={1:new Set([3,7,33,41,76,90,103])};
+const FINAL_BONUS_OUT={1:new Set([7,20,30,33,77,90,134])};
 function priorBonusStatus(id){if(FINAL_BONUS_OUT[1]?.has(id))return 'eliminated';const rows=historyForWeek(1);return rows?.find(r=>r.id===id)?.bonus||null}
 function renderBonus(){
   const week=Number($('bonusWeek')?.value||2);
