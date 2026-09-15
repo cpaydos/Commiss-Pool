@@ -187,6 +187,8 @@ async function refreshScores(){
     const foundCurrent={};
     let espnEvents=0;
     let successfulFeeds=0;
+    let stanfordDukeFound=false;
+    let stanfordDukeEvent=null;
     const feedErrors=[];
 
     for(const result of settled){
@@ -200,6 +202,10 @@ async function refreshScores(){
       espnEvents += (data.events||[]).length;
 
       for(const ev of data.events||[]){
+        if(String(ev.id||'')==='401858231'){
+          stanfordDukeFound=true;
+          stanfordDukeEvent=ev;
+        }
         const comp=ev.competitions?.[0];
         if(!comp) continue;
         const teams=comp.competitors||[];
@@ -237,13 +243,14 @@ async function refreshScores(){
       .filter(g=>!foundCurrent[g.id])
       .map(g=>`${g.away} @ ${g.home}`);
 
-    console.log('ESPN daily diagnostic',{dates,requests:requests.length,successfulFeeds,feedErrors,espnEvents,poolGames:DATA.games.length,matched:Object.keys(foundCurrent).length,unmatchedGames:unmatched});
+    console.log('ESPN daily diagnostic',{dates,requests:requests.length,successfulFeeds,feedErrors,espnEvents,poolGames:DATA.games.length,matched:Object.keys(foundCurrent).length,unmatchedGames:unmatched,stanfordDukeFound,stanfordDukeEvent});
 
     state.scores=foundCurrent;
     state.lastUpdated=new Date();
 
     const feedNote=feedErrors.length?` · ${feedErrors.length} feed errors`:'';
-    setFeed(`${Object.keys(foundCurrent).length}/${DATA.games.length} games connected${feedNote}`,'ok');
+    const stanfordNote=stanfordDukeFound?' · Stanford-Duke API: YES':' · Stanford-Duke API: NO';
+    setFeed(`${Object.keys(foundCurrent).length}/${DATA.games.length} games connected${stanfordNote}${feedNote}`,'ok');
     render();
   }catch(err){
     console.error(err);
