@@ -9455,8 +9455,8 @@ window.POOL_DATA = {
         },
         "ncaa-2026-09-12-utsa-texasst": {
           "status": "final",
-          "awayScore": 26,
-          "homeScore": 31
+          "awayScore": 31,
+          "homeScore": 26
         },
         "ncaa-2026-09-12-vanderbilt-delaware": {
           "status": "final",
@@ -9497,8 +9497,8 @@ window.POOL_DATA = {
         {
           "id": 3,
           "name": "AIDEN BRADY",
-          "w": 0,
-          "l": 4,
+          "w": 1,
+          "l": 3,
           "bonus": "alive"
         },
         {
@@ -9798,8 +9798,8 @@ window.POOL_DATA = {
         {
           "id": 46,
           "name": "FAST EDDIE",
-          "w": 4,
-          "l": 0,
+          "w": 3,
+          "l": 1,
           "bonus": "alive"
         },
         {
@@ -9889,8 +9889,8 @@ window.POOL_DATA = {
         {
           "id": 59,
           "name": "HONK SHOE",
-          "w": 2,
-          "l": 2,
+          "w": 3,
+          "l": 1,
           "bonus": "alive"
         },
         {
@@ -10036,8 +10036,8 @@ window.POOL_DATA = {
         {
           "id": 80,
           "name": "LEMON DROP KID",
-          "w": 1,
-          "l": 3,
+          "w": 2,
+          "l": 2,
           "bonus": "alive"
         },
         {
@@ -10148,8 +10148,8 @@ window.POOL_DATA = {
         {
           "id": 96,
           "name": "PASTAMAN",
-          "w": 2,
-          "l": 2,
+          "w": 1,
+          "l": 3,
           "bonus": "alive"
         },
         {
@@ -10169,8 +10169,8 @@ window.POOL_DATA = {
         {
           "id": 99,
           "name": "PETE'S COLTS",
-          "w": 1,
-          "l": 3,
+          "w": 2,
+          "l": 2,
           "bonus": "alive"
         },
         {
@@ -10246,8 +10246,8 @@ window.POOL_DATA = {
         {
           "id": 110,
           "name": "SLIME PIGS",
-          "w": 2,
-          "l": 2,
+          "w": 4,
+          "l": 0,
           "bonus": "alive"
         },
         {
@@ -10281,8 +10281,8 @@ window.POOL_DATA = {
         {
           "id": 115,
           "name": "SPONGE 1430",
-          "w": 1,
-          "l": 3,
+          "w": 2,
+          "l": 2,
           "bonus": "alive"
         },
         {
