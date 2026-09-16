@@ -3,7 +3,7 @@ const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{});
 const state={scores:{},historyScores:staticHistoryScores,lastUpdated:null,overallView:'season'};
 const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3250]]};
 const $=id=>document.getElementById(id);
-const norm=s=>s.toUpperCase().replace(/[^A-Z0-9]/g,'');
+const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
 const SEASON={currentWeek:2,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1]};
