@@ -164,18 +164,28 @@ function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;',
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
 function scoreFromEvent(ev,g,target){
   const comp=ev?.competitions?.[0]; if(!comp)return false;
-  const teams=comp.competitors||[];
-  const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');
-  if(!home||!away)return false;
-  const awayName=away.team?.displayName||away.team?.shortDisplayName||away.team?.abbreviation||'';
-  const homeName=home.team?.displayName||home.team?.shortDisplayName||home.team?.abbreviation||'';
-  if(!teamMatches(g.away,awayName)||!teamMatches(g.home,homeName))return false;
+  const teams=comp.competitors||[]; if(teams.length<2)return false;
+  const candidates=teams.map(t=>({
+    raw:t,
+    names:[t.team?.displayName,t.team?.shortDisplayName,t.team?.abbreviation,t.team?.location,t.team?.name].filter(Boolean)
+  }));
+  // Prefer ESPN's home/away flags, but do not require them. ESPN can omit or
+  // handle them differently for neutral-site games; matching the two actual
+  // team names is more reliable for this pool.
+  let away=candidates.find(x=>x.raw.homeAway==='away' && x.names.some(n=>teamMatches(g.away,n)));
+  let home=candidates.find(x=>x.raw.homeAway==='home' && x.names.some(n=>teamMatches(g.home,n)));
+  if(!away||!home||away===home){
+    const a=candidates.find(x=>x.names.some(n=>teamMatches(g.away,n)));
+    const h=candidates.find(x=>x!==a && x.names.some(n=>teamMatches(g.home,n)));
+    if(!a||!h)return false;
+    away=a; home=h;
+  }
   const stateName=ev.status?.type?.state;
   const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
   target[g.id]={
     status,
-    awayScore:Number(away.score||0),
-    homeScore:Number(home.score||0),
+    awayScore:Number(away.raw.score||0),
+    homeScore:Number(home.raw.score||0),
     clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',
     displayClock:ev.status?.displayClock||'',
     period:ev.status?.period||ev.status?.type?.period||null,
