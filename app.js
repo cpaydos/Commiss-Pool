@@ -192,7 +192,7 @@ async function refreshScores(){
   const week=Number(DATA.week)||1;
   const feeds=[
     {name:'NFL',url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?season=${season}&seasontype=2&week=${week}&limit=500`},
-    {name:'NCAA',url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?season=${season}&seasontype=2&week=${week}&groups=50&limit=1000`}
+    {name:'NCAA',url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?season=${season}&seasontype=2&week=${week}&groups=80&limit=1000`}
   ];
   const found={};
   const results=[];
