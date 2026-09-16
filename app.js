@@ -186,19 +186,13 @@ function scoreFromEvent(ev,g,target){
 
 async function refreshScores(){
   setFeed('Fetching live scores…','');
-  const dates=(()=>{
-    const ds=[...new Set((DATA.games||[]).map(g=>g.date).filter(Boolean))].sort();
-    return ds.length?`${ds[0].replace(/-/g,'')}-${ds[ds.length-1].replace(/-/g,'')}`:'';
-  })();
-  if(!dates){
-    setFeed('Live feed error · no game dates','bad');
-    render();
-    return;
-  }
-
+  // ESPN's football scoreboard is more reliable with the season/week form.
+  // The date-range form is returning HTTP 400 for the current Week 2 feed.
+  const season=Number(DATA.season)||new Date().getFullYear();
+  const week=Number(DATA.week)||1;
   const feeds=[
-    {name:'NFL',url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`},
-    {name:'NCAA',url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&limit=1000`}
+    {name:'NFL',url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?season=${season}&seasontype=2&week=${week}&limit=500`},
+    {name:'NCAA',url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?season=${season}&seasontype=2&week=${week}&groups=50&limit=1000`}
   ];
   const found={};
   const results=[];
