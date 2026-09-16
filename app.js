@@ -162,19 +162,66 @@ function openEntry(id,week=null){
   $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${week?` · Week ${week} · Final`:''}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map(p=>{const g=gm[p.gameId],res=classifyPick(p,g,scoreMap),sc=scoreMap[g?.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-time">${week?formatDate(g.date):formatGameTimeDisplay(g)}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus?.team||'Not loaded')}</div><div class="pick-sub">Outright win required · max favorite ${weekBonusMax}</div></div><div class="${bstat==='eliminated'?'result-loss':bstat==='alive'?'result-win':'result-pending'}">${bstat.toUpperCase()}</div></div>`;$('entryModal').classList.remove('hidden')}
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
+function summarizeEspnPayload(data, targetIds){
+  const ids=new Set(targetIds.map(String));
+  const seen=new Set();
+  const candidates=[];
+  function walk(x, depth=0){
+    if(!x || typeof x!=='object' || depth>8 || seen.has(x)) return;
+    seen.add(x);
+    if(Array.isArray(x)){for(const v of x)walk(v,depth+1);return;}
+    const id=String(x.id||x.eventId||x.gameId||'');
+    const text=JSON.stringify(x).toLowerCase();
+    if(ids.has(id) || (text.includes('stanford')&&text.includes('duke')) || (text.includes('syracuse')&&text.includes('pittsburgh'))){candidates.push(x)}
+    for(const k of Object.keys(x)) walk(x[k],depth+1);
+  }
+  walk(data);
+  let obj=candidates.find(x=>ids.has(String(x.id||x.eventId||x.gameId||''))) || candidates.find(x=>JSON.stringify(x).toLowerCase().includes('stanford')&&JSON.stringify(x).toLowerCase().includes('duke')) || candidates[0];
+  if(!obj) return {found:false};
+  let comp=obj.competitions?.[0] || obj.header?.competitions?.[0] || obj.gameInfo?.competitions?.[0] || null;
+  if(!comp){
+    // Some CDN/core responses wrap the event/header one level differently.
+    const h=obj.header || obj.gamepackageJSON?.header || obj.gamepackageJSON?.gamepackageJSON?.header;
+    comp=h?.competitions?.[0] || null;
+  }
+  const competitors=comp?.competitors || obj.competitors || [];
+  const teams=competitors.map(c=>({name:c.team?.displayName||c.team?.shortDisplayName||c.team?.abbreviation||c.displayName||'',homeAway:c.homeAway||'',score:c.score??c.scoreValue??null,winner:c.winner??null})).filter(t=>t.name);
+  const status=comp?.status || obj.status || obj.header?.competitions?.[0]?.status || null;
+  const st=status?.type || status || {};
+  return {
+    found:true,
+    eventId:String(obj.id||obj.eventId||obj.gameId||''),
+    name:obj.name||obj.shortName||obj.header?.competitions?.[0]?.name||teams.map(t=>t.name).join(' @ ')||'',
+    date:obj.date||obj.startDate||obj.header?.competitions?.[0]?.date||null,
+    status:st.name||st.type||st.description||st.state||'',
+    completed:st.completed??null,
+    period:status?.period??comp?.status?.period??null,
+    clock:status?.displayClock||status?.clock||null,
+    teams
+  };
+}
+function fmtTargetData(d){
+  if(!d?.found)return 'No game object found';
+  const teams=d.teams?.length?d.teams.map(t=>`${t.name}${t.score!=null?' '+t.score:''}`).join(' | '):'teams unavailable';
+  const bits=[d.name||'event',d.date?new Date(d.date).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'time unavailable',d.status||'status unavailable'];
+  if(d.period||d.clock)bits.push([d.period?`Q${d.period}`:'',d.clock||''].filter(Boolean).join(' · '));
+  bits.push(teams);
+  return bits.join(' · ');
+}
 async function refreshScores(){
-  setFeed('Testing targeted ESPN endpoints…','');
+  setFeed('Testing targeted ESPN data endpoints…','');
   try{
-    // Diagnostic only. We know ESPN's general scoreboard queries are returning
-    // a subset of Week 3 games. Test whether the missing Stanford-Duke game
-    // can be reached through team schedules or event-specific endpoints.
+    // Diagnostic only. No production score/matching logic is changed here.
+    // Stanford-Duke is the known missing game; Syracuse-Pitt is a control game
+    // that the general scoreboard already returns.
     const tests=[
-      {label:'Stanford schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/24/schedule?season=2026&seasontype=2'},
-      {label:'Duke schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/150/schedule?season=2026&seasontype=2'},
-      {label:'Site summary',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858231'},
-      {label:'Site v3 summary',url:'https://site.api.espn.com/apis/site/v3/sports/football/college-football/summary?event=401858231'},
-      {label:'Core event',url:'https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401858231'},
-      {label:'CDN game package',url:'https://cdn.espn.com/core/college-football/game?xhr=1&gameId=401858231'}
+      {label:'Stanford schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/24/schedule?season=2026&seasontype=2',target:'401858231'},
+      {label:'Duke schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/150/schedule?season=2026&seasontype=2',target:'401858231'},
+      {label:'Stanford site summary',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858231',target:'401858231'},
+      {label:'Stanford site v3 summary',url:'https://site.api.espn.com/apis/site/v3/sports/football/college-football/summary?event=401858231',target:'401858231'},
+      {label:'Stanford core event',url:'https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401858231',target:'401858231'},
+      {label:'Stanford CDN game package',url:'https://cdn.espn.com/core/college-football/game?xhr=1&gameId=401858231',target:'401858231'},
+      {label:'Syracuse site summary control',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858225',target:'401858225'}
     ];
     const results=[];
     for(const t of tests){
@@ -182,22 +229,15 @@ async function refreshScores(){
         const r=await fetch(t.url,{cache:'no-store'});
         const text=await r.text();
         let data=null;try{data=JSON.parse(text)}catch{}
-        const found=text.includes('401858231') || text.toLowerCase().includes('stanford')&&text.toLowerCase().includes('duke');
-        let label='';
-        if(data){
-          const evs=Array.isArray(data.events)?data.events:[];
-          const hit=evs.find(ev=>String(ev?.id||'')==='401858231') || evs.find(ev=>JSON.stringify(ev).includes('401858231'));
-          label=hit?.name||hit?.shortName||'';
-          if(!label && data.header?.competitions?.[0]) label=data.header.competitions[0].competitors?.map(c=>c.team?.displayName).filter(Boolean).join(' @ ')||'';
-        }
-        results.push({label:t.label,url:t.url,ok:r.ok,http:r.status,bytes:text.length,found,data,label});
-      }catch(e){results.push({label:t.label,url:t.url,ok:false,http:'ERR',bytes:0,found:false,data:null,error:String(e?.message||e),label:''});}
+        const summary=summarizeEspnPayload(data||text,[t.target]);
+        results.push({label:t.label,ok:r.ok,http:r.status,bytes:text.length,summary});
+      }catch(e){results.push({label:t.label,ok:false,http:'ERR',bytes:0,summary:{found:false},error:String(e?.message||e)});}
     }
-    console.log('ESPN targeted endpoint diagnostic',results);
-    const details=`<div class="diag-card"><h3>Targeted ESPN endpoint test</h3><p>Known missing Commiss game: Stanford @ Duke · ESPN event 401858231.</p><div class="diag-list">${results.map(r=>`<div><strong>${esc(r.label)}</strong><span>${r.ok?`HTTP ${r.http} · ${r.found?'FOUND':'NO'} · ${r.bytes.toLocaleString()} bytes${r.label?` · ${esc(r.label)}`:''}`:esc(r.error||`HTTP ${r.http}`)}</span></div>`).join('')}</div><p class="diag-note">This test does not change scoring or matching. It only checks whether ESPN exposes the same game through a team schedule or event-specific endpoint.</p></div>`;
+    console.log('ESPN targeted endpoint field diagnostic',results);
+    const details=`<div class="diag-card"><h3>Targeted ESPN data test</h3><p>Missing-game test: Stanford @ Duke · event 401858231. Control: Syracuse @ Pitt · event 401858225.</p><div class="diag-list">${results.map(r=>`<div><strong>${esc(r.label)}</strong><span>${r.ok?`HTTP ${r.http} · ${r.summary?.found?'FOUND':'NO'} · ${r.bytes.toLocaleString()} bytes<br><small>${esc(fmtTargetData(r.summary))}</small>`:esc(r.error||`HTTP ${r.http}`)}</span></div>`).join('')}</div><p class="diag-note">Diagnostic only. It checks whether ESPN's targeted endpoints expose the fields we need: event, kickoff, status, period/clock, and scores. It does not change scoring, matching, payouts, or static kickoff times.</p></div>`;
     const box=$('queryDiagnostics'); if(box)box.innerHTML=details;
-    const summary=results.map(r=>`${r.label}: ${r.ok?(r.found?'FOUND':'NO')+' / HTTP '+r.http:r.error}`).join(' | ');
-    setFeed(`Targeted test — ${summary}`,'ok');
+    const foundCount=results.filter(r=>r.summary?.found).length;
+    setFeed(`Targeted data test — ${foundCount}/${results.length} endpoints returned usable game data`,'ok');
     render();
   }catch(err){
     console.error(err);
