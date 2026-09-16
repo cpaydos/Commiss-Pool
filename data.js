@@ -9330,8 +9330,8 @@ window.POOL_DATA = {
         },
         "ncaa-2026-09-12-maryland-uconn": {
           "status": "final",
-          "awayScore": 14,
-          "homeScore": 38
+          "awayScore": 38,
+          "homeScore": 14
         },
         "ncaa-2026-09-12-michiganst-easternmich": {
           "status": "final",
@@ -9365,8 +9365,8 @@ window.POOL_DATA = {
         },
         "ncaa-2026-09-12-ohio-jacksonvillest": {
           "status": "final",
-          "awayScore": 29,
-          "homeScore": 27
+          "awayScore": 27,
+          "homeScore": 29
         },
         "ncaa-2026-09-12-oklahoma-michigan": {
           "status": "final",
