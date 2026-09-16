@@ -168,25 +168,32 @@ const NCAA_SCHEDULE_CACHE_MS=120000;
 async function getNcaaTeamCatalog(){
   if(ncaaTeamCatalog.loaded)return ncaaTeamCatalog.teams;
   if(ncaaTeamCatalog.promise)return ncaaTeamCatalog.promise;
-  ncaaTeamCatalog.promise=fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams?limit=1000',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('NCAA team catalog HTTP '+r.status);return r.json()}).then(data=>{
-    const raw=[];
-    const walk=x=>{if(!x||typeof x!=='object')return;if(Array.isArray(x)){x.forEach(walk);return}if(x.team&&x.team.id&&x.team.displayName)raw.push(x.team);Object.keys(x).forEach(k=>{if(k!=='team')walk(x[k])})};
-    walk(data);
-    const seen=new Set();
-    ncaaTeamCatalog.teams=raw.filter(t=>{if(seen.has(String(t.id)))return false;seen.add(String(t.id));return true});
-    ncaaTeamCatalog.loaded=true;
-    return ncaaTeamCatalog.teams;
-  }).catch(e=>{ncaaTeamCatalog.promise=null;throw e});
+  ncaaTeamCatalog.promise=fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams?limit=1000',{cache:'no-store'})
+    .then(r=>{if(!r.ok)throw new Error('NCAA team catalog HTTP '+r.status);return r.json()})
+    .then(data=>{
+      const raw=[];
+      const walk=x=>{
+        if(!x||typeof x!=='object')return;
+        if(Array.isArray(x)){x.forEach(walk);return;}
+        if(x.team&&x.team.id&&x.team.displayName)raw.push(x.team);
+        Object.keys(x).forEach(k=>{if(k!=='team')walk(x[k]);});
+      };
+      walk(data);
+      const seen=new Set();
+      ncaaTeamCatalog.teams=raw.filter(t=>{const id=String(t.id);if(seen.has(id))return false;seen.add(id);return true;});
+      ncaaTeamCatalog.loaded=true;
+      return ncaaTeamCatalog.teams;
+    })
+    .catch(e=>{ncaaTeamCatalog.promise=null;throw e;});
   return ncaaTeamCatalog.promise;
 }
 function findNcaaTeamId(name,teams){
-  const n=norm(name);
-  const exact=teams.find(t=>[t.displayName,t.shortDisplayName,t.abbreviation,t.location,t.nickname].filter(Boolean).some(v=>norm(v)===n));
+  const exact=teams.find(t=>[t.displayName,t.shortDisplayName,t.abbreviation,t.location,t.nickname].filter(Boolean).some(v=>norm(v)===norm(name)));
   if(exact)return String(exact.id);
   const fuzzy=teams.find(t=>[t.displayName,t.shortDisplayName,t.abbreviation,t.location,t.nickname].filter(Boolean).some(v=>teamMatches(name,v)));
   return fuzzy?String(fuzzy.id):null;
 }
-function scoreFromEvent(ev,g){
+function scoreFromEvent(ev,g,target){
   const comp=ev?.competitions?.[0]; if(!comp)return false;
   const teams=comp.competitors||[];
   const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');
@@ -196,7 +203,7 @@ function scoreFromEvent(ev,g){
   if(!teamMatches(g.away,awayName)||!teamMatches(g.home,homeName))return false;
   const stateName=ev.status?.type?.state;
   const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
-  state.scores[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
+  target[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
   return true;
 }
 async function fillNcaaScheduleFallback(foundCurrent){
@@ -204,10 +211,10 @@ async function fillNcaaScheduleFallback(foundCurrent){
   if(!missing.length)return {checked:0,matched:0};
   const teams=await getNcaaTeamCatalog();
   const now=Date.now();
-  const work=missing.map(async g=>{
+  const results=await Promise.all(missing.map(async g=>{
     const cached=ncaaScheduleCache.get(g.id);
     if(cached&&now-cached.ts<NCAA_SCHEDULE_CACHE_MS){
-      if(cached.event)scoreFromEvent(cached.event,g);
+      if(cached.event)scoreFromEvent(cached.event,g,foundCurrent);
       return !!cached.event;
     }
     const teamId=findNcaaTeamId(g.home,teams);
@@ -217,15 +224,55 @@ async function fillNcaaScheduleFallback(foundCurrent){
       if(!r.ok)throw new Error('HTTP '+r.status);
       const data=await r.json();
       const ev=(data.events||[]).find(e=>{
-        const c=e.competitions?.[0],ts=c?.competitors||[];const h=ts.find(t=>t.homeAway==='home'),a=ts.find(t=>t.homeAway==='away');
+        const ts=e.competitions?.[0]?.competitors||[];
+        const h=ts.find(t=>t.homeAway==='home'),a=ts.find(t=>t.homeAway==='away');
         return h&&a&&teamMatches(g.home,h.team?.displayName||h.team?.shortDisplayName||h.team?.abbreviation||'')&&teamMatches(g.away,a.team?.displayName||a.team?.shortDisplayName||a.team?.abbreviation||'');
       })||null;
       ncaaScheduleCache.set(g.id,{ts:now,event:ev});
-      if(ev)scoreFromEvent(ev,g);
+      if(ev)scoreFromEvent(ev,g,foundCurrent);
       return !!ev;
-    }catch(e){ncaaScheduleCache.set(g.id,{ts:now,event:null,error:String(e?.message||e)});return false}
-  });
-  const results=await Promise.all(work);
+    }catch(e){ncaaScheduleCache.set(g.id,{ts:now,event:null,error:String(e?.message||e)});return false;}
+  }));
   return {checked:missing.length,matched:results.filter(Boolean).length};
 }
-async function refreshScores(){setFeed('Fetching live scores…','');try{const ranges=[{key:'historyScores',dates:'20260909-20260914',games:DATA.history?.[1]?.games||[]},{key:'scores',dates:'20260917-20260921',games:DATA.games}];const foundCurrent={},foundHistory=Object.assign({},staticHistoryScores);for(const range of ranges){const urls=[`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${range.dates}&limit=500`,`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${range.dates}&limit=1000`];const payloads=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('score feed HTTP '+r.status);return r.json()})));const target=range.key==='scores'?foundCurrent:foundHistory;for(const data of payloads)for(const ev of data.events||[]){const comp=ev.competitions?.[0];if(!comp)continue;const teams=comp.competitors||[];if(teams.length<2)continue;const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');if(!home||!away)continue;const matches=range.games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));for(const g of matches){const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';target[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null}}}}state.scores=foundCurrent;state.historyScores=foundHistory;let fallback={checked:0,matched:0};if(DATA.games?.some(g=>g.sport==='NCAA'&&!foundCurrent[g.id]))fallback=await fillNcaaScheduleFallback(foundCurrent);state.scores=foundCurrent;state.lastUpdated=new Date();setFeed(`Live feed connected · ${Object.keys(foundCurrent).length}/${DATA.games.length} games matched${fallback.matched?` · ${fallback.matched} via NCAA team schedules`:''}`,'ok');render()}catch(err){console.error(err);setFeed('Live feed unavailable — will retry automatically','bad');render()}}
+async function refreshScores(){
+  setFeed('Fetching live scores…','');
+  try{
+    const ranges=[{key:'historyScores',dates:'20260909-20260914',games:DATA.history?.[1]?.games||[]},{key:'scores',dates:'20260917-20260921',games:DATA.games}];
+    const foundCurrent={},foundHistory=Object.assign({},staticHistoryScores);
+    for(const range of ranges){
+      const urls=[`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${range.dates}&limit=500`,`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${range.dates}&limit=1000`];
+      const payloads=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('score feed HTTP '+r.status);return r.json()})));
+      const target=range.key==='scores'?foundCurrent:foundHistory;
+      for(const data of payloads)for(const ev of data.events||[]){
+        const comp=ev.competitions?.[0];if(!comp)continue;
+        const teams=comp.competitors||[];if(teams.length<2)continue;
+        const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');if(!home||!away)continue;
+        const matches=range.games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));
+        for(const g of matches){
+          const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';
+          target[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
+        }
+      }
+    }
+    state.scores=foundCurrent;state.historyScores=foundHistory;
+    let fallback={checked:0,matched:0};
+    if(DATA.games?.some(g=>g.sport==='NCAA'&&!foundCurrent[g.id])){
+      try{fallback=await fillNcaaScheduleFallback(foundCurrent);}catch(e){console.warn('NCAA schedule fallback unavailable',e);}
+    }
+    state.scores=foundCurrent;state.historyScores=foundHistory;state.lastUpdated=new Date();
+    const matched=Object.keys(foundCurrent).length;
+    setFeed(`Live feed connected · ${matched}/${DATA.games.length} games matched${fallback.matched?` · ${fallback.matched} via NCAA team schedules`:''}`,'ok');
+    render();
+  }catch(err){console.error(err);setFeed('Live feed unavailable — will retry automatically','bad');render();}
+}
+
+function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
+$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
+populateOverallSelector();render();refreshScores();setInterval(refreshScores,30000);
+
+// Commiss Pool PWA: register service worker for app-like Home Screen behavior.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+}
