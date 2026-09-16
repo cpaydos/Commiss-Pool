@@ -162,37 +162,6 @@ function openEntry(id,week=null){
   $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${week?` · Week ${week} · Final`:''}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map(p=>{const g=gm[p.gameId],res=classifyPick(p,g,scoreMap),sc=scoreMap[g?.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-time">${week?formatDate(g.date):formatGameTimeDisplay(g)}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus?.team||'Not loaded')}</div><div class="pick-sub">Outright win required · max favorite ${weekBonusMax}</div></div><div class="${bstat==='eliminated'?'result-loss':bstat==='alive'?'result-win':'result-pending'}">${bstat.toUpperCase()}</div></div>`;$('entryModal').classList.remove('hidden')}
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
-const ncaaTeamCatalog={loaded:false,teams:[],promise:null};
-const ncaaScheduleCache=new Map();
-const NCAA_SCHEDULE_CACHE_MS=120000;
-async function getNcaaTeamCatalog(){
-  if(ncaaTeamCatalog.loaded)return ncaaTeamCatalog.teams;
-  if(ncaaTeamCatalog.promise)return ncaaTeamCatalog.promise;
-  ncaaTeamCatalog.promise=fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams?limit=1000',{cache:'no-store'})
-    .then(r=>{if(!r.ok)throw new Error('NCAA team catalog HTTP '+r.status);return r.json()})
-    .then(data=>{
-      const raw=[];
-      const walk=x=>{
-        if(!x||typeof x!=='object')return;
-        if(Array.isArray(x)){x.forEach(walk);return;}
-        if(x.team&&x.team.id&&x.team.displayName)raw.push(x.team);
-        Object.keys(x).forEach(k=>{if(k!=='team')walk(x[k]);});
-      };
-      walk(data);
-      const seen=new Set();
-      ncaaTeamCatalog.teams=raw.filter(t=>{const id=String(t.id);if(seen.has(id))return false;seen.add(id);return true;});
-      ncaaTeamCatalog.loaded=true;
-      return ncaaTeamCatalog.teams;
-    })
-    .catch(e=>{ncaaTeamCatalog.promise=null;throw e;});
-  return ncaaTeamCatalog.promise;
-}
-function findNcaaTeamId(name,teams){
-  const exact=teams.find(t=>[t.displayName,t.shortDisplayName,t.abbreviation,t.location,t.nickname].filter(Boolean).some(v=>norm(v)===norm(name)));
-  if(exact)return String(exact.id);
-  const fuzzy=teams.find(t=>[t.displayName,t.shortDisplayName,t.abbreviation,t.location,t.nickname].filter(Boolean).some(v=>teamMatches(name,v)));
-  return fuzzy?String(fuzzy.id):null;
-}
 function scoreFromEvent(ev,g,target){
   const comp=ev?.competitions?.[0]; if(!comp)return false;
   const teams=comp.competitors||[];
@@ -203,68 +172,54 @@ function scoreFromEvent(ev,g,target){
   if(!teamMatches(g.away,awayName)||!teamMatches(g.home,homeName))return false;
   const stateName=ev.status?.type?.state;
   const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
-  target[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
+  target[g.id]={
+    status,
+    awayScore:Number(away.score||0),
+    homeScore:Number(home.score||0),
+    clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',
+    displayClock:ev.status?.displayClock||'',
+    period:ev.status?.period||ev.status?.type?.period||null,
+    startTime:ev.date||comp.date||null
+  };
   return true;
 }
-async function fillNcaaScheduleFallback(foundCurrent){
-  const missing=(DATA.games||[]).filter(g=>g.sport==='NCAA'&&!foundCurrent[g.id]);
-  if(!missing.length)return {checked:0,matched:0};
-  const teams=await getNcaaTeamCatalog();
-  const now=Date.now();
-  const results=await Promise.all(missing.map(async g=>{
-    const cached=ncaaScheduleCache.get(g.id);
-    if(cached&&now-cached.ts<NCAA_SCHEDULE_CACHE_MS){
-      if(cached.event)scoreFromEvent(cached.event,g,foundCurrent);
-      return !!cached.event;
-    }
-    const teamId=findNcaaTeamId(g.home,teams);
-    if(!teamId){ncaaScheduleCache.set(g.id,{ts:now,event:null});return false;}
-    try{
-      const r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${encodeURIComponent(teamId)}/schedule?season=${DATA.season}&seasontype=2`,{cache:'no-store'});
-      if(!r.ok)throw new Error('HTTP '+r.status);
-      const data=await r.json();
-      const ev=(data.events||[]).find(e=>{
-        const ts=e.competitions?.[0]?.competitors||[];
-        const h=ts.find(t=>t.homeAway==='home'),a=ts.find(t=>t.homeAway==='away');
-        return h&&a&&teamMatches(g.home,h.team?.displayName||h.team?.shortDisplayName||h.team?.abbreviation||'')&&teamMatches(g.away,a.team?.displayName||a.team?.shortDisplayName||a.team?.abbreviation||'');
-      })||null;
-      ncaaScheduleCache.set(g.id,{ts:now,event:ev});
-      if(ev)scoreFromEvent(ev,g,foundCurrent);
-      return !!ev;
-    }catch(e){ncaaScheduleCache.set(g.id,{ts:now,event:null,error:String(e?.message||e)});return false;}
-  }));
-  return {checked:missing.length,matched:results.filter(Boolean).length};
-}
+
 async function refreshScores(){
   setFeed('Fetching live scores…','');
   try{
-    const ranges=[{key:'historyScores',dates:'20260909-20260914',games:DATA.history?.[1]?.games||[]},{key:'scores',dates:'20260917-20260921',games:DATA.games}];
-    const foundCurrent={},foundHistory=Object.assign({},staticHistoryScores);
-    for(const range of ranges){
-      const urls=[`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${range.dates}&limit=500`,`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${range.dates}&limit=1000`];
-      const payloads=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('score feed HTTP '+r.status);return r.json()})));
-      const target=range.key==='scores'?foundCurrent:foundHistory;
-      for(const data of payloads)for(const ev of data.events||[]){
-        const comp=ev.competitions?.[0];if(!comp)continue;
-        const teams=comp.competitors||[];if(teams.length<2)continue;
-        const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');if(!home||!away)continue;
-        const matches=range.games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));
-        for(const g of matches){
-          const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';
-          target[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
-        }
+    // Original working approach: one direct ESPN scoreboard request per sport,
+    // covering the current pool's date range. No team catalog or per-team fallback.
+    const dates=(()=>{
+      const ds=[...new Set((DATA.games||[]).map(g=>g.date).filter(Boolean))].sort();
+      return ds.length?`${ds[0].replace(/-/g,'')}-${ds[ds.length-1].replace(/-/g,'')}`:'';
+    })();
+    if(!dates)throw new Error('No game dates available');
+
+    const urls=[
+      `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`,
+      `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&limit=1000`
+    ];
+    const payloads=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{
+      if(!r.ok)throw new Error('score feed HTTP '+r.status);
+      return r.json();
+    })));
+
+    const found={};
+    for(const data of payloads){
+      for(const ev of data.events||[]){
+        for(const g of DATA.games||[])scoreFromEvent(ev,g,found);
       }
     }
-    state.scores=foundCurrent;state.historyScores=foundHistory;
-    let fallback={checked:0,matched:0};
-    if(DATA.games?.some(g=>g.sport==='NCAA'&&!foundCurrent[g.id])){
-      try{fallback=await fillNcaaScheduleFallback(foundCurrent);}catch(e){console.warn('NCAA schedule fallback unavailable',e);}
-    }
-    state.scores=foundCurrent;state.historyScores=foundHistory;state.lastUpdated=new Date();
-    const matched=Object.keys(foundCurrent).length;
-    setFeed(`Live feed connected · ${matched}/${DATA.games.length} games matched${fallback.matched?` · ${fallback.matched} via NCAA team schedules`:''}`,'ok');
+
+    state.scores=found;
+    state.lastUpdated=new Date();
+    setFeed(`Live feed connected · ${Object.keys(found).length}/${DATA.games.length} games matched`,'ok');
     render();
-  }catch(err){console.error(err);setFeed('Live feed unavailable — will retry automatically','bad');render();}
+  }catch(err){
+    console.error('ESPN live feed error:',err);
+    setFeed('Live feed unavailable — will retry automatically','bad');
+    render();
+  }
 }
 
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
