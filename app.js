@@ -163,122 +163,34 @@ function openEntry(id,week=null){
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
 async function refreshScores(){
-  setFeed('Fetching live scores…','');
+  setFeed('Testing ESPN query formats…','');
   try{
-    // Pool Week 2 spans NFL Week 2 and College Football Week 3.
-    // ESPN's week-based college endpoint is returning only a partial slate,
-    // so fetch each pool date individually. Exact-date scoreboard requests
-    // are documented to return the full day's events.
-    const dates=[...new Set(DATA.games.map(g=>g.date))].sort();
-    const requests=[];
-    for(const date of dates){
-      const ymd=date.replace(/-/g,'');
-      requests.push({sport:'NFL',date,url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${ymd}&limit=500`});
-      requests.push({sport:'NCAA',date,url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${ymd}&groups=80&limit=1000`});
+    // Diagnostic only. Compare ESPN's supported college scoreboard query forms
+    // against the same known event (Stanford-Duke, event 401858231).
+    const tests=[
+      {label:'Exact date',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20260919&limit=1000'},
+      {label:'Date + FBS',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20260919&groups=80&limit=1000'},
+      {label:'Week 3 + FBS',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?week=3&seasontype=2&groups=80&limit=1000'},
+      {label:'Week 3',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?week=3&seasontype=2&limit=1000'}
+    ];
+    const results=[];
+    for(const t of tests){
+      try{
+        const r=await fetch(t.url,{cache:'no-store'});
+        if(!r.ok){results.push({...t,ok:false,error:`HTTP ${r.status}`,events:0,found:false});continue;}
+        const data=await r.json();
+        const events=data.events||[];
+        const found=events.some(ev=>String(ev.id||'')==='401858231');
+        results.push({...t,ok:true,events:events.length,found});
+      }catch(e){results.push({...t,ok:false,error:String(e?.message||e),events:0,found:false});}
     }
-
-    const settled=await Promise.allSettled(
-      requests.map(r=>fetch(r.url,{cache:'no-store'}).then(async response=>{
-        if(!response.ok) throw new Error(`HTTP ${response.status}`);
-        return {...r,data:await response.json()};
-      }))
-    );
-
-    const foundCurrent={};
-    let espnEvents=0;
-    let successfulFeeds=0;
-    let stanfordDukeFound=false;
-    let stanfordDukeEvent=null;
-    let stanfordDukeWebFound=false;
-    let stanfordDukeWebEvent=null;
-    const feedErrors=[];
-
-    // Diagnostic only: query the alternate ESPN .web host for Stanford-Duke.
-    // This does not affect the live pool feed or scoring.
-    try{
-      const webUrl='https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20260919&groups=80&limit=1000';
-      const webResp=await fetch(webUrl,{cache:'no-store'});
-      if(webResp.ok){
-        const webData=await webResp.json();
-        for(const ev of webData.events||[]){
-          if(String(ev.id||'')==='401858231'){
-            stanfordDukeWebFound=true;
-            stanfordDukeWebEvent=ev;
-            break;
-          }
-        }
-      }else{
-        feedErrors.push(`ESPN .web HTTP ${webResp.status}`);
-      }
-    }catch(e){
-      feedErrors.push(`ESPN .web ${String(e?.message||e)}`);
-    }
-
-    for(const result of settled){
-      if(result.status==='rejected'){
-        feedErrors.push(String(result.reason?.message||result.reason));
-        continue;
-      }
-
-      successfulFeeds++;
-      const {data}=result.value;
-      espnEvents += (data.events||[]).length;
-
-      for(const ev of data.events||[]){
-        if(String(ev.id||'')==='401858231'){
-          stanfordDukeFound=true;
-          stanfordDukeEvent=ev;
-        }
-        const comp=ev.competitions?.[0];
-        if(!comp) continue;
-        const teams=comp.competitors||[];
-        if(teams.length<2) continue;
-
-        const home=teams.find(t=>t.homeAway==='home');
-        const away=teams.find(t=>t.homeAway==='away');
-        if(!home||!away) continue;
-
-        const awayName=away.team?.displayName||away.team?.shortDisplayName||'';
-        const homeName=home.team?.displayName||home.team?.shortDisplayName||'';
-
-        const matches=DATA.games.filter(g=>
-          teamMatches(g.away,awayName)&&
-          teamMatches(g.home,homeName)
-        );
-
-        for(const g of matches){
-          const stateName=ev.status?.type?.state;
-          const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
-          foundCurrent[g.id]={
-            status,
-            awayScore:Number(away.score||0),
-            homeScore:Number(home.score||0),
-            clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',
-            displayClock:ev.status?.displayClock||'',
-            period:ev.status?.period||ev.status?.type?.period||null,
-            startTime:ev.date||comp.date||null
-          };
-        }
-      }
-    }
-
-    const unmatched=DATA.games
-      .filter(g=>!foundCurrent[g.id])
-      .map(g=>`${g.away} @ ${g.home}`);
-
-    console.log('ESPN daily diagnostic',{dates,requests:requests.length,successfulFeeds,feedErrors,espnEvents,poolGames:DATA.games.length,matched:Object.keys(foundCurrent).length,unmatchedGames:unmatched,stanfordDukeFound,stanfordDukeEvent,stanfordDukeWebFound,stanfordDukeWebEvent});
-
-    state.scores=foundCurrent;
-    state.lastUpdated=new Date();
-
-    const feedNote=feedErrors.length?` · ${feedErrors.length} feed errors`:'';
-    const stanfordNote=stanfordDukeFound?'YES':'NO';
-    const stanfordWebNote=stanfordDukeWebFound?'YES':'NO';
-    setFeed(`${Object.keys(foundCurrent).length}/${DATA.games.length} games connected · Stanford-Duke current: ${stanfordNote} · .web: ${stanfordWebNote}${feedNote}`,'ok');
+    console.log('ESPN query-format diagnostic',results);
+    const summary=results.map(r=>`${r.label}: ${r.ok?(r.found?'FOUND':'NO')+' / '+r.events+' events':r.error}`).join(' | ');
+    setFeed(`Query test — ${summary}`,'ok');
     render();
   }catch(err){
     console.error(err);
-    setFeed('Live feed unavailable — will retry automatically','bad');
+    setFeed('Query diagnostic unavailable — retrying automatically','bad');
     render();
   }
 }
