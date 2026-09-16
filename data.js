@@ -11,8 +11,7 @@ window.POOL_DATA = {
       "home": "BILLS",
       "spread": 4.5,
       "total": 53.5,
-      "favorite": "BILLS",
-      "startTime": "2026-09-17T20:15:00-04:00"
+      "favorite": "BILLS"
     },
     {
       "id": "nfl-2026-09-20-dolphins-49ers",
@@ -22,8 +21,7 @@ window.POOL_DATA = {
       "home": "49ERS",
       "spread": 13.5,
       "total": 45.5,
-      "favorite": "49ERS",
-      "startTime": "2026-09-20T16:25:00-04:00"
+      "favorite": "49ERS"
     },
     {
       "id": "nfl-2026-09-20-vikings-bears",
@@ -33,8 +31,7 @@ window.POOL_DATA = {
       "home": "BEARS",
       "spread": 5.5,
       "total": 49.5,
-      "favorite": "BEARS",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "BEARS"
     },
     {
       "id": "nfl-2026-09-20-jaguars-broncos",
@@ -44,8 +41,7 @@ window.POOL_DATA = {
       "home": "BRONCOS",
       "spread": 2.5,
       "total": 44.5,
-      "favorite": "BRONCOS",
-      "startTime": "2026-09-20T16:05:00-04:00"
+      "favorite": "BRONCOS"
     },
     {
       "id": "nfl-2026-09-20-browns-buccaneers",
@@ -55,8 +51,7 @@ window.POOL_DATA = {
       "home": "BUCCANEERS",
       "spread": 8.5,
       "total": 40.5,
-      "favorite": "BUCCANEERS",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "BUCCANEERS"
     },
     {
       "id": "nfl-2026-09-20-raiders-chargers",
@@ -66,8 +61,7 @@ window.POOL_DATA = {
       "home": "CHARGERS",
       "spread": 7.0,
       "total": 43.5,
-      "favorite": "CHARGERS",
-      "startTime": "2026-09-20T16:05:00-04:00"
+      "favorite": "CHARGERS"
     },
     {
       "id": "nfl-2026-09-20-colts-chiefs",
@@ -77,8 +71,7 @@ window.POOL_DATA = {
       "home": "CHIEFS",
       "spread": 6.5,
       "total": 48.5,
-      "favorite": "CHIEFS",
-      "startTime": "2026-09-20T20:20:00-04:00"
+      "favorite": "CHIEFS"
     },
     {
       "id": "nfl-2026-09-20-commanders-cowboys",
@@ -88,8 +81,7 @@ window.POOL_DATA = {
       "home": "COWBOYS",
       "spread": 3.5,
       "total": 50.5,
-      "favorite": "COWBOYS",
-      "startTime": "2026-09-20T16:25:00-04:00"
+      "favorite": "COWBOYS"
     },
     {
       "id": "nfl-2026-09-20-eagles-titans",
@@ -99,8 +91,7 @@ window.POOL_DATA = {
       "home": "TITANS",
       "spread": 7.0,
       "total": 39.5,
-      "favorite": "Eagles",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "Eagles"
     },
     {
       "id": "nfl-2026-09-20-packers-jets",
@@ -110,8 +101,7 @@ window.POOL_DATA = {
       "home": "JETS",
       "spread": 4.5,
       "total": 44.5,
-      "favorite": "Packers",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "Packers"
     },
     {
       "id": "nfl-2026-09-20-panthers-falcons",
@@ -121,8 +111,7 @@ window.POOL_DATA = {
       "home": "FALCONS",
       "spread": 1.5,
       "total": 43.5,
-      "favorite": "Panthers",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "Panthers"
     },
     {
       "id": "nfl-2026-09-20-steelers-patriots",
@@ -132,8 +121,7 @@ window.POOL_DATA = {
       "home": "PATRIOTS",
       "spread": 5.5,
       "total": 41.5,
-      "favorite": "PATRIOTS",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "PATRIOTS"
     },
     {
       "id": "nfl-2026-09-20-saints-ravens",
@@ -143,8 +131,7 @@ window.POOL_DATA = {
       "home": "RAVENS",
       "spread": 8.5,
       "total": 46.5,
-      "favorite": "RAVENS",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "RAVENS"
     },
     {
       "id": "nfl-2026-09-20-seahawks-cardinals",
@@ -154,8 +141,7 @@ window.POOL_DATA = {
       "home": "CARDINALS",
       "spread": 4.5,
       "total": 41.5,
-      "favorite": "Seahawks",
-      "startTime": "2026-09-20T16:25:00-04:00"
+      "favorite": "Seahawks"
     },
     {
       "id": "nfl-2026-09-20-bengals-texans",
@@ -165,8 +151,7 @@ window.POOL_DATA = {
       "home": "TEXANS",
       "spread": 3.0,
       "total": 46.5,
-      "favorite": "TEXANS",
-      "startTime": "2026-09-20T13:00:00-04:00"
+      "favorite": "TEXANS"
     },
     {
       "id": "nfl-2026-09-21-giants-rams",
@@ -176,8 +161,7 @@ window.POOL_DATA = {
       "home": "RAMS",
       "spread": 7.0,
       "total": 48.5,
-      "favorite": "RAMS",
-      "startTime": "2026-09-21T20:15:00-04:00"
+      "favorite": "RAMS"
     },
     {
       "id": "ncaa-2026-09-17-syracuse-pitt",
@@ -187,8 +171,7 @@ window.POOL_DATA = {
       "home": "PITT",
       "spread": 10.5,
       "total": 51.5,
-      "favorite": "PITT",
-      "startTime": "2026-09-17T19:30:00-04:00"
+      "favorite": "PITT"
     },
     {
       "id": "ncaa-2026-09-18-miamifl-wakeforest",
@@ -198,8 +181,7 @@ window.POOL_DATA = {
       "home": "WAKE FOREST",
       "spread": 20.5,
       "total": 55.5,
-      "favorite": "Miami (Fl)",
-      "startTime": "2026-09-18T19:30:00-04:00"
+      "favorite": "Miami (Fl)"
     },
     {
       "id": "ncaa-2026-09-18-houston-texastech",
@@ -209,8 +191,7 @@ window.POOL_DATA = {
       "home": "TEXAS TECH",
       "spread": 7.5,
       "total": 53.5,
-      "favorite": "TEXAS TECH",
-      "startTime": "2026-09-18T20:00:00-04:00"
+      "favorite": "TEXAS TECH"
     },
     {
       "id": "ncaa-2026-09-19-floridast-alabama",
@@ -220,8 +201,7 @@ window.POOL_DATA = {
       "home": "ALABAMA",
       "spread": 19.5,
       "total": 49.5,
-      "favorite": "ALABAMA",
-      "startTime": "2026-09-19T15:30:00-04:00"
+      "favorite": "ALABAMA"
     },
     {
       "id": "ncaa-2026-09-19-charlotte-appst",
@@ -231,8 +211,7 @@ window.POOL_DATA = {
       "home": "APP ST",
       "spread": 17.5,
       "total": 51.5,
-      "favorite": "APP ST",
-      "startTime": "2026-09-19T18:00:00-04:00"
+      "favorite": "APP ST"
     },
     {
       "id": "ncaa-2026-09-19-northernillinois-arizona",
@@ -242,8 +221,7 @@ window.POOL_DATA = {
       "home": "ARIZONA",
       "spread": 34.5,
       "total": 49.5,
-      "favorite": "ARIZONA",
-      "startTime": "2026-09-19T22:30:00-04:00"
+      "favorite": "ARIZONA"
     },
     {
       "id": "ncaa-2026-09-19-arizonast-kansas",
@@ -253,8 +231,7 @@ window.POOL_DATA = {
       "home": "Kansas",
       "spread": 5.5,
       "total": 51.5,
-      "favorite": "Arizona St",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "Arizona St"
     },
     {
       "id": "ncaa-2026-09-19-louisianatech-baylor",
@@ -264,8 +241,7 @@ window.POOL_DATA = {
       "home": "BAYLOR",
       "spread": 19.5,
       "total": 53.5,
-      "favorite": "BAYLOR",
-      "startTime": "2026-09-19T16:00:00-04:00"
+      "favorite": "BAYLOR"
     },
     {
       "id": "ncaa-2026-09-19-byu-coloradost",
@@ -275,8 +251,7 @@ window.POOL_DATA = {
       "home": "COLORADO ST",
       "spread": 17.5,
       "total": 52.5,
-      "favorite": "Byu",
-      "startTime": "2026-09-19T19:30:00-04:00"
+      "favorite": "Byu"
     },
     {
       "id": "ncaa-2026-09-19-wyoming-centralmich",
@@ -286,8 +261,7 @@ window.POOL_DATA = {
       "home": "CENTRAL MICH",
       "spread": 1.5,
       "total": 39.5,
-      "favorite": "CENTRAL MICH",
-      "startTime": "2026-09-19T13:00:00-04:00"
+      "favorite": "CENTRAL MICH"
     },
     {
       "id": "ncaa-2026-09-19-miamioh-cincinnati",
@@ -297,8 +271,7 @@ window.POOL_DATA = {
       "home": "CINCINNATI",
       "spread": 14.5,
       "total": 50.5,
-      "favorite": "CINCINNATI",
-      "startTime": "2026-09-19T15:30:00-04:00"
+      "favorite": "CINCINNATI"
     },
     {
       "id": "ncaa-2026-09-19-northcarolina-clemson",
@@ -308,8 +281,7 @@ window.POOL_DATA = {
       "home": "CLEMSON",
       "spread": 3.5,
       "total": 44.5,
-      "favorite": "CLEMSON",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "CLEMSON"
     },
     {
       "id": "ncaa-2026-09-19-coastalcarolina-delaware",
@@ -319,8 +291,7 @@ window.POOL_DATA = {
       "home": "DELAWARE",
       "spread": 5.5,
       "total": 57.5,
-      "favorite": "DELAWARE",
-      "startTime": "2026-09-19T11:30:00-04:00"
+      "favorite": "DELAWARE"
     },
     {
       "id": "ncaa-2026-09-19-stanford-duke",
@@ -330,8 +301,7 @@ window.POOL_DATA = {
       "home": "DUKE",
       "spread": 9.5,
       "total": 51.5,
-      "favorite": "DUKE",
-      "startTime": "2026-09-19T16:00:00-04:00"
+      "favorite": "DUKE"
     },
     {
       "id": "ncaa-2026-09-19-florida-auburn",
@@ -341,8 +311,7 @@ window.POOL_DATA = {
       "home": "AUBURN",
       "spread": 2.5,
       "total": 53.5,
-      "favorite": "Florida",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "Florida"
     },
     {
       "id": "ncaa-2026-09-19-fiu-floridaatlantic",
@@ -352,8 +321,7 @@ window.POOL_DATA = {
       "home": "FLORIDA ATLANTIC",
       "spread": 7.0,
       "total": 62.5,
-      "favorite": "FLORIDA ATLANTIC",
-      "startTime": "2026-09-19T18:00:00-04:00"
+      "favorite": "FLORIDA ATLANTIC"
     },
     {
       "id": "ncaa-2026-09-19-fresnost-sanjosest",
@@ -363,8 +331,7 @@ window.POOL_DATA = {
       "home": "SAN JOSE ST",
       "spread": 6.5,
       "total": 50.5,
-      "favorite": "Fresno St",
-      "startTime": "2026-09-19T23:00:00-04:00"
+      "favorite": "Fresno St"
     },
     {
       "id": "ncaa-2026-09-19-georgia-arkansas",
@@ -374,8 +341,7 @@ window.POOL_DATA = {
       "home": "ARKANSAS",
       "spread": 25.5,
       "total": 54.5,
-      "favorite": "Georgia",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "Georgia"
     },
     {
       "id": "ncaa-2026-09-19-westernkentucky-indiana",
@@ -385,8 +351,7 @@ window.POOL_DATA = {
       "home": "INDIANA",
       "spread": 44.5,
       "total": 60.5,
-      "favorite": "INDIANA",
-      "startTime": "2026-09-19T16:00:00-04:00"
+      "favorite": "INDIANA"
     },
     {
       "id": "ncaa-2026-09-19-bowlinggreen-iowast",
@@ -396,8 +361,7 @@ window.POOL_DATA = {
       "home": "IOWA ST",
       "spread": 23.5,
       "total": 44.5,
-      "favorite": "IOWA ST",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "IOWA ST"
     },
     {
       "id": "ncaa-2026-09-19-georgiasouthern-jacksonvillest",
@@ -407,8 +371,7 @@ window.POOL_DATA = {
       "home": "JACKSONVILLE ST",
       "spread": 3.0,
       "total": 52.5,
-      "favorite": "JACKSONVILLE ST",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "JACKSONVILLE ST"
     },
     {
       "id": "ncaa-2026-09-19-tulane-kansasst",
@@ -418,8 +381,7 @@ window.POOL_DATA = {
       "home": "KANSAS ST",
       "spread": 20.5,
       "total": 49.5,
-      "favorite": "KANSAS ST",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "KANSAS ST"
     },
     {
       "id": "ncaa-2026-09-19-ballst-liberty",
@@ -429,8 +391,7 @@ window.POOL_DATA = {
       "home": "LIBERTY",
       "spread": 14.5,
       "total": 49.5,
-      "favorite": "LIBERTY",
-      "startTime": "2026-09-19T16:00:00-04:00"
+      "favorite": "LIBERTY"
     },
     {
       "id": "ncaa-2026-09-19-uab-louisiana",
@@ -440,8 +401,7 @@ window.POOL_DATA = {
       "home": "LOUISIANA",
       "spread": 7.5,
       "total": 56.5,
-      "favorite": "LOUISIANA",
-      "startTime": "2026-09-19T20:00:00-04:00"
+      "favorite": "LOUISIANA"
     },
     {
       "id": "ncaa-2026-09-19-smu-louisville",
@@ -451,8 +411,7 @@ window.POOL_DATA = {
       "home": "LOUISVILLE",
       "spread": 1.5,
       "total": 59.5,
-      "favorite": "LOUISVILLE",
-      "startTime": "2026-09-19T15:30:00-04:00"
+      "favorite": "LOUISVILLE"
     },
     {
       "id": "ncaa-2026-09-19-lsu-olemiss",
@@ -462,8 +421,7 @@ window.POOL_DATA = {
       "home": "OLE MISS",
       "spread": 3.0,
       "total": 58.5,
-      "favorite": "Lsu",
-      "startTime": "2026-09-19T19:30:00-04:00"
+      "favorite": "Lsu"
     },
     {
       "id": "ncaa-2026-09-19-marshall-missourist",
@@ -473,8 +431,7 @@ window.POOL_DATA = {
       "home": "MISSOURI ST",
       "spread": 3.5,
       "total": 51.5,
-      "favorite": "Marshall",
-      "startTime": "2026-09-19T18:30:00-04:00"
+      "favorite": "Marshall"
     },
     {
       "id": "ncaa-2026-09-19-utep-michigan",
@@ -484,8 +441,7 @@ window.POOL_DATA = {
       "home": "MICHIGAN",
       "spread": 35.5,
       "total": 48.5,
-      "favorite": "MICHIGAN",
-      "startTime": "2026-09-19T15:30:00-04:00"
+      "favorite": "MICHIGAN"
     },
     {
       "id": "ncaa-2026-09-19-akron-minnesota",
@@ -495,8 +451,7 @@ window.POOL_DATA = {
       "home": "MINNESOTA",
       "spread": 24.5,
       "total": 49.5,
-      "favorite": "MINNESOTA",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "MINNESOTA"
     },
     {
       "id": "ncaa-2026-09-19-troy-missouri",
@@ -506,8 +461,7 @@ window.POOL_DATA = {
       "home": "MISSOURI",
       "spread": 26.5,
       "total": 50.5,
-      "favorite": "MISSOURI",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "MISSOURI"
     },
     {
       "id": "ncaa-2026-09-19-nevada-middtenn",
@@ -517,8 +471,7 @@ window.POOL_DATA = {
       "home": "MIDD TENN",
       "spread": 3.5,
       "total": 50.5,
-      "favorite": "Nevada",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "Nevada"
     },
     {
       "id": "ncaa-2026-09-19-northdakotast-sacramentost",
@@ -528,8 +481,7 @@ window.POOL_DATA = {
       "home": "SACRAMENTO ST",
       "spread": 27.5,
       "total": 52.5,
-      "favorite": "North Dakota St",
-      "startTime": "2026-09-19T22:30:00-04:00"
+      "favorite": "North Dakota St"
     },
     {
       "id": "ncaa-2026-09-19-colorado-northwestern",
@@ -539,8 +491,7 @@ window.POOL_DATA = {
       "home": "NORTHWESTERN",
       "spread": 3.5,
       "total": 48.5,
-      "favorite": "NORTHWESTERN",
-      "startTime": "2026-09-19T19:30:00-04:00"
+      "favorite": "NORTHWESTERN"
     },
     {
       "id": "ncaa-2026-09-19-michiganst-notredame",
@@ -550,8 +501,7 @@ window.POOL_DATA = {
       "home": "NOTRE DAME",
       "spread": 29.5,
       "total": 52.5,
-      "favorite": "NOTRE DAME",
-      "startTime": "2026-09-19T19:30:00-04:00"
+      "favorite": "NOTRE DAME"
     },
     {
       "id": "ncaa-2026-09-19-kentst-ohiost",
@@ -561,8 +511,7 @@ window.POOL_DATA = {
       "home": "OHIO ST",
       "spread": 52.5,
       "total": 59.5,
-      "favorite": "OHIO ST",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "OHIO ST"
     },
     {
       "id": "ncaa-2026-09-19-newmexico-oklahoma",
@@ -572,8 +521,7 @@ window.POOL_DATA = {
       "home": "OKLAHOMA",
       "spread": 22.5,
       "total": 46.5,
-      "favorite": "OKLAHOMA",
-      "startTime": "2026-09-19T19:30:00-04:00"
+      "favorite": "OKLAHOMA"
     },
     {
       "id": "ncaa-2026-09-19-eastcarolina-olddominion",
@@ -583,8 +531,7 @@ window.POOL_DATA = {
       "home": "OLD DOMINION",
       "spread": 3.0,
       "total": 49.5,
-      "favorite": "OLD DOMINION",
-      "startTime": "2026-09-19T18:00:00-04:00"
+      "favorite": "OLD DOMINION"
     },
     {
       "id": "ncaa-2026-09-19-buffalo-pennst",
@@ -594,8 +541,7 @@ window.POOL_DATA = {
       "home": "PENN ST",
       "spread": 39.5,
       "total": 48.5,
-      "favorite": "PENN ST",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "PENN ST"
     },
     {
       "id": "ncaa-2026-09-19-jamesmadison-sandiegost",
@@ -605,8 +551,7 @@ window.POOL_DATA = {
       "home": "SAN DIEGO ST",
       "spread": 2.5,
       "total": 46.5,
-      "favorite": "SAN DIEGO ST",
-      "startTime": "2026-09-19T22:00:00-04:00"
+      "favorite": "SAN DIEGO ST"
     },
     {
       "id": "ncaa-2026-09-19-ohio-southalabama",
@@ -616,8 +561,7 @@ window.POOL_DATA = {
       "home": "SOUTH ALABAMA",
       "spread": 4.5,
       "total": 51.5,
-      "favorite": "SOUTH ALABAMA",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "SOUTH ALABAMA"
     },
     {
       "id": "ncaa-2026-09-19-mississippist-southcarolina",
@@ -627,8 +571,7 @@ window.POOL_DATA = {
       "home": "SOUTH CAROLINA",
       "spread": 4.0,
       "total": 59.5,
-      "favorite": "SOUTH CAROLINA",
-      "startTime": "2026-09-19T16:15:00-04:00"
+      "favorite": "SOUTH CAROLINA"
     },
     {
       "id": "ncaa-2026-09-19-arkansasst-tcu",
@@ -638,8 +581,7 @@ window.POOL_DATA = {
       "home": "TCU",
       "spread": 20.5,
       "total": 55.5,
-      "favorite": "TCU",
-      "startTime": "2026-09-19T20:00:00-04:00"
+      "favorite": "TCU"
     },
     {
       "id": "ncaa-2026-09-19-kennesawst-tennessee",
@@ -649,8 +591,7 @@ window.POOL_DATA = {
       "home": "TENNESSEE",
       "spread": 35.5,
       "total": 59.5,
-      "favorite": "TENNESSEE",
-      "startTime": "2026-09-19T19:45:00-04:00"
+      "favorite": "TENNESSEE"
     },
     {
       "id": "ncaa-2026-09-19-utsa-texas",
@@ -660,8 +601,7 @@ window.POOL_DATA = {
       "home": "TEXAS",
       "spread": 30.5,
       "total": 58.5,
-      "favorite": "TEXAS",
-      "startTime": "2026-09-19T20:00:00-04:00"
+      "favorite": "TEXAS"
     },
     {
       "id": "ncaa-2026-09-19-kentucky-texasam",
@@ -671,8 +611,7 @@ window.POOL_DATA = {
       "home": "TEXAS A&M",
       "spread": 16.5,
       "total": 49.5,
-      "favorite": "TEXAS A&M",
-      "startTime": "2026-09-19T15:30:00-04:00"
+      "favorite": "TEXAS A&M"
     },
     {
       "id": "ncaa-2026-09-19-northtexas-texasst",
@@ -682,8 +621,7 @@ window.POOL_DATA = {
       "home": "TEXAS ST",
       "spread": 3.0,
       "total": 63.5,
-      "favorite": "TEXAS ST",
-      "startTime": "2026-09-19T12:00:00-04:00"
+      "favorite": "TEXAS ST"
     },
     {
       "id": "ncaa-2026-09-19-temple-toledo",
@@ -693,8 +631,7 @@ window.POOL_DATA = {
       "home": "TOLEDO",
       "spread": 5.5,
       "total": 51.5,
-      "favorite": "TOLEDO",
-      "startTime": "2026-09-19T15:00:00-04:00"
+      "favorite": "TOLEDO"
     },
     {
       "id": "ncaa-2026-09-19-georgiast-ucf",
@@ -704,8 +641,7 @@ window.POOL_DATA = {
       "home": "UCF",
       "spread": 18.5,
       "total": 51.5,
-      "favorite": "UCF",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "UCF"
     },
     {
       "id": "ncaa-2026-09-19-purdue-ucla",
@@ -715,8 +651,7 @@ window.POOL_DATA = {
       "home": "UCLA",
       "spread": 14.5,
       "total": 52.5,
-      "favorite": "UCLA",
-      "startTime": "2026-09-19T23:00:00-04:00"
+      "favorite": "UCLA"
     },
     {
       "id": "ncaa-2026-09-19-uconn-southernmiss",
@@ -726,8 +661,7 @@ window.POOL_DATA = {
       "home": "SOUTHERN MISS",
       "spread": 3.0,
       "total": 54.5,
-      "favorite": "Uconn",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "Uconn"
     },
     {
       "id": "ncaa-2026-09-19-usc-rutgers",
@@ -737,8 +671,7 @@ window.POOL_DATA = {
       "home": "RUTGERS",
       "spread": 23.5,
       "total": 59.5,
-      "favorite": "Usc",
-      "startTime": "2026-09-19T15:30:00-04:00"
+      "favorite": "Usc"
     },
     {
       "id": "ncaa-2026-09-19-utahst-utah",
@@ -748,8 +681,7 @@ window.POOL_DATA = {
       "home": "UTAH",
       "spread": 28.5,
       "total": 56.5,
-      "favorite": "UTAH",
-      "startTime": "2026-09-19T15:30:00-04:00"
+      "favorite": "UTAH"
     },
     {
       "id": "ncaa-2026-09-19-ncstate-vanderbilt",
@@ -759,8 +691,7 @@ window.POOL_DATA = {
       "home": "VANDERBILT",
       "spread": 3.0,
       "total": 51.5,
-      "favorite": "VANDERBILT",
-      "startTime": "2026-09-19T12:45:00-04:00"
+      "favorite": "VANDERBILT"
     },
     {
       "id": "ncaa-2026-09-19-westvirginia-virginia",
@@ -770,8 +701,7 @@ window.POOL_DATA = {
       "home": "Virginia",
       "spread": 10.0,
       "total": 52.5,
-      "favorite": "Virginia",
-      "startTime": "2026-09-19T19:30:00-04:00"
+      "favorite": "Virginia"
     },
     {
       "id": "ncaa-2026-09-19-virginiatech-maryland",
@@ -781,8 +711,7 @@ window.POOL_DATA = {
       "home": "MARYLAND",
       "spread": 3.0,
       "total": 53.5,
-      "favorite": "Virginia Tech",
-      "startTime": "2026-09-19T19:30:00-04:00"
+      "favorite": "Virginia Tech"
     },
     {
       "id": "ncaa-2026-09-19-westernmich-rice",
@@ -792,8 +721,7 @@ window.POOL_DATA = {
       "home": "RICE",
       "spread": 9.5,
       "total": 43.5,
-      "favorite": "Western Mich",
-      "startTime": "2026-09-19T19:00:00-04:00"
+      "favorite": "Western Mich"
     },
     {
       "id": "ncaa-2026-09-19-easternmich-wisconsin",
@@ -803,8 +731,7 @@ window.POOL_DATA = {
       "home": "WISCONSIN",
       "spread": 23.5,
       "total": 45.5,
-      "favorite": "WISCONSIN",
-      "startTime": "2026-09-19T12:30:00-04:00"
+      "favorite": "WISCONSIN"
     }
   ],
   "entries": [

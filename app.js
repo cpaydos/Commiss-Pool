@@ -162,96 +162,70 @@ function openEntry(id,week=null){
   $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${week?` · Week ${week} · Final`:''}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map(p=>{const g=gm[p.gameId],res=classifyPick(p,g,scoreMap),sc=scoreMap[g?.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-time">${week?formatDate(g.date):formatGameTimeDisplay(g)}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus?.team||'Not loaded')}</div><div class="pick-sub">Outright win required · max favorite ${weekBonusMax}</div></div><div class="${bstat==='eliminated'?'result-loss':bstat==='alive'?'result-win':'result-pending'}">${bstat.toUpperCase()}</div></div>`;$('entryModal').classList.remove('hidden')}
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
-function summarizeEspnPayload(data, targetIds){
-  const ids=new Set(targetIds.map(String));
-  const seen=new Set();
-  const candidates=[];
-  function walk(x, depth=0){
-    if(!x || typeof x!=='object' || depth>8 || seen.has(x)) return;
-    seen.add(x);
-    if(Array.isArray(x)){for(const v of x)walk(v,depth+1);return;}
-    const id=String(x.id||x.eventId||x.gameId||'');
-    const text=JSON.stringify(x).toLowerCase();
-    if(ids.has(id) || (text.includes('stanford')&&text.includes('duke')) || (text.includes('syracuse')&&text.includes('pittsburgh'))){candidates.push(x)}
-    for(const k of Object.keys(x)) walk(x[k],depth+1);
-  }
-  walk(data);
-  let obj=candidates.find(x=>ids.has(String(x.id||x.eventId||x.gameId||''))) || candidates.find(x=>JSON.stringify(x).toLowerCase().includes('stanford')&&JSON.stringify(x).toLowerCase().includes('duke')) || candidates[0];
-  if(!obj) return {found:false};
-  let comp=obj.competitions?.[0] || obj.header?.competitions?.[0] || obj.gameInfo?.competitions?.[0] || null;
-  if(!comp){
-    // Some CDN/core responses wrap the event/header one level differently.
-    const h=obj.header || obj.gamepackageJSON?.header || obj.gamepackageJSON?.gamepackageJSON?.header;
-    comp=h?.competitions?.[0] || null;
-  }
-  const competitors=comp?.competitors || obj.competitors || [];
-  const teams=competitors.map(c=>({name:c.team?.displayName||c.team?.shortDisplayName||c.team?.abbreviation||c.displayName||'',homeAway:c.homeAway||'',score:c.score??c.scoreValue??null,winner:c.winner??null})).filter(t=>t.name);
-  const status=comp?.status || obj.status || obj.header?.competitions?.[0]?.status || null;
-  const st=status?.type || status || {};
-  return {
-    found:true,
-    eventId:String(obj.id||obj.eventId||obj.gameId||''),
-    name:obj.name||obj.shortName||obj.header?.competitions?.[0]?.name||teams.map(t=>t.name).join(' @ ')||'',
-    date:obj.date||obj.startDate||obj.header?.competitions?.[0]?.date||null,
-    status:st.name||st.type||st.description||st.state||'',
-    completed:st.completed??null,
-    period:status?.period??comp?.status?.period??null,
-    clock:status?.displayClock||status?.clock||null,
-    teams
-  };
+const ncaaTeamCatalog={loaded:false,teams:[],promise:null};
+const ncaaScheduleCache=new Map();
+const NCAA_SCHEDULE_CACHE_MS=120000;
+async function getNcaaTeamCatalog(){
+  if(ncaaTeamCatalog.loaded)return ncaaTeamCatalog.teams;
+  if(ncaaTeamCatalog.promise)return ncaaTeamCatalog.promise;
+  ncaaTeamCatalog.promise=fetch('https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams?limit=1000',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('NCAA team catalog HTTP '+r.status);return r.json()}).then(data=>{
+    const raw=[];
+    const walk=x=>{if(!x||typeof x!=='object')return;if(Array.isArray(x)){x.forEach(walk);return}if(x.team&&x.team.id&&x.team.displayName)raw.push(x.team);Object.keys(x).forEach(k=>{if(k!=='team')walk(x[k])})};
+    walk(data);
+    const seen=new Set();
+    ncaaTeamCatalog.teams=raw.filter(t=>{if(seen.has(String(t.id)))return false;seen.add(String(t.id));return true});
+    ncaaTeamCatalog.loaded=true;
+    return ncaaTeamCatalog.teams;
+  }).catch(e=>{ncaaTeamCatalog.promise=null;throw e});
+  return ncaaTeamCatalog.promise;
 }
-function fmtTargetData(d){
-  if(!d?.found)return 'No game object found';
-  const teams=d.teams?.length?d.teams.map(t=>`${t.name}${t.score!=null?' '+t.score:''}`).join(' | '):'teams unavailable';
-  const bits=[d.name||'event',d.date?new Date(d.date).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'time unavailable',d.status||'status unavailable'];
-  if(d.period||d.clock)bits.push([d.period?`Q${d.period}`:'',d.clock||''].filter(Boolean).join(' · '));
-  bits.push(teams);
-  return bits.join(' · ');
+function findNcaaTeamId(name,teams){
+  const n=norm(name);
+  const exact=teams.find(t=>[t.displayName,t.shortDisplayName,t.abbreviation,t.location,t.nickname].filter(Boolean).some(v=>norm(v)===n));
+  if(exact)return String(exact.id);
+  const fuzzy=teams.find(t=>[t.displayName,t.shortDisplayName,t.abbreviation,t.location,t.nickname].filter(Boolean).some(v=>teamMatches(name,v)));
+  return fuzzy?String(fuzzy.id):null;
 }
-async function refreshScores(){
-  setFeed('Testing targeted ESPN data endpoints…','');
-  try{
-    // Diagnostic only. No production score/matching logic is changed here.
-    // Stanford-Duke is the known missing game; Syracuse-Pitt is a control game
-    // that the general scoreboard already returns.
-    const tests=[
-      {label:'Stanford schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/24/schedule?season=2026&seasontype=2',target:'401858231'},
-      {label:'Duke schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/150/schedule?season=2026&seasontype=2',target:'401858231'},
-      {label:'Stanford site summary',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858231',target:'401858231'},
-      {label:'Stanford site v3 summary',url:'https://site.api.espn.com/apis/site/v3/sports/football/college-football/summary?event=401858231',target:'401858231'},
-      {label:'Stanford core event',url:'https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401858231',target:'401858231'},
-      {label:'Stanford CDN game package',url:'https://cdn.espn.com/core/college-football/game?xhr=1&gameId=401858231',target:'401858231'},
-      {label:'Syracuse site summary control',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858225',target:'401858225'}
-    ];
-    const results=[];
-    for(const t of tests){
-      try{
-        const r=await fetch(t.url,{cache:'no-store'});
-        const text=await r.text();
-        let data=null;try{data=JSON.parse(text)}catch{}
-        const summary=summarizeEspnPayload(data||text,[t.target]);
-        results.push({label:t.label,ok:r.ok,http:r.status,bytes:text.length,summary});
-      }catch(e){results.push({label:t.label,ok:false,http:'ERR',bytes:0,summary:{found:false},error:String(e?.message||e)});}
+function scoreFromEvent(ev,g){
+  const comp=ev?.competitions?.[0]; if(!comp)return false;
+  const teams=comp.competitors||[];
+  const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');
+  if(!home||!away)return false;
+  const awayName=away.team?.displayName||away.team?.shortDisplayName||away.team?.abbreviation||'';
+  const homeName=home.team?.displayName||home.team?.shortDisplayName||home.team?.abbreviation||'';
+  if(!teamMatches(g.away,awayName)||!teamMatches(g.home,homeName))return false;
+  const stateName=ev.status?.type?.state;
+  const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
+  state.scores[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null};
+  return true;
+}
+async function fillNcaaScheduleFallback(foundCurrent){
+  const missing=(DATA.games||[]).filter(g=>g.sport==='NCAA'&&!foundCurrent[g.id]);
+  if(!missing.length)return {checked:0,matched:0};
+  const teams=await getNcaaTeamCatalog();
+  const now=Date.now();
+  const work=missing.map(async g=>{
+    const cached=ncaaScheduleCache.get(g.id);
+    if(cached&&now-cached.ts<NCAA_SCHEDULE_CACHE_MS){
+      if(cached.event)scoreFromEvent(cached.event,g);
+      return !!cached.event;
     }
-    console.log('ESPN targeted endpoint field diagnostic',results);
-    const details=`<div class="diag-card"><h3>Targeted ESPN data test</h3><p>Missing-game test: Stanford @ Duke · event 401858231. Control: Syracuse @ Pitt · event 401858225.</p><div class="diag-list">${results.map(r=>`<div><strong>${esc(r.label)}</strong><span>${r.ok?`HTTP ${r.http} · ${r.summary?.found?'FOUND':'NO'} · ${r.bytes.toLocaleString()} bytes<br><small>${esc(fmtTargetData(r.summary))}</small>`:esc(r.error||`HTTP ${r.http}`)}</span></div>`).join('')}</div><p class="diag-note">Diagnostic only. It checks whether ESPN's targeted endpoints expose the fields we need: event, kickoff, status, period/clock, and scores. It does not change scoring, matching, payouts, or static kickoff times.</p></div>`;
-    const box=$('queryDiagnostics'); if(box)box.innerHTML=details;
-    const foundCount=results.filter(r=>r.summary?.found).length;
-    setFeed(`Targeted data test — ${foundCount}/${results.length} endpoints returned usable game data`,'ok');
-    render();
-  }catch(err){
-    console.error(err);
-    setFeed('Targeted diagnostic unavailable — retrying automatically','bad');
-    render();
-  }
+    const teamId=findNcaaTeamId(g.home,teams);
+    if(!teamId){ncaaScheduleCache.set(g.id,{ts:now,event:null});return false;}
+    try{
+      const r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/${encodeURIComponent(teamId)}/schedule?season=${DATA.season}&seasontype=2`,{cache:'no-store'});
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      const data=await r.json();
+      const ev=(data.events||[]).find(e=>{
+        const c=e.competitions?.[0],ts=c?.competitors||[];const h=ts.find(t=>t.homeAway==='home'),a=ts.find(t=>t.homeAway==='away');
+        return h&&a&&teamMatches(g.home,h.team?.displayName||h.team?.shortDisplayName||h.team?.abbreviation||'')&&teamMatches(g.away,a.team?.displayName||a.team?.shortDisplayName||a.team?.abbreviation||'');
+      })||null;
+      ncaaScheduleCache.set(g.id,{ts:now,event:ev});
+      if(ev)scoreFromEvent(ev,g);
+      return !!ev;
+    }catch(e){ncaaScheduleCache.set(g.id,{ts:now,event:null,error:String(e?.message||e)});return false}
+  });
+  const results=await Promise.all(work);
+  return {checked:missing.length,matched:results.filter(Boolean).length};
 }
-
-function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
-$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
-populateOverallSelector();render();refreshScores();setInterval(refreshScores,30000);
-
-// Commiss Pool PWA: register service worker for app-like Home Screen behavior.
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
-}
+async function refreshScores(){setFeed('Fetching live scores…','');try{const ranges=[{key:'historyScores',dates:'20260909-20260914',games:DATA.history?.[1]?.games||[]},{key:'scores',dates:'20260917-20260921',games:DATA.games}];const foundCurrent={},foundHistory=Object.assign({},staticHistoryScores);for(const range of ranges){const urls=[`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${range.dates}&limit=500`,`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${range.dates}&limit=1000`];const payloads=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('score feed HTTP '+r.status);return r.json()})));const target=range.key==='scores'?foundCurrent:foundHistory;for(const data of payloads)for(const ev of data.events||[]){const comp=ev.competitions?.[0];if(!comp)continue;const teams=comp.competitors||[];if(teams.length<2)continue;const home=teams.find(t=>t.homeAway==='home'),away=teams.find(t=>t.homeAway==='away');if(!home||!away)continue;const matches=range.games.filter(g=>teamMatches(g.away,away.team?.displayName||away.team?.shortDisplayName||'')&&teamMatches(g.home,home.team?.displayName||home.team?.shortDisplayName||''));for(const g of matches){const status=ev.status?.type?.state==='post'?'final':ev.status?.type?.state==='in'?'in':'scheduled';target[g.id]={status,awayScore:Number(away.score||0),homeScore:Number(home.score||0),clock:ev.status?.type?.shortDetail||ev.status?.displayClock||'',displayClock:ev.status?.displayClock||'',period:ev.status?.period||ev.status?.type?.period||null,startTime:ev.date||comp.date||null}}}}state.scores=foundCurrent;state.historyScores=foundHistory;let fallback={checked:0,matched:0};if(DATA.games?.some(g=>g.sport==='NCAA'&&!foundCurrent[g.id]))fallback=await fillNcaaScheduleFallback(foundCurrent);state.scores=foundCurrent;state.lastUpdated=new Date();setFeed(`Live feed connected · ${Object.keys(foundCurrent).length}/${DATA.games.length} games matched${fallback.matched?` · ${fallback.matched} via NCAA team schedules`:''}`,'ok');render()}catch(err){console.error(err);setFeed('Live feed unavailable — will retry automatically','bad');render()}}
