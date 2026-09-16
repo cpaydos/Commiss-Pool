@@ -163,69 +163,49 @@ function openEntry(id,week=null){
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
 async function refreshScores(){
-  setFeed('Testing ESPN query formats…','');
+  setFeed('Testing targeted ESPN endpoints…','');
   try{
-    // Diagnostic only. Compare ESPN's supported college scoreboard query forms
-    // against the same known event (Stanford-Duke, event 401858231).
+    // Diagnostic only. We know ESPN's general scoreboard queries are returning
+    // a subset of Week 3 games. Test whether the missing Stanford-Duke game
+    // can be reached through team schedules or event-specific endpoints.
     const tests=[
-      {label:'Exact date',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20260919&limit=1000'},
-      {label:'Date + FBS',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20260919&groups=80&limit=1000'},
-      {label:'Week 3 + FBS',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?week=3&seasontype=2&groups=80&limit=1000'},
-      {label:'Week 3',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?week=3&seasontype=2&limit=1000'}
+      {label:'Stanford schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/24/schedule?season=2026&seasontype=2'},
+      {label:'Duke schedule',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/teams/150/schedule?season=2026&seasontype=2'},
+      {label:'Site summary',url:'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858231'},
+      {label:'Site v3 summary',url:'https://site.api.espn.com/apis/site/v3/sports/football/college-football/summary?event=401858231'},
+      {label:'Core event',url:'https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401858231'},
+      {label:'CDN game package',url:'https://cdn.espn.com/core/college-football/game?xhr=1&gameId=401858231'}
     ];
     const results=[];
     for(const t of tests){
       try{
         const r=await fetch(t.url,{cache:'no-store'});
-        if(!r.ok){results.push({...t,ok:false,error:`HTTP ${r.status}`,events:0,found:false,dataEvents:[]});continue;}
-        const data=await r.json();
-        const events=data.events||[];
-        const found=events.some(ev=>String(ev.id||'')==='401858231');
-        results.push({...t,ok:true,events:events.length,found,dataEvents:events});
-      }catch(e){results.push({...t,ok:false,error:String(e?.message||e),events:0,found:false,dataEvents:[]});}
+        const text=await r.text();
+        let data=null;try{data=JSON.parse(text)}catch{}
+        const found=text.includes('401858231') || text.toLowerCase().includes('stanford')&&text.toLowerCase().includes('duke');
+        let label='';
+        if(data){
+          const evs=Array.isArray(data.events)?data.events:[];
+          const hit=evs.find(ev=>String(ev?.id||'')==='401858231') || evs.find(ev=>JSON.stringify(ev).includes('401858231'));
+          label=hit?.name||hit?.shortName||'';
+          if(!label && data.header?.competitions?.[0]) label=data.header.competitions[0].competitors?.map(c=>c.team?.displayName).filter(Boolean).join(' @ ')||'';
+        }
+        results.push({label:t.label,url:t.url,ok:r.ok,http:r.status,bytes:text.length,found,data,label});
+      }catch(e){results.push({label:t.label,url:t.url,ok:false,http:'ERR',bytes:0,found:false,data:null,error:String(e?.message||e),label:''});}
     }
-    console.log('ESPN query-format diagnostic',results);
-    const eventMap=new Map();
-    const eventLabel=ev=>{
-      const c=ev?.competitions?.[0]?.competitors||[];
-      const away=c.find(x=>x.homeAway==='away')?.team?.displayName;
-      const home=c.find(x=>x.homeAway==='home')?.team?.displayName;
-      if(away&&home)return `${away} @ ${home}`;
-      return ev?.name||ev?.shortName||`Event ${ev?.id||'?'}`;
-    };
-    for(const r of results){
-      if(!r.dataEvents)continue;
-      for(const ev of r.dataEvents){
-        const label=eventLabel(ev);
-        const id=String(ev.id||label);
-        if(!eventMap.has(id))eventMap.set(id,{id,label,queries:[]});
-        eventMap.get(id).queries.push(r.label);
-      }
-    }
-    const allEvents=[...eventMap.values()].sort((a,b)=>a.label.localeCompare(b.label));
-    const matchedPool=[]; const missingPool=[];
-    for(const g of DATA.games.filter(x=>x.sport==='NCAA')){
-      const found=allEvents.some(e=>{
-        const c=e.id;
-        const ev=results.flatMap(r=>r.dataEvents||[]).find(x=>String(x.id||'')===c);
-        const comps=ev?.competitions?.[0]?.competitors||[];
-        const away=comps.find(x=>x.homeAway==='away')?.team?.displayName||'';
-        const home=comps.find(x=>x.homeAway==='home')?.team?.displayName||'';
-        return teamMatches(g.away,away)&&teamMatches(g.home,home);
-      });
-      (found?matchedPool:missingPool).push(`${g.away} @ ${g.home}`);
-    }
-    const details=`<div class=\"diag-card\"><h3>ESPN events actually received</h3><p>${allEvents.length} unique events across the four queries.</p><div class=\"diag-list\">${allEvents.map(e=>`<div><strong>${esc(e.label)}</strong><span>${esc(e.queries.join(' · '))}</span></div>`).join('')||'<div>No events received.</div>'}</div><h3>Commiss NCAA games matched</h3><div class=\"diag-list\">${matchedPool.map(x=>`<div>${esc(x)}</div>`).join('')||'<div>None</div>'}</div><h3>Commiss NCAA games missing</h3><div class=\"diag-list\">${missingPool.map(x=>`<div>${esc(x)}</div>`).join('')||'<div>None</div>'}</div></div>`;
+    console.log('ESPN targeted endpoint diagnostic',results);
+    const details=`<div class="diag-card"><h3>Targeted ESPN endpoint test</h3><p>Known missing Commiss game: Stanford @ Duke · ESPN event 401858231.</p><div class="diag-list">${results.map(r=>`<div><strong>${esc(r.label)}</strong><span>${r.ok?`HTTP ${r.http} · ${r.found?'FOUND':'NO'} · ${r.bytes.toLocaleString()} bytes${r.label?` · ${esc(r.label)}`:''}`:esc(r.error||`HTTP ${r.http}`)}</span></div>`).join('')}</div><p class="diag-note">This test does not change scoring or matching. It only checks whether ESPN exposes the same game through a team schedule or event-specific endpoint.</p></div>`;
     const box=$('queryDiagnostics'); if(box)box.innerHTML=details;
-    const summary=results.map(r=>`${r.label}: ${r.ok?(r.found?'FOUND':'NO')+' / '+r.events+' events':r.error}`).join(' | ');
-    setFeed(`Query test — ${summary}`,'ok');
+    const summary=results.map(r=>`${r.label}: ${r.ok?(r.found?'FOUND':'NO')+' / HTTP '+r.http:r.error}`).join(' | ');
+    setFeed(`Targeted test — ${summary}`,'ok');
     render();
   }catch(err){
     console.error(err);
-    setFeed('Query diagnostic unavailable — retrying automatically','bad');
+    setFeed('Targeted diagnostic unavailable — retrying automatically','bad');
     render();
   }
 }
+
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
 $('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
