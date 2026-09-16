@@ -186,42 +186,55 @@ function scoreFromEvent(ev,g,target){
 
 async function refreshScores(){
   setFeed('Fetching live scores…','');
-  try{
-    // Original working approach: one direct ESPN scoreboard request per sport,
-    // covering the current pool's date range. No team catalog or per-team fallback.
-    const dates=(()=>{
-      const ds=[...new Set((DATA.games||[]).map(g=>g.date).filter(Boolean))].sort();
-      return ds.length?`${ds[0].replace(/-/g,'')}-${ds[ds.length-1].replace(/-/g,'')}`:'';
-    })();
-    if(!dates)throw new Error('No game dates available');
-
-    const urls=[
-      `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`,
-      `https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&limit=1000`
-    ];
-    const payloads=await Promise.all(urls.map(u=>fetch(u,{cache:'no-store'}).then(r=>{
-      if(!r.ok)throw new Error('score feed HTTP '+r.status);
-      return r.json();
-    })));
-
-    const found={};
-    for(const data of payloads){
-      for(const ev of data.events||[]){
-        for(const g of DATA.games||[])scoreFromEvent(ev,g,found);
-      }
-    }
-
-    state.scores=found;
-    state.lastUpdated=new Date();
-    setFeed(`Live feed connected · ${Object.keys(found).length}/${DATA.games.length} games matched`,'ok');
+  const dates=(()=>{
+    const ds=[...new Set((DATA.games||[]).map(g=>g.date).filter(Boolean))].sort();
+    return ds.length?`${ds[0].replace(/-/g,'')}-${ds[ds.length-1].replace(/-/g,'')}`:'';
+  })();
+  if(!dates){
+    setFeed('Live feed error · no game dates','bad');
     render();
-  }catch(err){
-    console.error('ESPN live feed error:',err);
-    setFeed('Live feed unavailable — will retry automatically','bad');
-    render();
+    return;
   }
-}
 
+  const feeds=[
+    {name:'NFL',url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${dates}&limit=500`},
+    {name:'NCAA',url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${dates}&limit=1000`}
+  ];
+  const found={};
+  const results=[];
+
+  for(const feed of feeds){
+    try{
+      const controller=new AbortController();
+      const timer=setTimeout(()=>controller.abort(),10000);
+      const response=await fetch(feed.url,{cache:'no-store',signal:controller.signal});
+      clearTimeout(timer);
+      if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      const data=await response.json();
+      let matched=0;
+      for(const ev of data.events||[]){
+        for(const g of DATA.games||[]) if(scoreFromEvent(ev,g,found)) matched++;
+      }
+      results.push(`${feed.name} ✓ (${matched})`);
+    }catch(err){
+      const msg=err?.name==='AbortError'?'timeout':(err?.message||String(err));
+      console.error(`${feed.name} ESPN live feed error:`,err);
+      results.push(`${feed.name} ✕ (${msg})`);
+    }
+  }
+
+  state.scores=found;
+  state.lastUpdated=new Date();
+  const failures=results.filter(x=>x.includes('✕'));
+  if(failures.length===0){
+    setFeed(`Live feed connected · ${Object.keys(found).length}/${DATA.games.length} matched · ${results.join(' · ')}`,'ok');
+  }else if(Object.keys(found).length>0){
+    setFeed(`Live feed partial · ${Object.keys(found).length}/${DATA.games.length} matched · ${results.join(' · ')}`,'ok');
+  }else{
+    setFeed(`Live feed error · ${results.join(' · ')}`,'bad');
+  }
+  render();
+}
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
 $('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
