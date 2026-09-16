@@ -189,7 +189,30 @@ async function refreshScores(){
     let successfulFeeds=0;
     let stanfordDukeFound=false;
     let stanfordDukeEvent=null;
+    let stanfordDukeWebFound=false;
+    let stanfordDukeWebEvent=null;
     const feedErrors=[];
+
+    // Diagnostic only: query the alternate ESPN .web host for Stanford-Duke.
+    // This does not affect the live pool feed or scoring.
+    try{
+      const webUrl='https://site.web.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=20260919&groups=80&limit=1000';
+      const webResp=await fetch(webUrl,{cache:'no-store'});
+      if(webResp.ok){
+        const webData=await webResp.json();
+        for(const ev of webData.events||[]){
+          if(String(ev.id||'')==='401858231'){
+            stanfordDukeWebFound=true;
+            stanfordDukeWebEvent=ev;
+            break;
+          }
+        }
+      }else{
+        feedErrors.push(`ESPN .web HTTP ${webResp.status}`);
+      }
+    }catch(e){
+      feedErrors.push(`ESPN .web ${String(e?.message||e)}`);
+    }
 
     for(const result of settled){
       if(result.status==='rejected'){
@@ -243,14 +266,15 @@ async function refreshScores(){
       .filter(g=>!foundCurrent[g.id])
       .map(g=>`${g.away} @ ${g.home}`);
 
-    console.log('ESPN daily diagnostic',{dates,requests:requests.length,successfulFeeds,feedErrors,espnEvents,poolGames:DATA.games.length,matched:Object.keys(foundCurrent).length,unmatchedGames:unmatched,stanfordDukeFound,stanfordDukeEvent});
+    console.log('ESPN daily diagnostic',{dates,requests:requests.length,successfulFeeds,feedErrors,espnEvents,poolGames:DATA.games.length,matched:Object.keys(foundCurrent).length,unmatchedGames:unmatched,stanfordDukeFound,stanfordDukeEvent,stanfordDukeWebFound,stanfordDukeWebEvent});
 
     state.scores=foundCurrent;
     state.lastUpdated=new Date();
 
     const feedNote=feedErrors.length?` · ${feedErrors.length} feed errors`:'';
-    const stanfordNote=stanfordDukeFound?' · Stanford-Duke API: YES':' · Stanford-Duke API: NO';
-    setFeed(`${Object.keys(foundCurrent).length}/${DATA.games.length} games connected${stanfordNote}${feedNote}`,'ok');
+    const stanfordNote=stanfordDukeFound?'YES':'NO';
+    const stanfordWebNote=stanfordDukeWebFound?'YES':'NO';
+    setFeed(`${Object.keys(foundCurrent).length}/${DATA.games.length} games connected · Stanford-Duke current: ${stanfordNote} · .web: ${stanfordWebNote}${feedNote}`,'ok');
     render();
   }catch(err){
     console.error(err);
