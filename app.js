@@ -190,9 +190,16 @@ async function refreshScores(){
   // The date-range form is returning HTTP 400 for the current Week 2 feed.
   const season=Number(DATA.season)||new Date().getFullYear();
   const week=Number(DATA.week)||1;
+  // NFL supports the pool week directly. College football's ESPN week number
+  // does not line up reliably with our pool week, so query the exact pool dates
+  // one day at a time. This also avoids ESPN's intermittent 400s on date ranges.
+  const currentDates=[...new Set((DATA.games||[]).filter(g=>g.date).map(g=>g.date))].sort();
   const feeds=[
     {name:'NFL',url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?season=${season}&seasontype=2&week=${week}&limit=500`},
-    {name:'NCAA',url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?season=${season}&seasontype=2&week=${week}&groups=80&limit=1000`}
+    ...currentDates.map(date=>({
+      name:`NCAA ${date.slice(5)}`,
+      url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${date.replace(/-/g,'')}&groups=80&limit=500`
+    }))
   ];
   const found={};
   const results=[];
