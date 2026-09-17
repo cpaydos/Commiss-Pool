@@ -117,7 +117,7 @@ function distributionMatches(mode,name){
   const matches=[];
   for(const e of DATA.entries.filter(e=>!e.inactive)){
     if(mode==='bonus'){
-      if(e.bonus.team===name)matches.push(e);
+      if(e.bonus?.team===name)matches.push(e);
     }else if(mode==='totals'){
       for(const p of e.picks){
         if(p.kind!=='total')continue;
@@ -141,7 +141,7 @@ function showDistributionDetail(mode,name,count){
 }
 function renderDistribution(){
   const mode=document.querySelector('.dist-switch.active')?.dataset.dist||'spread',counts=new Map();let total=0;
-  if(mode==='bonus'){for(const e of DATA.entries.filter(e=>!e.inactive)){const team=e.bonus.team;counts.set(team,(counts.get(team)||0)+1);total++}}
+  if(mode==='bonus'){for(const e of DATA.entries.filter(e=>!e.inactive)){const team=e.bonus?.team;if(!team)continue;counts.set(team,(counts.get(team)||0)+1);total++}}
   else if(mode==='totals'){for(const e of DATA.entries.filter(e=>!e.inactive))for(const p of e.picks)if(p.kind==='total'){const g=gameById[p.gameId],label=`${favoriteOf(g)} ${g.total} — ${p.direction==='over'?'Over':'Under'}`;counts.set(label,(counts.get(label)||0)+1);total++}}
   else{for(const e of DATA.entries.filter(e=>!e.inactive))for(const p of e.picks)if(p.kind==='spread'){counts.set(p.team,(counts.get(p.team)||0)+1);total++}}
   const sorted=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
