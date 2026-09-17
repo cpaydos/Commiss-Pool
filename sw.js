@@ -1,4 +1,4 @@
-const CACHE = 'commiss-shell-v5-week2-73';
+const CACHE = 'commiss-shell-v6-week2-73';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './data.js', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
