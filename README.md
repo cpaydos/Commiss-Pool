@@ -12,4 +12,3 @@ Live feed:
 - No per-team NCAA schedule fallback
 
 The static Week 1 history remains in data.js.
-\nWeek 2 update: HH & PABLO is marked inactive/invalid due to league removal. Their Week 2 picks are intentionally not entered and they are excluded from current standings, payouts, bonus, distribution, and 4-0 counts. Week 1 historical record remains preserved separately.\n
