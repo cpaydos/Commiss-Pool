@@ -110,7 +110,7 @@ function renderBonus(){
   const week=Number($('bonusWeek')?.value||2);
   $('bonusContext').textContent=week===1?'Week 1 · Final · max favorite 9 points':'Week 2 · Current · max favorite 8 points';
   if(week===1){const h=DATA.history?.[1],gm=h?Object.fromEntries(h.games.map(g=>[g.id,g])):{};const arr=(h?.entries||[]).map(e=>({e,s:FINAL_BONUS_OUT[1]?.has(e.id)?'eliminated':bonusStatus(e,gm,state.historyScores)})).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusList').innerHTML=arr.map(({e,s})=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${esc(e.bonus?.team||'Not loaded')}</div></div></div><div class="${s==='eliminated'?'eliminated':s==='alive'?'alive':''}">${s==='eliminated'?'OUT':s==='alive'?'ALIVE':'PENDING'}</div></div>`).join('')}
-  else{const arr=DATA.entries.map(e=>{const prior=priorBonusStatus(e.id);const hasPick=!!e.bonus?.gameId;const s=prior==='eliminated'?'eliminated':hasPick?bonusStatus(e):'pending';return{e,s,prior}}).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const eligible=arr.filter(x=>x.prior!=='eliminated').length;$('bonusAlive').textContent=`${eligible} alive`;$('bonusList').innerHTML=arr.map(({e,s,prior})=>{const sub=prior==='eliminated'?'Out Week 1':e.bonus?.gameId?esc(e.bonus.team):'Not loaded · alive after Week 1';const label=prior==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('')}
+  else{const arr=DATA.entries.filter(e=>e.name!=='HH & PABLO').map(e=>{const prior=priorBonusStatus(e.id);const hasPick=!!e.bonus?.gameId;const s=prior==='eliminated'?'eliminated':hasPick?bonusStatus(e):'pending';return{e,s,prior}}).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const eligible=arr.filter(x=>x.prior!=='eliminated').length;$('bonusAlive').textContent=`${eligible} alive`;$('bonusList').innerHTML=arr.map(({e,s,prior})=>{const sub=prior==='eliminated'?'Out Week 1':e.bonus?.gameId?esc(e.bonus.team):'Not loaded · alive after Week 1';const label=prior==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('')}
   bindStars($('bonusList'));
 }
 function distributionMatches(mode,name){
@@ -141,7 +141,7 @@ function showDistributionDetail(mode,name,count){
 }
 function renderDistribution(){
   const mode=document.querySelector('.dist-switch.active')?.dataset.dist||'spread',counts=new Map();let total=0;
-  if(mode==='bonus'){for(const e of DATA.entries){const team=e.bonus.team;counts.set(team,(counts.get(team)||0)+1);total++}}
+  if(mode==='bonus'){for(const e of DATA.entries){if(e.name==='HH & PABLO'||!e.bonus?.gameId||!e.bonus?.team)continue;const team=e.bonus.team;counts.set(team,(counts.get(team)||0)+1);total++}}
   else if(mode==='totals'){for(const e of DATA.entries)for(const p of e.picks)if(p.kind==='total'){const g=gameById[p.gameId],label=`${favoriteOf(g)} ${g.total} — ${p.direction==='over'?'Over':'Under'}`;counts.set(label,(counts.get(label)||0)+1);total++}}
   else{for(const e of DATA.entries)for(const p of e.picks)if(p.kind==='spread'){counts.set(p.team,(counts.get(p.team)||0)+1);total++}}
   const sorted=[...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
@@ -244,7 +244,7 @@ async function refreshScores(){
   }else{
     setFeed(`Live feed error · ${results.join(' · ')}`,'bad');
   }
-  render();
+  try{render()}catch(err){console.error('Render error after live feed update:',err)}
 }
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
