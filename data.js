@@ -6251,13 +6251,6 @@ window.POOL_DATA = {
       },
       "picks": [
         {
-          "raw": "CHARGERS",
-          "team": "CHARGERS",
-          "kind": "spread",
-          "direction": null,
-          "gameId": "nfl-2026-09-20-raiders-chargers"
-        },
-        {
           "raw": "CHIEFS",
           "team": "CHIEFS",
           "kind": "spread",
@@ -6265,18 +6258,25 @@ window.POOL_DATA = {
           "gameId": "nfl-2026-09-20-colts-chiefs"
         },
         {
-          "raw": "JETS",
-          "team": "JETS",
+          "raw": "EAGLES",
+          "team": "EAGLES",
           "kind": "spread",
           "direction": null,
-          "gameId": "nfl-2026-09-20-packers-jets"
+          "gameId": "nfl-2026-09-20-eagles-titans"
         },
         {
-          "raw": "FALCONS",
-          "team": "FALCONS",
+          "raw": "PANTHERS",
+          "team": "PANTHERS",
           "kind": "spread",
           "direction": null,
           "gameId": "nfl-2026-09-20-panthers-falcons"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-09-20-seahawks-cardinals"
         }
       ],
       "autoPick": false
@@ -6540,14 +6540,14 @@ window.POOL_DATA = {
     "bonusPicks": 137,
     "regularDistribution": {
       "BENGALS": 19,
-      "EAGLES": 23,
+      "EAGLES": 24,
       "JAGUARS": 20,
       "RAVENS": 13,
       "COLTS": 8,
       "SAINTS": 2,
       "KENNESAW ST": 1,
       "SAM HOUSTON": 1,
-      "PANTHERS": 5,
+      "PANTHERS": 6,
       "TEXANS": 12,
       "ARIZONA ST": 1,
       "UTSA": 1,
@@ -6562,19 +6562,19 @@ window.POOL_DATA = {
       "BILLS OVER": 1,
       "RAMS OVER": 1,
       "VIKINGS OVER": 1,
-      "JETS": 5,
+      "JETS": 4,
       "RAIDERS": 13,
       "BOISE ST OVER": 1,
       "BUCCANEERS": 7,
       "STEELERS": 21,
       "49ERS": 8,
       "COMMANDERS": 6,
-      "SEAHAWKS": 16,
+      "SEAHAWKS": 17,
       "TITANS": 12,
       "VIKINGS": 10,
       "BILLS": 22,
       "OREGON": 5,
-      "CHARGERS": 7,
+      "CHARGERS": 6,
       "LIONS": 26,
       "RAMS": 17,
       "BYU": 4,
@@ -6624,7 +6624,7 @@ window.POOL_DATA = {
       "OKLAHOMA": 7,
       "ALABAMA": 4,
       "NOTRE DAME": 2,
-      "FALCONS": 1,
+      "FALCONS": 0,
       "ARKANSAS": 1,
       "UNLV": 1,
       "OKLAHOMA ST": 2,
