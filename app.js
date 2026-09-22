@@ -111,7 +111,7 @@ function renderBonus(){
   $('bonusContext').textContent=week===1?'Week 1 · Final · 130 teams alive · max favorite 9 points':week===2?'Week 2 · Final · 112 teams alive · max favorite 8 points':`Week ${week} · Current · 112 teams alive · max favorite ${DATA.bonusMax} points`;
   if(week===1){const h=DATA.history?.[1],gm=h?Object.fromEntries(h.games.map(g=>[g.id,g])):{};const arr=(h?.entries||[]).map(e=>({e,s:FINAL_BONUS_OUT[1]?.has(e.id)?'eliminated':bonusStatus(e,gm,state.historyScores)})).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusList').innerHTML=arr.map(({e,s})=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${esc(e.bonus?.team||'Not loaded')}</div></div></div><div class="${s==='eliminated'?'eliminated':s==='alive'?'alive':''}">${s==='eliminated'?'OUT':s==='alive'?'ALIVE':'PENDING'}</div></div>`).join('')}
   else if(week===2){const h=DATA.history?.[2];const arr=(h?.entries||[]).filter(e=>e.name!=='HH & PABLO').map(e=>{const s=FINAL_BONUS_OUT[2]?.has(e.id)?'eliminated':((h?.rows||[]).find(r=>r.id===e.id)?.bonus||'pending');return{e,s}}).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';const sub=e.bonus?.gameId?esc(e.bonus.team):'Not loaded';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('')}
-  else{const arr=DATA.entries.filter(e=>e.name!=='HH & PABLO').map(e=>{const prior=priorBonusStatus(e.id);const hasPick=!!e.bonus?.gameId;const s=prior==='eliminated'?'eliminated':hasPick?bonusStatus(e):'pending';return{e,s,prior}}).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const eligible=arr.filter(x=>x.prior!=='eliminated').length;$('bonusAlive').textContent=`${eligible} alive`;$('bonusList').innerHTML=arr.map(({e,s,prior})=>{const sub=prior==='eliminated'?'Out Week 1':e.bonus?.gameId?esc(e.bonus.team):'Not loaded · alive after Week 1';const label=prior==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('')}
+  else{const currentEntries=DATA.entries?.length?DATA.entries:DATA.history?.[2]?.entries||[];const arr=currentEntries.filter(e=>e.name!=='HH & PABLO').map(e=>{const prior=priorBonusStatus(e.id);const hasPick=!!e.bonus?.gameId;const s=prior==='eliminated'?'eliminated':hasPick?bonusStatus(e):'pending';return{e,s,prior}}).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const h2=DATA.history?.[2];const eligible=h2?.rows?.length?new Set(h2.rows.filter(r=>r.bonus==='alive').map(r=>r.id)).size:arr.filter(x=>x.prior!=='eliminated').length;$('bonusAlive').textContent=`${eligible} alive`;$('bonusList').innerHTML=arr.map(({e,s,prior})=>{const sub=prior==='eliminated'?'Out Week 1':e.bonus?.gameId?esc(e.bonus.team):'Not loaded · alive after Week 1';const label=prior==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('')}
   bindStars($('bonusList'));
 }
 function distributionMatches(mode,name){
@@ -205,9 +205,9 @@ async function refreshScores(){
   // one day at a time. This also avoids ESPN's intermittent 400s on date ranges.
   const currentDates=[...new Set((DATA.games||[]).filter(g=>g.date).map(g=>g.date))].sort();
   const feeds=[
-    {name:'NFL',url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?season=${season}&seasontype=2&week=${week}&limit=500`},
+    {name:'NFL',sport:'NFL',url:`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?season=${season}&seasontype=2&week=${week}&limit=500`},
     ...currentDates.map(date=>({
-      name:`NCAA ${date.slice(5)}`,
+      name:`NCAA ${date.slice(5)}`,sport:'NCAA',date,
       url:`https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=${date.replace(/-/g,'')}&groups=80&limit=500`
     }))
   ];
@@ -215,21 +215,31 @@ async function refreshScores(){
   const results=[];
 
   for(const feed of feeds){
-    try{
-      const controller=new AbortController();
-      const timer=setTimeout(()=>controller.abort(),10000);
-      const response=await fetch(feed.url,{cache:'no-store',signal:controller.signal});
-      clearTimeout(timer);
-      if(!response.ok)throw new Error(`HTTP ${response.status}`);
-      const data=await response.json();
-      const matchedIds=new Set();
-      for(const ev of data.events||[]){
-        for(const g of DATA.games||[]) if(scoreFromEvent(ev,g,found)) matchedIds.add(g.id);
+    let lastErr=null;
+    for(let attempt=1;attempt<=2;attempt++){
+      try{
+        const controller=new AbortController();
+        const timer=setTimeout(()=>controller.abort(),15000);
+        const response=await fetch(feed.url,{cache:'no-store',signal:controller.signal});
+        clearTimeout(timer);
+        if(!response.ok)throw new Error(`HTTP ${response.status}`);
+        const data=await response.json();
+        const feedGames=(DATA.games||[]).filter(g=>g.sport===feed.sport && (!feed.date || g.date===feed.date));
+        const matchedIds=new Set();
+        for(const ev of data.events||[]){
+          for(const g of feedGames) if(scoreFromEvent(ev,g,found)) matchedIds.add(g.id);
+        }
+        results.push(`${feed.name} ✓ (${matchedIds.size})`);
+        lastErr=null;
+        break;
+      }catch(err){
+        lastErr=err;
+        console.error(`${feed.name} ESPN live feed error (attempt ${attempt}/2):`,err);
+        if(attempt<2) await new Promise(r=>setTimeout(r,500));
       }
-      results.push(`${feed.name} ✓ (${matchedIds.size})`);
-    }catch(err){
-      const msg=err?.name==='AbortError'?'timeout':(err?.message||String(err));
-      console.error(`${feed.name} ESPN live feed error:`,err);
+    }
+    if(lastErr){
+      const msg=lastErr?.name==='AbortError'?'timeout':(lastErr?.message||String(lastErr));
       results.push(`${feed.name} ✕ (${msg})`);
     }
   }
