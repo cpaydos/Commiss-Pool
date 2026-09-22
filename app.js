@@ -108,7 +108,7 @@ const FINAL_BONUS_OUT={1:new Set([7,20,30,33,77,90,134]),2:new Set([7,20,30,33,7
 function priorBonusStatus(id){for(const w of [2,1]){if(FINAL_BONUS_OUT[w]?.has(id))return 'eliminated';const rows=historyForWeek(w);const hit=rows?.find(r=>r.id===id);if(hit?.bonus)return hit.bonus;}return null}
 function renderBonus(){
   const week=Number($('bonusWeek')?.value||3);
-  $('bonusContext').textContent=week===1?'Week 1 · Final · max favorite 9 points':`Week ${week} · Current · max favorite ${DATA.bonusMax} points`;
+  $('bonusContext').textContent=week===1?'Week 1 · Final · 130 teams alive · max favorite 9 points':week===2?'Week 2 · Final · 112 teams alive · max favorite 8 points':`Week ${week} · Current · 112 teams alive · max favorite ${DATA.bonusMax} points`;
   if(week===1){const h=DATA.history?.[1],gm=h?Object.fromEntries(h.games.map(g=>[g.id,g])):{};const arr=(h?.entries||[]).map(e=>({e,s:FINAL_BONUS_OUT[1]?.has(e.id)?'eliminated':bonusStatus(e,gm,state.historyScores)})).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusList').innerHTML=arr.map(({e,s})=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${esc(e.bonus?.team||'Not loaded')}</div></div></div><div class="${s==='eliminated'?'eliminated':s==='alive'?'alive':''}">${s==='eliminated'?'OUT':s==='alive'?'ALIVE':'PENDING'}</div></div>`).join('')}
   else if(week===2){const h=DATA.history?.[2];const arr=(h?.entries||[]).filter(e=>e.name!=='HH & PABLO').map(e=>{const s=FINAL_BONUS_OUT[2]?.has(e.id)?'eliminated':((h?.rows||[]).find(r=>r.id===e.id)?.bonus||'pending');return{e,s}}).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';const sub=e.bonus?.gameId?esc(e.bonus.team):'Not loaded';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('')}
   else{const arr=DATA.entries.filter(e=>e.name!=='HH & PABLO').map(e=>{const prior=priorBonusStatus(e.id);const hasPick=!!e.bonus?.gameId;const s=prior==='eliminated'?'eliminated':hasPick?bonusStatus(e):'pending';return{e,s,prior}}).sort((a,b)=>{const order={alive:0,live:1,pending:2,eliminated:3};return order[a.s]-order[b.s]||a.e.id-b.e.id});const eligible=arr.filter(x=>x.prior!=='eliminated').length;$('bonusAlive').textContent=`${eligible} alive`;$('bonusList').innerHTML=arr.map(({e,s,prior})=>{const sub=prior==='eliminated'?'Out Week 1':e.bonus?.gameId?esc(e.bonus.team):'Not loaded · alive after Week 1';const label=prior==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('')}
@@ -222,11 +222,11 @@ async function refreshScores(){
       clearTimeout(timer);
       if(!response.ok)throw new Error(`HTTP ${response.status}`);
       const data=await response.json();
-      let matched=0;
+      const matchedIds=new Set();
       for(const ev of data.events||[]){
-        for(const g of DATA.games||[]) if(scoreFromEvent(ev,g,found)) matched++;
+        for(const g of DATA.games||[]) if(scoreFromEvent(ev,g,found)) matchedIds.add(g.id);
       }
-      results.push(`${feed.name} ✓ (${matched})`);
+      results.push(`${feed.name} ✓ (${matchedIds.size})`);
     }catch(err){
       const msg=err?.name==='AbortError'?'timeout':(err?.message||String(err));
       console.error(`${feed.name} ESPN live feed error:`,err);
