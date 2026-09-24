@@ -70,7 +70,7 @@ function cumulativeForRange(startWeek,week){
   const totals=new Map();
   for(let w=startWeek;w<=week;w++){
     const rows=historyForWeek(w);if(!rows)continue;
-    for(const row of rows){const t=totals.get(row.id)||{id:row.id,name:row.name,w:0,l:0,bonusWins:0,bonusEliminated:0};t.w+=Number(row.w||0);t.l+=Number(row.l||0);if(row.bonus==='alive'||row.bonus==='win')t.bonusWins++;if(row.bonus==='eliminated'||row.bonus==='loss')t.bonusEliminated++;totals.set(row.id,t)}
+    for(const row of rows){if(row.id===104||row.name==='ROOSTERS')continue;const t=totals.get(row.id)||{id:row.id,name:row.name,w:0,l:0,bonusWins:0,bonusEliminated:0};t.w+=Number(row.w||0);t.l+=Number(row.l||0);if(row.bonus==='alive'||row.bonus==='win')t.bonusWins++;if(row.bonus==='eliminated'||row.bonus==='loss')t.bonusEliminated++;totals.set(row.id,t)}
   }
   return [...totals.values()];
 }
