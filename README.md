@@ -12,3 +12,6 @@ Live feed:
 - No per-team NCAA schedule fallback
 
 The static Week 1 history remains in data.js.
+
+
+Week 4 baseline created from supplied Week 4 Lines.pdf. See README_WEEK4_BASELINE.txt.
