@@ -23702,8 +23702,1332 @@ window.POOL_DATA = {
         }
       ],
       "bonusMax": 7,
-      "scores": {},
-      "rows": [],
+      "scores": {
+        "nfl-2026-09-24-falcons-packers": {
+          "status": "final",
+          "awayScore": 35,
+          "homeScore": 14
+        },
+        "nfl-2026-09-27-cardinals-49ers": {
+          "status": "final",
+          "awayScore": 30,
+          "homeScore": 36
+        },
+        "nfl-2026-09-27-bengals-steelers": {
+          "status": "final",
+          "awayScore": 27,
+          "homeScore": 30
+        },
+        "nfl-2026-09-27-chargers-bills": {
+          "status": "final",
+          "awayScore": 16,
+          "homeScore": 24
+        },
+        "nfl-2026-09-27-chiefs-dolphins": {
+          "status": "final",
+          "awayScore": 24,
+          "homeScore": 10
+        },
+        "nfl-2026-09-27-titans-giants": {
+          "status": "final",
+          "awayScore": 7,
+          "homeScore": 12
+        },
+        "nfl-2026-09-27-patriots-jaguars": {
+          "status": "final",
+          "awayScore": 6,
+          "homeScore": 35
+        },
+        "nfl-2026-09-27-jets-lions": {
+          "status": "final",
+          "awayScore": 24,
+          "homeScore": 31
+        },
+        "nfl-2026-09-27-panthers-browns": {
+          "status": "final",
+          "awayScore": 18,
+          "homeScore": 21
+        },
+        "nfl-2026-09-27-rams-broncos": {
+          "status": "final",
+          "awayScore": 26,
+          "homeScore": 30
+        },
+        "nfl-2026-09-27-ravens-cowboys": {
+          "status": "final",
+          "awayScore": 34,
+          "homeScore": 31
+        },
+        "nfl-2026-09-27-raiders-saints": {
+          "status": "final",
+          "awayScore": 35,
+          "homeScore": 27
+        },
+        "nfl-2026-09-27-seahawks-commanders": {
+          "status": "final",
+          "awayScore": 31,
+          "homeScore": 33
+        },
+        "nfl-2026-09-27-texans-colts": {
+          "status": "final",
+          "awayScore": 17,
+          "homeScore": 19
+        },
+        "nfl-2026-09-27-vikings-buccaneers": {
+          "status": "final",
+          "awayScore": 23,
+          "homeScore": 16
+        },
+        "nfl-2026-09-28-eagles-bears": {
+          "status": "final",
+          "awayScore": 7,
+          "homeScore": 27
+        },
+        "ncaa-2026-09-24-liberty-coastalcarolina": {
+          "status": "final",
+          "awayScore": 34,
+          "homeScore": 17
+        },
+        "ncaa-2026-09-25-army-temple": {
+          "status": "final",
+          "awayScore": 21,
+          "homeScore": 17
+        },
+        "ncaa-2026-09-25-clemson-california": {
+          "status": "final",
+          "awayScore": 24,
+          "homeScore": 10
+        },
+        "ncaa-2026-09-25-northwestern-indiana": {
+          "status": "final",
+          "awayScore": 23,
+          "homeScore": 29
+        },
+        "ncaa-2026-09-25-navy-uab": {
+          "status": "final",
+          "awayScore": 20,
+          "homeScore": 24
+        },
+        "ncaa-2026-09-26-airforce-nevada": {
+          "status": "final",
+          "awayScore": 36,
+          "homeScore": 33
+        },
+        "ncaa-2026-09-26-southcarolina-alabama": {
+          "status": "final",
+          "awayScore": 18,
+          "homeScore": 49
+        },
+        "ncaa-2026-09-26-arizona-washingtonst": {
+          "status": "final",
+          "awayScore": 34,
+          "homeScore": 24
+        },
+        "ncaa-2026-09-26-tulsa-arkansas": {
+          "status": "final",
+          "awayScore": 6,
+          "homeScore": 34
+        },
+        "ncaa-2026-09-26-kennesawst-arkansasst": {
+          "status": "final",
+          "awayScore": 14,
+          "homeScore": 17
+        },
+        "ncaa-2026-09-26-vanderbilt-auburn": {
+          "status": "final",
+          "awayScore": 15,
+          "homeScore": 21
+        },
+        "ncaa-2026-09-26-colorado-baylor": {
+          "status": "final",
+          "awayScore": 13,
+          "homeScore": 23
+        },
+        "ncaa-2026-09-26-boisest-westernmich": {
+          "status": "final",
+          "awayScore": 32,
+          "homeScore": 7
+        },
+        "ncaa-2026-09-26-olemiss-florida": {
+          "status": "final",
+          "awayScore": 28,
+          "homeScore": 52
+        },
+        "ncaa-2026-09-26-floridaatlantic-ulmonroe": {
+          "status": "final",
+          "awayScore": 45,
+          "homeScore": 17
+        },
+        "ncaa-2026-09-26-rice-fresnost": {
+          "status": "final",
+          "awayScore": 24,
+          "homeScore": 38
+        },
+        "ncaa-2026-09-26-oklahoma-georgia": {
+          "status": "final",
+          "awayScore": 13,
+          "homeScore": 41
+        },
+        "ncaa-2026-09-26-northernillinois-georgiast": {
+          "status": "final",
+          "awayScore": 14,
+          "homeScore": 35
+        },
+        "ncaa-2026-09-26-georgiatech-stanford": {
+          "status": "final",
+          "awayScore": 27,
+          "homeScore": 34
+        },
+        "ncaa-2026-09-26-hawaii-wyoming": {
+          "status": "final",
+          "awayScore": 10,
+          "homeScore": 27
+        },
+        "ncaa-2026-09-26-houston-georgiasouthern": {
+          "status": "final",
+          "awayScore": 42,
+          "homeScore": 28
+        },
+        "ncaa-2026-09-26-middtenn-jacksonvillest": {
+          "status": "final",
+          "awayScore": 13,
+          "homeScore": 23
+        },
+        "ncaa-2026-09-26-jamesmadison-olddominion": {
+          "status": "final",
+          "awayScore": 46,
+          "homeScore": 20
+        },
+        "ncaa-2026-09-26-kansasst-cincinnati": {
+          "status": "final",
+          "awayScore": 26,
+          "homeScore": 31
+        },
+        "ncaa-2026-09-26-ballst-kentst": {
+          "status": "final",
+          "awayScore": 13,
+          "homeScore": 26
+        },
+        "ncaa-2026-09-26-southalabama-kentucky": {
+          "status": "final",
+          "awayScore": 21,
+          "homeScore": 45
+        },
+        "ncaa-2026-09-26-louisiana-charlotte": {
+          "status": "final",
+          "awayScore": 34,
+          "homeScore": 7
+        },
+        "ncaa-2026-09-26-wakeforest-louisville": {
+          "status": "final",
+          "awayScore": 30,
+          "homeScore": 27
+        },
+        "ncaa-2026-09-26-texasam-lsu": {
+          "status": "final",
+          "awayScore": 6,
+          "homeScore": 35
+        },
+        "ncaa-2026-09-26-centralmich-miamifl": {
+          "status": "final",
+          "awayScore": 3,
+          "homeScore": 52
+        },
+        "ncaa-2026-09-26-uconn-miamioh": {
+          "status": "final",
+          "awayScore": 21,
+          "homeScore": 24
+        },
+        "ncaa-2026-09-26-iowa-michigan": {
+          "status": "final",
+          "awayScore": 20,
+          "homeScore": 19
+        },
+        "ncaa-2026-09-26-missouri-mississippist": {
+          "status": "final",
+          "awayScore": 24,
+          "homeScore": 31
+        },
+        "ncaa-2026-09-26-appst-ncstate": {
+          "status": "final",
+          "awayScore": 31,
+          "homeScore": 41
+        },
+        "ncaa-2026-09-26-nebraska-michiganst": {
+          "status": "final",
+          "awayScore": 31,
+          "homeScore": 13
+        },
+        "ncaa-2026-09-26-newmexico-newmexicost": {
+          "status": "final",
+          "awayScore": 42,
+          "homeScore": 18
+        },
+        "ncaa-2026-09-26-notredame-purdue": {
+          "status": "final",
+          "awayScore": 49,
+          "homeScore": 10
+        },
+        "ncaa-2026-09-26-illinois-ohiost": {
+          "status": "final",
+          "awayScore": 19,
+          "homeScore": 42
+        },
+        "ncaa-2026-09-26-oregon-usc": {
+          "status": "final",
+          "awayScore": 41,
+          "homeScore": 27
+        },
+        "ncaa-2026-09-26-oregonst-utep": {
+          "status": "final",
+          "awayScore": 33,
+          "homeScore": 7
+        },
+        "ncaa-2026-09-26-wisconsin-pennst": {
+          "status": "final",
+          "awayScore": 24,
+          "homeScore": 20
+        },
+        "ncaa-2026-09-26-missourist-smu": {
+          "status": "final",
+          "awayScore": 24,
+          "homeScore": 34
+        },
+        "ncaa-2026-09-26-southflorida-bowlinggreen": {
+          "status": "final",
+          "awayScore": 14,
+          "homeScore": 6
+        },
+        "ncaa-2026-09-26-tcu-ucf": {
+          "status": "final",
+          "awayScore": 13,
+          "homeScore": 21
+        },
+        "ncaa-2026-09-26-texas-tennessee": {
+          "status": "final",
+          "awayScore": 20,
+          "homeScore": 17
+        },
+        "ncaa-2026-09-26-samhouston-texastech": {
+          "status": "final",
+          "awayScore": 14,
+          "homeScore": 49
+        },
+        "ncaa-2026-09-26-sandiegost-toledo": {
+          "status": "final",
+          "awayScore": 16,
+          "homeScore": 41
+        },
+        "ncaa-2026-09-26-southernmiss-tulane": {
+          "status": "final",
+          "awayScore": 21,
+          "homeScore": 24
+        },
+        "ncaa-2026-09-26-ucla-maryland": {
+          "status": "final",
+          "awayScore": 54,
+          "homeScore": 3
+        },
+        "ncaa-2026-09-26-umass-sacramentost": {
+          "status": "final",
+          "awayScore": 35,
+          "homeScore": 6
+        },
+        "ncaa-2026-09-26-unlv-akron": {
+          "status": "final",
+          "awayScore": 38,
+          "homeScore": 10
+        },
+        "ncaa-2026-09-26-utah-iowast": {
+          "status": "final",
+          "awayScore": 31,
+          "homeScore": 17
+        },
+        "ncaa-2026-09-26-troy-utahst": {
+          "status": "final",
+          "awayScore": 10,
+          "homeScore": 21
+        },
+        "ncaa-2026-09-26-coloradost-utsa": {
+          "status": "final",
+          "awayScore": 45,
+          "homeScore": 59
+        },
+        "ncaa-2026-09-26-delaware-virginia": {
+          "status": "final",
+          "awayScore": 3,
+          "homeScore": 42
+        },
+        "ncaa-2026-09-26-virginiatech-bostoncollege": {
+          "status": "final",
+          "awayScore": 21,
+          "homeScore": 14
+        },
+        "ncaa-2026-09-26-minnesota-washington": {
+          "status": "final",
+          "awayScore": 27,
+          "homeScore": 24
+        },
+        "ncaa-2026-09-26-oklahomast-westvirginia": {
+          "status": "final",
+          "awayScore": 41,
+          "homeScore": 24
+        }
+      },
+      "rows": [
+        {
+          "id": 1,
+          "name": "44&10",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 2,
+          "name": "ABANDONED",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 3,
+          "name": "AIDEN BRADY",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 4,
+          "name": "ANGRY BEAVERS",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 5,
+          "name": "AVERAGE JOES",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 6,
+          "name": "B&G PRO",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 7,
+          "name": "B&M",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 8,
+          "name": "BAD HOMBRES",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 9,
+          "name": "BALD LIVES MATTER",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 10,
+          "name": "BARBER BEEFCAKES",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 11,
+          "name": "BARTLES & JAMES",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 12,
+          "name": "BERNARD",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 13,
+          "name": "BET BOX",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 14,
+          "name": "BIG K",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 15,
+          "name": "BIG AL, JR AND KID",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 16,
+          "name": "BILL S & LA FAMILIA",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 17,
+          "name": "BILL Z",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 18,
+          "name": "BLACKIE",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 19,
+          "name": "BOBBY G & SON",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 20,
+          "name": "BOPPO & GUS",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 21,
+          "name": "BOX TO WIRE",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 22,
+          "name": "BOY DAD",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 23,
+          "name": "BREW MASTER",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 24,
+          "name": "C&K ENTERPRISES",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 25,
+          "name": "CADDY",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 26,
+          "name": "CALIENTE TAKEDOWN",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 27,
+          "name": "CASPER",
+          "w": 4,
+          "l": 0,
+          "bonus": "alive"
+        },
+        {
+          "id": 28,
+          "name": "CHAMPION SWEATPANTS",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 29,
+          "name": "CHATEAU MEATBALL",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 30,
+          "name": "CLIFF & PUCK",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 31,
+          "name": "COLOMBO 21",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 32,
+          "name": "COLONY PIZZA",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 33,
+          "name": "DICK ALONE",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 34,
+          "name": "DICKY 76",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 35,
+          "name": "DIRTY DOLLAR",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 36,
+          "name": "DOE LANE BOYZ",
+          "w": 4,
+          "l": 0,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 37,
+          "name": "DOIN WORK",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 38,
+          "name": "DOS BRENDANS",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 39,
+          "name": "DR. DADDY",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 40,
+          "name": "DREAM TEAM",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 41,
+          "name": "EASY MONEY",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 42,
+          "name": "EL NINO",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 43,
+          "name": "EMMO",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 44,
+          "name": "EXETER HAWKS",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 45,
+          "name": "FAMOUS DAVE",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 46,
+          "name": "FAST EDDIE",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 47,
+          "name": "FAT ATTACK",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 48,
+          "name": "FIREBALL",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 49,
+          "name": "FLANSAM",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 50,
+          "name": "FLESHY FUN BRIDGE",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 51,
+          "name": "GAME DAY",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 52,
+          "name": "GOOSE EGG",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 53,
+          "name": "GRANT SLAM",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 54,
+          "name": "GREEK'S KID",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 55,
+          "name": "HAMMER TIME 44",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 56,
+          "name": "HANOVER INDIANS",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 57,
+          "name": "HAWKEYES",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 58,
+          "name": "HH & PABLO",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 59,
+          "name": "HONK SHOE",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 60,
+          "name": "HOOTIE",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 61,
+          "name": "HOSS TROTTERS",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 62,
+          "name": "HOW YA DOON",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 63,
+          "name": "HUNTERS EDGE",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 64,
+          "name": "HURRICANE BOB",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 65,
+          "name": "ITALIAN FIGHTING IRISH",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 66,
+          "name": "JABBERTIME",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 67,
+          "name": "JAZZMAN",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 68,
+          "name": "JET",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 69,
+          "name": "JETMAN",
+          "w": 0,
+          "l": 4,
+          "bonus": "alive"
+        },
+        {
+          "id": 70,
+          "name": "JIMMY TWA",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 71,
+          "name": "JOE VALLACHI",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 72,
+          "name": "JOE VALLACHI'S GRANDSON",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 73,
+          "name": "JOE VALLACHI'S SON",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 74,
+          "name": "JUMP BALL",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 75,
+          "name": "JUNIOR & SENIOR",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 76,
+          "name": "JUNK SQUAD",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 77,
+          "name": "KELL & JACK",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 78,
+          "name": "KELLY ALONE",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 79,
+          "name": "LADIES CHOICES",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 80,
+          "name": "LEMON DROP KID",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 81,
+          "name": "LOLO THE MILF",
+          "w": 4,
+          "l": 0,
+          "bonus": "alive"
+        },
+        {
+          "id": 82,
+          "name": "LORENZO & TC",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 83,
+          "name": "LYNN SHORE SEA LIONS",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 84,
+          "name": "M & M BOYS",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 85,
+          "name": "MARCH MADNESS",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 86,
+          "name": "MARKALD",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 87,
+          "name": "MAZDA & GEO",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 88,
+          "name": "MEOW KITTY",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 89,
+          "name": "METROWEST GRIT",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 90,
+          "name": "MISSISSIPPI MUD",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 91,
+          "name": "MODEL C",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 92,
+          "name": "NUMBER 1",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 93,
+          "name": "MUGGS ALONE",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 94,
+          "name": "ONE PUTT 55",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 95,
+          "name": "PAPA EAGLE",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 96,
+          "name": "PASTAMAN",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 97,
+          "name": "PEPIN",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 98,
+          "name": "PETER THE GOOD",
+          "w": 4,
+          "l": 0,
+          "bonus": "alive"
+        },
+        {
+          "id": 99,
+          "name": "PETE'S COLTS",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 100,
+          "name": "PIG BENIS",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 101,
+          "name": "POINT SPREAD CRUSHERS",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 102,
+          "name": "REMY KEV & IN LAW",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 103,
+          "name": "RICHIE G",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 105,
+          "name": "ROTTEN APPLES",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 106,
+          "name": "SAMBA",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 107,
+          "name": "SAMCWO",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 108,
+          "name": "SEAL WITH IT",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 109,
+          "name": "SIZZLING FAJITAS",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 110,
+          "name": "SLIME PIGS",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 111,
+          "name": "SLOPPY STEAKS",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 112,
+          "name": "SNAKE BEAR",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 113,
+          "name": "SOUTHIE BOYS",
+          "w": 4,
+          "l": 0,
+          "bonus": "alive"
+        },
+        {
+          "id": 114,
+          "name": "SPEED NOT ACCURACY",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 115,
+          "name": "SPONGE 1430",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 116,
+          "name": "T CORMIER",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 117,
+          "name": "TEAM SODA",
+          "w": 0,
+          "l": 4,
+          "bonus": "alive"
+        },
+        {
+          "id": 118,
+          "name": "THE FRUITCAKES",
+          "w": 3,
+          "l": 1,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 119,
+          "name": "THE FUTURE CHAMP",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 120,
+          "name": "THE HORSE",
+          "w": 0,
+          "l": 4,
+          "bonus": "alive"
+        },
+        {
+          "id": 121,
+          "name": "THE LINE DANCE",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 122,
+          "name": "THE MAD LOOPER",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 123,
+          "name": "THE MOOPS",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 124,
+          "name": "TOBINOLAS",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 125,
+          "name": "TOMMY B",
+          "w": 1,
+          "l": 3,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 126,
+          "name": "TOMMY G",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 127,
+          "name": "TOMMY PO",
+          "w": 3,
+          "l": 1,
+          "bonus": "alive"
+        },
+        {
+          "id": 128,
+          "name": "TONY SNAKE & SEFF",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 129,
+          "name": "TWGSITW",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 130,
+          "name": "TWO LIVE CREW",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 131,
+          "name": "WACKY JACKIE",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 132,
+          "name": "WAGS",
+          "w": 2,
+          "l": 2,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 133,
+          "name": "WOLFPACK 1",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 134,
+          "name": "WOODSHED",
+          "w": 0,
+          "l": 4,
+          "bonus": "eliminated"
+        },
+        {
+          "id": 135,
+          "name": "YACHT CLUB CASUAL",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        },
+        {
+          "id": 136,
+          "name": "YETI",
+          "w": 2,
+          "l": 2,
+          "bonus": "alive"
+        },
+        {
+          "id": 137,
+          "name": "YOU BET 2",
+          "w": 1,
+          "l": 3,
+          "bonus": "alive"
+        }
+      ],
       "payoutOverrides": {
         "backToBackZero": [
           {
@@ -23717,7 +25041,37 @@ window.POOL_DATA = {
             "amount": 325
           }
         ]
-      }
+      },
+      "bonusPicks": 111,
+      "bonusAlive": 73,
+      "bonusEliminated": 63,
+      "fourZeroWinners": [
+        {
+          "id": 27,
+          "name": "CASPER",
+          "amount": 500
+        },
+        {
+          "id": 36,
+          "name": "DOE LANE BOYZ",
+          "amount": 500
+        },
+        {
+          "id": 81,
+          "name": "LOLO THE MILF",
+          "amount": 500
+        },
+        {
+          "id": 98,
+          "name": "PETER THE GOOD",
+          "amount": 500
+        },
+        {
+          "id": 113,
+          "name": "SOUTHIE BOYS",
+          "amount": 500
+        }
+      ]
     }
   }
 };
