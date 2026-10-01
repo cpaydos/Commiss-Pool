@@ -726,7 +726,7 @@ window.POOL_DATA = {
   ],
   "entries": [
     {
-      "id": 1,
+      "id":1,
       "name": "44&10",
       "bonus": {
         "raw": "CHIEFS",
@@ -768,7 +768,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 2,
+      "id":2,
       "name": "ABANDONED",
       "bonus": {
         "raw": "CHIEFS",
@@ -810,7 +810,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 3,
+      "id":3,
       "name": "AIDEN BRADY",
       "bonus": null,
       "picks": [
@@ -846,7 +846,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 4,
+      "id":4,
       "name": "ANGRY BEAVERS",
       "bonus": null,
       "picks": [
@@ -882,7 +882,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 5,
+      "id":5,
       "name": "AVERAGE JOES",
       "bonus": null,
       "picks": [
@@ -918,7 +918,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 6,
+      "id":6,
       "name": "B&G PRO",
       "bonus": {
         "raw": "49ERS",
@@ -960,7 +960,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 7,
+      "id":7,
       "name": "B&M",
       "bonus": null,
       "picks": [
@@ -996,7 +996,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 8,
+      "id":8,
       "name": "BAD HOMBRES",
       "bonus": {
         "raw": "SAINTS",
@@ -1038,7 +1038,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 9,
+      "id":9,
       "name": "BALD LIVES MATTER",
       "bonus": null,
       "picks": [
@@ -1074,7 +1074,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 10,
+      "id":10,
       "name": "BARBER BEEFCAKES",
       "bonus": null,
       "picks": [
@@ -1110,7 +1110,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 11,
+      "id":11,
       "name": "BARTLES & JAMES",
       "bonus": {
         "raw": "49ERS",
@@ -1152,7 +1152,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 12,
+      "id":12,
       "name": "BERNARD",
       "bonus": null,
       "picks": [
@@ -1188,7 +1188,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 13,
+      "id":13,
       "name": "BET BOX",
       "bonus": null,
       "picks": [
@@ -1224,7 +1224,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 15,
+      "id":15,
       "name": "BIG AL, JR AND KID",
       "bonus": {
         "raw": "BEARS",
@@ -1266,7 +1266,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 14,
+      "id":14,
       "name": "BIG K",
       "bonus": {
         "raw": "PACKERS",
@@ -1308,7 +1308,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 16,
+      "id":16,
       "name": "BILL S & LA FAMILIA",
       "bonus": {
         "raw": "LIONS",
@@ -1350,7 +1350,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 17,
+      "id":17,
       "name": "BILL Z",
       "bonus": {
         "raw": "ALABAMA",
@@ -1392,7 +1392,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 18,
+      "id":18,
       "name": "BLACKIE",
       "bonus": null,
       "picks": [
@@ -1428,7 +1428,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 19,
+      "id":19,
       "name": "BOBBY G & SON",
       "bonus": {
         "raw": "CHIEFS",
@@ -1470,7 +1470,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 20,
+      "id":20,
       "name": "BOPPO & GUS",
       "bonus": null,
       "picks": [
@@ -1506,7 +1506,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 21,
+      "id":21,
       "name": "BOX TO WIRE",
       "bonus": {
         "raw": "ALABAMA",
@@ -1548,7 +1548,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 22,
+      "id":22,
       "name": "BOY DAD",
       "bonus": null,
       "picks": [
@@ -1584,7 +1584,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 23,
+      "id":23,
       "name": "BREW MASTER",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -1626,7 +1626,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 24,
+      "id":24,
       "name": "C&K ENTERPRISES",
       "bonus": {
         "raw": "ALABAMA",
@@ -1668,7 +1668,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 25,
+      "id":25,
       "name": "CADDY",
       "bonus": null,
       "picks": [
@@ -1704,7 +1704,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 26,
+      "id":26,
       "name": "CALIENTE TAKEDOWN",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -1746,7 +1746,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 27,
+      "id":27,
       "name": "CASPER",
       "bonus": {
         "raw": "SOUTH CAROLINA",
@@ -1788,7 +1788,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 28,
+      "id":28,
       "name": "CHAMPION SWEATPANTS",
       "bonus": null,
       "picks": [
@@ -1824,7 +1824,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 29,
+      "id":29,
       "name": "CHATEAU MEATBALL",
       "bonus": {
         "raw": "FLORIDA",
@@ -1866,7 +1866,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 30,
+      "id":30,
       "name": "CLIFF & PUCK",
       "bonus": null,
       "picks": [
@@ -1902,7 +1902,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 31,
+      "id":31,
       "name": "COLOMBO 21",
       "bonus": null,
       "picks": [
@@ -1938,7 +1938,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 32,
+      "id":32,
       "name": "COLONY PIZZA",
       "bonus": null,
       "picks": [
@@ -1974,7 +1974,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 33,
+      "id":33,
       "name": "DICK ALONE",
       "bonus": null,
       "picks": [
@@ -2010,7 +2010,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 34,
+      "id":34,
       "name": "DICKY 76",
       "bonus": {
         "raw": "GEORGIA ST",
@@ -2052,7 +2052,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 35,
+      "id":35,
       "name": "DIRTY DOLLAR",
       "bonus": {
         "raw": "COLTS",
@@ -2094,7 +2094,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 36,
+      "id":36,
       "name": "DOE LANE BOYZ",
       "bonus": null,
       "picks": [
@@ -2130,7 +2130,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 37,
+      "id":37,
       "name": "DOIN WORK",
       "bonus": null,
       "picks": [
@@ -2166,7 +2166,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 38,
+      "id":38,
       "name": "DOS BRENDANS",
       "bonus": {
         "raw": "UMASS",
@@ -2208,7 +2208,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 39,
+      "id":39,
       "name": "DR. DADDY",
       "bonus": null,
       "picks": [
@@ -2244,7 +2244,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 40,
+      "id":40,
       "name": "DREAM TEAM",
       "bonus": {
         "raw": "LIONS",
@@ -2286,7 +2286,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 41,
+      "id":41,
       "name": "EASY MONEY",
       "bonus": null,
       "picks": [
@@ -2322,7 +2322,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 42,
+      "id":42,
       "name": "EL NINO",
       "bonus": null,
       "picks": [
@@ -2358,7 +2358,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 43,
+      "id":43,
       "name": "EMMO",
       "bonus": null,
       "picks": [
@@ -2394,7 +2394,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 44,
+      "id":44,
       "name": "EXETER HAWKS",
       "bonus": {
         "raw": "BEARS",
@@ -2436,7 +2436,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 45,
+      "id":45,
       "name": "FAMOUS DAVE",
       "bonus": {
         "raw": "UMASS",
@@ -2478,7 +2478,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 46,
+      "id":46,
       "name": "FAST EDDIE",
       "bonus": null,
       "picks": [
@@ -2514,7 +2514,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 47,
+      "id":47,
       "name": "FAT ATTACK",
       "bonus": {
         "raw": "UMASS",
@@ -2556,7 +2556,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 48,
+      "id":48,
       "name": "FIREBALL",
       "bonus": {
         "raw": "ARMY",
@@ -2598,7 +2598,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 49,
+      "id":49,
       "name": "FLANSAM",
       "bonus": {
         "raw": "UMASS",
@@ -2640,7 +2640,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 50,
+      "id":50,
       "name": "FLESHY FUN BRIDGE",
       "bonus": null,
       "picks": [
@@ -2676,7 +2676,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 51,
+      "id":51,
       "name": "GAME DAY",
       "bonus": null,
       "picks": [
@@ -2712,7 +2712,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 52,
+      "id":52,
       "name": "GOOSE EGG",
       "bonus": {
         "raw": "PACKERS",
@@ -2754,7 +2754,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 53,
+      "id":53,
       "name": "GRANT SLAM",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -2796,7 +2796,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 54,
+      "id":54,
       "name": "GREEK'S KID",
       "bonus": null,
       "picks": [
@@ -2832,7 +2832,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 55,
+      "id":55,
       "name": "HAMMER TIME 44",
       "bonus": {
         "raw": "ALABAMA",
@@ -2874,7 +2874,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 56,
+      "id":56,
       "name": "HANOVER INDIANS",
       "bonus": null,
       "picks": [
@@ -2910,7 +2910,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 57,
+      "id":57,
       "name": "HAWKEYES",
       "bonus": {
         "raw": "SAINTS",
@@ -2952,7 +2952,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 58,
+      "id":58,
       "name": "HH & PABLO",
       "bonus": null,
       "picks": [
@@ -2988,7 +2988,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 59,
+      "id":59,
       "name": "HONK SHOE",
       "bonus": {
         "raw": "LIONS",
@@ -3030,7 +3030,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 60,
+      "id":60,
       "name": "HOOTIE",
       "bonus": {
         "raw": "BEARS",
@@ -3072,7 +3072,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 61,
+      "id":61,
       "name": "HOSS TROTTERS",
       "bonus": {
         "raw": "CARDINALS",
@@ -3114,7 +3114,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 62,
+      "id":62,
       "name": "HOW YA DOON",
       "bonus": {
         "raw": "FLORIDA",
@@ -3156,7 +3156,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 63,
+      "id":63,
       "name": "HUNTERS EDGE",
       "bonus": {
         "raw": "TEXANS",
@@ -3198,7 +3198,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 64,
+      "id":64,
       "name": "HURRICANE BOB",
       "bonus": null,
       "picks": [
@@ -3234,7 +3234,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 65,
+      "id":65,
       "name": "ITALIAN FIGHTING IRISH",
       "bonus": null,
       "picks": [
@@ -3270,7 +3270,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 66,
+      "id":66,
       "name": "JABBERTIME",
       "bonus": null,
       "picks": [
@@ -3306,7 +3306,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 67,
+      "id":67,
       "name": "JAZZMAN",
       "bonus": {
         "raw": "ALABAMA",
@@ -3348,7 +3348,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 68,
+      "id":68,
       "name": "JET",
       "bonus": {
         "raw": "CHIEFS",
@@ -3390,7 +3390,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 69,
+      "id":69,
       "name": "JETMAN",
       "bonus": {
         "raw": "PENN ST",
@@ -3432,7 +3432,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 70,
+      "id":70,
       "name": "JIMMY TWA",
       "bonus": {
         "raw": "ALABAMA",
@@ -3474,7 +3474,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 71,
+      "id":71,
       "name": "JOE VALLACHI",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -3516,7 +3516,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 72,
+      "id":72,
       "name": "JOE VALLACHI'S GRANDSON",
       "bonus": null,
       "picks": [
@@ -3552,7 +3552,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 73,
+      "id":73,
       "name": "JOE VALLACHI'S SON",
       "bonus": {
         "raw": "SAINTS",
@@ -3594,7 +3594,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 74,
+      "id":74,
       "name": "JUMP BALL",
       "bonus": {
         "raw": "CHIEFS",
@@ -3636,7 +3636,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 75,
+      "id":75,
       "name": "JUNIOR & SENIOR",
       "bonus": null,
       "picks": [
@@ -3672,7 +3672,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 76,
+      "id":76,
       "name": "JUNK SQUAD",
       "bonus": {
         "raw": "SAINTS",
@@ -3714,7 +3714,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 77,
+      "id":77,
       "name": "KELL & JACK",
       "bonus": null,
       "picks": [
@@ -3750,7 +3750,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 78,
+      "id":78,
       "name": "KELLY ALONE",
       "bonus": null,
       "picks": [
@@ -3786,7 +3786,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 79,
+      "id":79,
       "name": "LADIES CHOICES",
       "bonus": null,
       "picks": [
@@ -3822,7 +3822,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 80,
+      "id":80,
       "name": "LEMON DROP KID",
       "bonus": {
         "raw": "UMASS",
@@ -3864,7 +3864,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 81,
+      "id":81,
       "name": "LOLO THE MILF",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -3906,7 +3906,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 82,
+      "id":82,
       "name": "LORENZO & TC",
       "bonus": {
         "raw": "UMASS",
@@ -3948,7 +3948,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 83,
+      "id":83,
       "name": "LYNN SHORE SEA LIONS",
       "bonus": {
         "raw": "FLORIDA",
@@ -3990,7 +3990,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 84,
+      "id":84,
       "name": "M & M BOYS",
       "bonus": null,
       "picks": [
@@ -4026,7 +4026,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 85,
+      "id":85,
       "name": "MARCH MADNESS",
       "bonus": null,
       "picks": [
@@ -4062,7 +4062,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 86,
+      "id":86,
       "name": "MARKALD",
       "bonus": {
         "raw": "BEARS",
@@ -4104,7 +4104,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 87,
+      "id":87,
       "name": "MAZDA & GEO",
       "bonus": {
         "raw": "CHIEFS",
@@ -4146,7 +4146,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 88,
+      "id":88,
       "name": "MEOW KITTY",
       "bonus": {
         "raw": "PACKERS",
@@ -4188,7 +4188,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 89,
+      "id":89,
       "name": "METROWEST GRIT",
       "bonus": null,
       "picks": [
@@ -4224,7 +4224,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 90,
+      "id":90,
       "name": "MISSISSIPPI MUD",
       "bonus": null,
       "picks": [
@@ -4260,7 +4260,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 91,
+      "id":91,
       "name": "MODEL C",
       "bonus": null,
       "picks": [
@@ -4296,7 +4296,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 92,
+      "id":92,
       "name": "NUMBER 1",
       "bonus": {
         "raw": "CHIEFS",
@@ -4338,7 +4338,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 93,
+      "id":93,
       "name": "MUGGS ALONE",
       "bonus": {
         "raw": "ALABAMA",
@@ -4380,7 +4380,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 94,
+      "id":94,
       "name": "ONE PUTT 55",
       "bonus": null,
       "picks": [
@@ -4416,7 +4416,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 95,
+      "id":95,
       "name": "PAPA EAGLE ",
       "bonus": null,
       "picks": [
@@ -4452,7 +4452,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 96,
+      "id":96,
       "name": "PASTAMAN",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -4494,7 +4494,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 97,
+      "id":97,
       "name": "PEPIN",
       "bonus": null,
       "picks": [
@@ -4530,7 +4530,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 98,
+      "id":98,
       "name": "PETER THE GOOD",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -4572,7 +4572,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 99,
+      "id":99,
       "name": "PETE'S COLTS",
       "bonus": null,
       "picks": [
@@ -4608,7 +4608,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 100,
+      "id":100,
       "name": "PIG BENIS",
       "bonus": {
         "raw": "CHIEFS",
@@ -4650,7 +4650,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 101,
+      "id":101,
       "name": "POINT SPREAD CRUSHERS",
       "bonus": null,
       "picks": [
@@ -4686,7 +4686,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 102,
+      "id":102,
       "name": "REMY KEV & IN LAW",
       "bonus": null,
       "picks": [
@@ -4722,7 +4722,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 103,
+      "id":103,
       "name": "RICHIE G",
       "bonus": null,
       "picks": [
@@ -4758,7 +4758,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 104,
+      "id":105,
       "name": "ROTTEN APPLES",
       "bonus": {
         "raw": "49ERS",
@@ -4800,7 +4800,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 105,
+      "id":106,
       "name": "SAMBA",
       "bonus": null,
       "picks": [
@@ -4836,7 +4836,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 106,
+      "id":107,
       "name": "SAMCWO",
       "bonus": {
         "raw": "LIONS",
@@ -4878,7 +4878,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 107,
+      "id":108,
       "name": "SEAL WITH IT",
       "bonus": null,
       "picks": [
@@ -4914,7 +4914,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 108,
+      "id":109,
       "name": "SIZZLING FAJITAS",
       "bonus": {
         "raw": "CHIEFS",
@@ -4956,7 +4956,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 109,
+      "id":110,
       "name": "SLIME PIGS",
       "bonus": {
         "raw": "PACKERS",
@@ -4998,7 +4998,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 110,
+      "id":111,
       "name": "SLOPPY STEAKS",
       "bonus": null,
       "picks": [
@@ -5034,7 +5034,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 111,
+      "id":112,
       "name": "SNAKE BEAR",
       "bonus": {
         "raw": "UMASS",
@@ -5076,7 +5076,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 112,
+      "id":113,
       "name": "SOUTHIE BOYS",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -5118,7 +5118,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 113,
+      "id":114,
       "name": "SPEED NOT ACCURACY",
       "bonus": {
         "raw": "RAMS",
@@ -5160,7 +5160,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 114,
+      "id":115,
       "name": "SPONGE 1430",
       "bonus": null,
       "picks": [
@@ -5196,7 +5196,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 115,
+      "id":116,
       "name": "T CORMIER",
       "bonus": {
         "raw": "CHIEFS",
@@ -5238,7 +5238,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 116,
+      "id":117,
       "name": "TEAM SODA",
       "bonus": {
         "raw": "PENN ST",
@@ -5280,7 +5280,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 117,
+      "id":118,
       "name": "THE FRUITCAKES",
       "bonus": null,
       "picks": [
@@ -5316,7 +5316,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 118,
+      "id":119,
       "name": "THE FUTURE CHAMP",
       "bonus": null,
       "picks": [
@@ -5352,7 +5352,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 119,
+      "id":120,
       "name": "THE HORSE",
       "bonus": {
         "raw": "BEARS",
@@ -5394,7 +5394,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 120,
+      "id":121,
       "name": "THE LINE DANCE",
       "bonus": null,
       "picks": [
@@ -5430,7 +5430,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 121,
+      "id":122,
       "name": "THE MAD LOOPER",
       "bonus": {
         "raw": "UMASS",
@@ -5472,7 +5472,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 122,
+      "id":123,
       "name": "THE MOOPS",
       "bonus": null,
       "picks": [
@@ -5508,7 +5508,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 123,
+      "id":124,
       "name": "TOBINOLAS",
       "bonus": null,
       "picks": [
@@ -5544,7 +5544,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 124,
+      "id":125,
       "name": "TOMMY B",
       "bonus": null,
       "picks": [
@@ -5580,7 +5580,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 125,
+      "id":126,
       "name": "TOMMY G",
       "bonus": {
         "raw": "CHIEFS",
@@ -5622,7 +5622,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 126,
+      "id":127,
       "name": "TOMMY PO",
       "bonus": {
         "raw": "LOUISVILLE",
@@ -5664,7 +5664,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 127,
+      "id":128,
       "name": "TONY SNAKE & SEFF",
       "bonus": null,
       "picks": [
@@ -5700,7 +5700,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 128,
+      "id":129,
       "name": "TWGSITW",
       "bonus": {
         "raw": "CHIEFS",
@@ -5742,7 +5742,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 129,
+      "id":130,
       "name": "TWO LIVE CREW",
       "bonus": null,
       "picks": [
@@ -5778,7 +5778,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 130,
+      "id":131,
       "name": "WACKY JACKIE",
       "bonus": {
         "raw": "CHIEFS",
@@ -5820,7 +5820,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 131,
+      "id":132,
       "name": "WAGS",
       "bonus": null,
       "picks": [
@@ -5856,7 +5856,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 132,
+      "id":133,
       "name": "WOLFPACK 1",
       "bonus": {
         "raw": "SOUTH FLORIDA",
@@ -5898,7 +5898,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 133,
+      "id":134,
       "name": "WOODSHED",
       "bonus": null,
       "picks": [
@@ -5934,7 +5934,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 134,
+      "id":135,
       "name": "YACHT CLUB CASUAL",
       "bonus": {
         "raw": "ALABAMA",
@@ -5976,7 +5976,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 135,
+      "id":136,
       "name": "YETI",
       "bonus": {
         "raw": "COLTS",
@@ -6018,7 +6018,7 @@ window.POOL_DATA = {
       "autoPick": false
     },
     {
-      "id": 136,
+      "id":137,
       "name": "YOU BET 2",
       "bonus": {
         "raw": "CHIEFS",
