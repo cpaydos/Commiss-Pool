@@ -61,14 +61,13 @@
 
       <section id="overall" class="panel">
         <div class="section-heading">
-          <div><h2>Overall Leaderboard</h2><p id="overallContext">Season Total</p></div>
+          <div><h2>Overall Points</h2><p id="overallContext">Season points · through Week 4</p></div>
         </div>
         <div class="overall-toolbar">
-          <select id="overallWeek" aria-label="Leaderboard week"></select>
           <label class="check-label"><input id="overallFavoriteFilter" type="checkbox" /> <span>★ Favorites</span></label>
         </div>
-        <div class="history-note">Completed weeks will show as <strong>Final</strong> once locked.</div>
-        <div id="overallList" class="overall-list"></div><div id="historicalWeekPanel"></div>
+        <div class="history-note">Official rounded points from the points-by-entry sheet. Week 5 will populate when finalized.</div>
+        <div class="overall-table-wrap"><div class="overall-table" id="overallList"></div></div>
       </section>
 
       <section id="bonus" class="panel">
@@ -130,6 +129,6 @@
   </div>
 
   <script src="data.js?v=week5-lines"></script>
-  <script src="app.js?v=week5-build"></script>
+  <script src="app.js?v=week5-overall-points"></script>
 </body>
 </html>
