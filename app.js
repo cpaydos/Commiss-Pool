@@ -28,9 +28,26 @@ function classifyPick(p,g,scoreMap=state.scores){
 function bonusStatus(e,gameMap=gameById,scoreMap=state.scores){if(!e.bonus||!e.bonus.gameId)return 'pending';const p=e.bonus,g=gameMap[p.gameId],sc=g&&scoreMap[g.id];if(!g)return 'pending';if(!sc||sc.status==='scheduled')return 'pending';if(sc.status==='in')return 'live';if(sc.status!=='final')return 'pending';const awayPick=norm(p.team)===norm(g.away),picked=awayPick?sc.awayScore:sc.homeScore,other=awayPick?sc.homeScore:sc.awayScore;return picked>other?'alive':'eliminated'}
 function record(e,gameMap=gameById,scoreMap=state.scores){const r=e.picks.map(p=>classifyPick(p,gameMap[p.gameId],scoreMap));return{r,w:r.filter(x=>x==='win').length,l:r.filter(x=>x==='loss').length,live:r.filter(x=>x==='live').length,pending:r.filter(x=>x==='pending').length}}
 function sortEntries(arr){return arr.sort((a,b)=>{const ra=record(a),rb=record(b);if(rb.w!==ra.w)return rb.w-ra.w;if(ra.l!==rb.l)return ra.l-rb.l;if(rb.live!==ra.live)return rb.live-ra.live;return a.id-b.id})}
-function isFavorite(id){return getFavorites().has(String(id))}
-function getFavorites(){try{return new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String))}catch{return new Set()}}
-function toggleFavorite(id){const f=getFavorites();const key=String(id);f.has(key)?f.delete(key):f.add(key);localStorage.setItem('commissFavorites',JSON.stringify([...f]));render()}
+function favoriteNameForId(id){const e=DATA.entries.find(x=>String(x.id)===String(id));return e?.name||null}
+function getFavoriteNames(){try{const raw=JSON.parse(localStorage.getItem('commissFavoriteNames')||'null');if(Array.isArray(raw))return new Set(raw.map(String))}catch{};return null}
+function getFavorites(){
+  const byName=getFavoriteNames();
+  if(byName){return new Set(DATA.entries.filter(e=>byName.has(String(e.name))).map(e=>String(e.id)))}
+  try{
+    const ids=new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String));
+    const names=DATA.entries.filter(e=>ids.has(String(e.id))).map(e=>String(e.name));
+    localStorage.setItem('commissFavoriteNames',JSON.stringify(names));
+    return new Set(DATA.entries.filter(e=>names.includes(String(e.name))).map(e=>String(e.id)));
+  }catch{return new Set()}
+}
+function toggleFavorite(id){
+  const f=getFavorites();const key=String(id);
+  f.has(key)?f.delete(key):f.add(key);
+  const names=DATA.entries.filter(e=>f.has(String(e.id))).map(e=>String(e.name));
+  localStorage.setItem('commissFavoriteNames',JSON.stringify(names));
+  localStorage.setItem('commissFavorites',JSON.stringify([...f]));
+  render()
+}
 function starButton(e){return `<button class="star-btn ${isFavorite(e.id)?'starred':''}" data-star="${e.id}" aria-label="${isFavorite(e.id)?'Remove':'Add'} ${esc(e.name)} ${isFavorite(e.id)?'from':'to'} favorites">${isFavorite(e.id)?'★':'☆'}</button>`}
 function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();updateHero()}
 function weekRows(week){return historyForWeek(week)||[]}
@@ -156,6 +173,49 @@ function updateHero(){const rs=DATA.entries.map(record);$('fourZeroCount').textC
 function openEntry(id,week=null){
   let e,gm,scoreMap,weekBonusMax=DATA.bonusMax;if(week){const h=DATA.history?.[week];e=h?.entries?.find(x=>x.id===id);gm=h?Object.fromEntries(h.games.map(g=>[g.id,g])):{};scoreMap=state.historyScores;weekBonusMax=h?.bonusMax||weekBonusMax}else{e=DATA.entries.find(x=>x.id===id);gm=gameById;scoreMap=state.scores}if(!e)return;const r=record(e,gm,scoreMap),bstat=bonusStatus(e,gm,scoreMap);
   $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${week?` · Week ${week} · Final`:''}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map(p=>{const g=gm[p.gameId],res=classifyPick(p,g,scoreMap),sc=scoreMap[g?.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-time">${week?formatDate(g.date):formatGameTimeDisplay(g)}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus?.team||'Not loaded')}</div><div class="pick-sub">Outright win required · max favorite ${weekBonusMax}</div></div><div class="${bstat==='eliminated'?'result-loss':bstat==='alive'?'result-win':'result-pending'}">${bstat.toUpperCase()}</div></div>`;$('entryModal').classList.remove('hidden')}
+
+// Hidden Snake Bear Easter egg: long-press the Snake Bear entry for ~750ms.
+// It is intentionally isolated from pool logic, favorites, and the ESPN feed.
+(function initSnakeBearEasterEgg(){
+  const egg=$('snakeBearEgg');
+  if(!egg)return;
+  const targetId='112';
+  let timer=null,armed=false,startX=0,startY=0,target=null,suppressClick=false;
+  const close=()=>{
+    egg.classList.add('hidden');
+    egg.classList.remove('snake-bear-active');
+    egg.setAttribute('aria-hidden','true');
+    document.body.classList.remove('snake-bear-screen-shake');
+  };
+  const open=()=>{
+    armed=true;
+    egg.classList.remove('hidden');
+    egg.classList.add('snake-bear-active');
+    egg.setAttribute('aria-hidden','false');
+    document.body.classList.add('snake-bear-screen-shake');
+    if(navigator.vibrate) navigator.vibrate([35,45,55]);
+  };
+  const cancel=()=>{if(timer){clearTimeout(timer);timer=null;}target=null;};
+  document.addEventListener('pointerdown',ev=>{
+    const row=ev.target.closest?.(`[data-entry="${targetId}"]`);
+    if(!row || egg.contains(ev.target))return;
+    target=row; armed=false; startX=ev.clientX; startY=ev.clientY;
+    timer=setTimeout(()=>{timer=null;open();},750);
+  },{passive:true});
+  document.addEventListener('pointermove',ev=>{
+    if(!timer)return;
+    if(Math.hypot(ev.clientX-startX,ev.clientY-startY)>10)cancel();
+  },{passive:true});
+  document.addEventListener('pointerup',ev=>{
+    if(timer)cancel();
+    if(armed){ev.preventDefault();suppressClick=true;armed=false;target=null;setTimeout(()=>{suppressClick=false;},450);}
+  },{passive:false});
+  document.addEventListener('pointercancel',cancel,{passive:true});
+  document.addEventListener('click',ev=>{if(suppressClick){ev.preventDefault();ev.stopImmediatePropagation();suppressClick=false;}},{capture:true});
+  egg.addEventListener('click',close);
+  egg.addEventListener('touchmove',ev=>ev.preventDefault(),{passive:false});
+})();
+
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function formatDate(d){return new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
 function scoreFromEvent(ev,g,target){
