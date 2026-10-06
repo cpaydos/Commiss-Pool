@@ -105,7 +105,7 @@ function showSnakeBearEasterEgg(){
     overlay=document.createElement('div');
     overlay.id='snakeBearEasterEgg';
     overlay.className='snake-bear-overlay';
-    overlay.innerHTML=`<div class="snake-bear-card"><div class="snake-bear-art" aria-hidden="true"><span>🐍</span><span>🐻</span></div><div class="snake-bear-title">SNAKE BEAR</div><div class="snake-bear-sub">EASTER EGG</div><div class="snake-bear-hint">Tap anywhere to close</div></div>`;
+    overlay.innerHTML=`<div class="snake-bear-card"><img class="snake-bear-image" src="snake-bear-easter-egg.png" alt="Don't let Snake Bear get hot!"><div class="snake-bear-hint">Tap anywhere to close</div></div>`;
     document.body.appendChild(overlay);
     overlay.onclick=()=>overlay.remove();
   }

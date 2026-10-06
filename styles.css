@@ -59,13 +59,10 @@
 
 
 /* Snake Bear Easter Egg — isolated visual overlay; does not affect picks, favorites, standings, or score feed. */
-.snake-bear-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(5,8,14,.94);backdrop-filter:blur(8px);cursor:pointer}
-.snake-bear-card{width:min(88vw,520px);padding:34px 24px;text-align:center;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:linear-gradient(145deg,#111927,#0a0e16);box-shadow:0 24px 90px rgba(0,0,0,.55)}
-.snake-bear-art{font-size:clamp(76px,22vw,150px);line-height:.9;display:flex;justify-content:center;gap:8px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
-.snake-bear-art span:first-child{transform:rotate(-10deg)}
-.snake-bear-art span:last-child{transform:rotate(8deg)}
-.snake-bear-title{margin-top:20px;font-size:clamp(30px,8vw,52px);font-weight:900;letter-spacing:.08em}
-.snake-bear-sub{margin-top:6px;font-size:12px;letter-spacing:.28em;opacity:.65}
-.snake-bear-hint{margin-top:28px;font-size:13px;opacity:.55}
-.snake-bear-shake .snake-bear-card{animation:snakeBearShake .55s cubic-bezier(.36,.07,.19,.97) both}
-@keyframes snakeBearShake{10%,90%{transform:translate3d(-3px,0,0) rotate(-.4deg)}20%,80%{transform:translate3d(6px,0,0) rotate(.5deg)}30%,50%,70%{transform:translate3d(-9px,0,0) rotate(-.8deg)}40%,60%{transform:translate3d(9px,0,0) rotate(.8deg)}}
+.snake-bear-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(5,8,14,.94);backdrop-filter:blur(8px);cursor:pointer;overflow:hidden}
+.snake-bear-card{width:min(94vw,760px);max-height:94vh;text-align:center;border:1px solid rgba(255,193,7,.5);border-radius:20px;background:#05080e;box-shadow:0 24px 90px rgba(0,0,0,.7);overflow:hidden}
+.snake-bear-image{display:block;width:100%;height:auto;max-height:calc(94vh - 56px);object-fit:contain}
+.snake-bear-hint{padding:10px 14px 13px;font-size:12px;color:rgba(255,255,255,.58);background:#05080e}
+.snake-bear-shake{animation:snakeBearScreenShake .72s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes snakeBearScreenShake{10%,90%{transform:translate3d(-4px,0,0) rotate(-.25deg)}20%,80%{transform:translate3d(8px,1px,0) rotate(.35deg)}30%,50%,70%{transform:translate3d(-12px,-1px,0) rotate(-.6deg)}40%,60%{transform:translate3d(12px,1px,0) rotate(.6deg)}}
+@media (prefers-reduced-motion:reduce){.snake-bear-shake{animation:none}}
