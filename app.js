@@ -2,6 +2,7 @@ const DATA=window.POOL_DATA;
 const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{});
 const state={scores:{},historyScores:staticHistoryScores,lastUpdated:null,overallView:'season'};
 const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3000]]};
+const ROUNDING_RESERVE={name:'Meet The Commiss Night',budget:3400};
 const REMOVED_ENTRY_IDS=new Set([104]);
 const $=id=>document.getElementById(id);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
@@ -36,7 +37,7 @@ function render(){renderLeaderboard();renderOverall();renderBonus();renderGames(
 function weekRows(week){return historyForWeek(week)||[]}
 function weekPayoutRows(week){if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}return weekRows(week)||[]}
 function renderPayouts(){
-  $('payoutSummary').innerHTML=`<div class="payout-stat"><strong>${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class="payout-stat"><strong>${PAYOUTS.half.reduce((a,x)=>a+x[1],0).toLocaleString()}</strong><span>Half prizes</span></div><div class="payout-stat"><strong>${(PAYOUTS.weekly*18+PAYOUTS.half.reduce((a,x)=>a+x[1],0)*2).toLocaleString()}</strong><span>Listed prizes</span></div>`;
+  const halfTotal=PAYOUTS.half.reduce((a,x)=>a+x[1],0); $('payoutSummary').innerHTML=`<div class="payout-stat"><strong>${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class="payout-stat"><strong>${halfTotal.toLocaleString()}</strong><span>Each 9-week half</span></div><div class="payout-stat"><strong>${(halfTotal*2).toLocaleString()}</strong><span>Season half prizes</span></div>`; $('payoutSummary').insertAdjacentHTML('afterend',`<div class="payout-rounding-note">Weekly points distribution stays at <strong>$2,500</strong>. Small rounding differences in individual shares are covered by the <strong>${ROUNDING_RESERVE.name}</strong> reserve.</div>`); $('halfTotals').innerHTML=`<div class="payout-stat"><strong>${halfTotal.toLocaleString()}</strong><span>1st Half · Weeks 1–9</span></div><div class="payout-stat"><strong>${halfTotal.toLocaleString()}</strong><span>2nd Half · Weeks 10–18</span></div><div class="payout-stat"><strong>${(halfTotal*2).toLocaleString()}</strong><span>Season Total · Both Halves</span></div>`;
   const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5].map(w=>`<option value="${w}">Week ${w}${w<5?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0); const override3=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
@@ -89,25 +90,40 @@ function overallPointRows(){
   const points=DATA.overallPoints||{};
   return DATA.entries.filter(e=>!REMOVED_ENTRY_IDS.has(e.id)).map(e=>{
     const p=points[String(e.id)]||{};
-    const weeks=[1,2,3,4,5].map(w=>p[String(w)]==null?null:Number(p[String(w)]));
-    const total=Number.isFinite(Number(p.total))?Number(p.total):weeks.reduce((a,v)=>a+(v||0),0);
+    const weeks=[1,2,3,4,5].map(w=>{const v=p[String(w)];return v==null?null:Math.round(Number(v))});
+    const total=weeks.reduce((a,v)=>a+(Number.isFinite(v)?v:0),0);
     return {id:e.id,name:e.name,weeks,total};
   });
 }
-function renderOverall(){
+function renderOverallPoints(){
   const favOnly=$('overallFavoriteFilter').checked;
   let rows=overallPointRows().filter(r=>!favOnly||isFavorite(r.id));
   rows.sort((a,b)=>b.total-a.total || (b.weeks[4]||0)-(a.weeks[4]||0) || (b.weeks[3]||0)-(a.weeks[3]||0) || a.id-b.id);
-  $('overallContext').textContent='Season points · through Week 4';
   const header='<div class="overall-point-row overall-point-header"><div class="point-rank">#</div><div class="point-entry">Entry</div><div>W1</div><div>W2</div><div>W3</div><div>W4</div><div>W5</div><div class="point-total">TOTAL</div></div>';
   const body=rows.map((r,i)=>{
     const rank=i+1;
     const vals=r.weeks.map(v=>v==null?'—':v.toLocaleString());
     return `<div class="overall-point-row" data-entry="${r.id}" role="button" tabindex="0"><div class="point-rank ${i<3?'top':''}">${rank}</div><div class="point-entry">${starButton({id:r.id,name:r.name})}<span>${esc(r.name)}</span></div><div>${vals[0]}</div><div>${vals[1]}</div><div>${vals[2]}</div><div>${vals[3]}</div><div class="point-current">${vals[4]}</div><div class="point-total">${r.total?r.total.toLocaleString():'—'}</div></div>`;
   }).join('');
-  $('overallList').innerHTML=header+body||'<div class="empty">No entries found.</div>';
-  bindEntryRows($('overallList'));
-  bindStars($('overallList'));
+  $('overallPointsList').innerHTML=header+body||'<div class="empty">No entries found.</div>';
+  bindEntryRows($('overallPointsList'));
+  bindStars($('overallPointsList'));
+}
+function renderOverall(){
+  const view=$('overallWeek').value||'season';state.overallView=view;const rows=sortOverall(overallRows(view));
+  const currentLabel=view==='season'?`Season Total · through Week ${SEASON.currentWeek}`:view==='first'?`First Half · through Week ${Math.min(SEASON.currentWeek,9)}`:view==='second'?`Second Half · through Week ${SEASON.currentWeek}`:`Week ${view.replace('week','')} · ${SEASON.lockedWeeks.includes(Number(view.replace('week','')))?'Final':'Current'}`;
+  $('overallContext').textContent=currentLabel;
+  const favOnly=$('overallFavoriteFilter').checked;const activeRows=rows.filter(r=>!REMOVED_ENTRY_IDS.has(r.id));const filtered=favOnly?activeRows.filter(r=>isFavorite(r.id)):activeRows;const weekNum=view.startsWith('week')?Number(view.slice(4)):null;
+  $('overallList').innerHTML=filtered.map((r,i)=>`<div class="overall-row" data-entry="${r.id}" data-week="${weekNum||''}"><div class="rank ${i<3?'top':''}">${i+1}</div><div class="overall-copy">${starButton({id:r.id,name:r.name})}<div><div class="entry-name">${esc(r.name)}</div><div class="entry-meta">${r.w+r.l?r.w+'–'+r.l:'No results yet'} · ${r.bonusEliminated>0?'BONUS OUT':'BONUS ALIVE'}</div></div></div><div class="overall-record">${r.w}-${r.l}</div></div>`).join('')||'<div class="empty">No entries found.</div>';
+  const hist=$('historicalWeekPanel');if(hist)hist.innerHTML=weekNum?renderHistoricalWeek(weekNum):'';
+  bindEntryRows($('overallList'));bindStars($('overallList'));
+  renderOverallPoints();
+}
+function populateOverallSelector(){
+  const sel=$('overallWeek');
+  const options=[['season','Season Total'],['first','First Half'],...SEASON.firstHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`]),['second','Second Half'],...SEASON.secondHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`])];
+  sel.innerHTML=options.map(([v,l])=>{const n=v.startsWith('week')?Number(v.slice(4)):0;const available=v==='season'||(v==='first'&&SEASON.currentWeek>=1)||(v==='second'&&SEASON.currentWeek>=10)||(n>0&&n<=SEASON.currentWeek);return `<option value="${v}" ${available?'':'disabled'}>${l}</option>`}).join('');
+  sel.value='season';
 }
 function renderHistoricalWeek(week){
   const h=DATA.history?.[week];if(!h)return '';const games=h.games||[];const finalCount=games.filter(g=>state.historyScores[g.id]?.status==='final').length;const rows=weekRows(week);const fours=rows.filter(r=>r.w===4&&r.l===0);const share=fours.length?PAYOUTS.weekly/fours.length:0;
@@ -304,7 +320,7 @@ async function refreshScores(){
 }
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
-$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
+populateOverallSelector(); $('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall; $('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
 // Start the live feed independently so a rendering/UI exception cannot prevent score polling.
 setTimeout(()=>{refreshScores().catch(err=>{console.error('Live feed startup error:',err);setFeed(`Live feed error · ${err?.message||String(err)}`,'bad')})},0);
 setInterval(()=>{refreshScores().catch(err=>{console.error('Live feed interval error:',err);setFeed(`Live feed error · ${err?.message||String(err)}`,'bad')})},30000);

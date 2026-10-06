@@ -74,3 +74,5 @@
 .snake-bear-shake{animation:snakeBearScreenShake .72s cubic-bezier(.36,.07,.19,.97) both}
 @keyframes snakeBearScreenShake{10%,90%{transform:translate3d(-4px,0,0) rotate(-.25deg)}20%,80%{transform:translate3d(8px,1px,0) rotate(.35deg)}30%,50%,70%{transform:translate3d(-12px,-1px,0) rotate(-.6deg)}40%,60%{transform:translate3d(12px,1px,0) rotate(.6deg)}}
 @media (prefers-reduced-motion:reduce){.snake-bear-shake{animation:none}}
+
+.payout-rounding-note{margin:10px 0 14px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05);font-size:12px;line-height:1.45;color:var(--muted,#aab0bd)}

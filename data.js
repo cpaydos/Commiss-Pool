@@ -33939,5 +33939,11 @@ window.POOL_DATA = {
       "5": null,
       "total": 0
     }
+  },
+  "pointsDistribution": {
+    "weeklyBounty": 2500,
+    "roundingReserve": "Meet The Commiss Night",
+    "roundingReserveBudget": 3400,
+    "note": "Weekly bounty remains $2,500. Rounded individual shares may differ from $2,500 by a small amount; that rounding difference is absorbed by the Meet The Commiss Night reserve."
   }
 };

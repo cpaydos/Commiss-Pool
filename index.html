@@ -61,13 +61,21 @@
 
       <section id="overall" class="panel">
         <div class="section-heading">
-          <div><h2>Overall Points</h2><p id="overallContext">Season points · through Week 4</p></div>
+          <div><h2>Overall Leaderboard</h2><p id="overallContext">Season Total · through Week 5</p></div>
         </div>
         <div class="overall-toolbar">
+          <select id="overallWeek" aria-label="Leaderboard week"></select>
           <label class="check-label"><input id="overallFavoriteFilter" type="checkbox" /> <span>★ Favorites</span></label>
         </div>
-        <div class="history-note">Official rounded points from the points-by-entry sheet. Week 5 will populate when finalized.</div>
-        <div class="overall-table-wrap"><div class="overall-table" id="overallList"></div></div>
+        <div class="history-note">Completed weeks show as <strong>Final</strong>. Season Total and each half update automatically as weeks are finalized.</div>
+        <div id="overallList" class="overall-list"></div>
+        <div id="historicalWeekPanel"></div>
+
+        <div class="section-heading overall-points-heading">
+          <div><h3>Season Points</h3><p>Official rounded points by entry · picks + bonus</p></div>
+        </div>
+        <div class="history-note">Weekly point values are rounded to the whole-number values shown on the official points-by-entry sheet. Numbers in entry names are not points.</div>
+        <div class="overall-table-wrap"><div class="overall-table" id="overallPointsList"></div></div>
       </section>
 
       <section id="bonus" class="panel">
@@ -106,6 +114,7 @@
           <div><h2>Points & Payouts</h2><p>Official 2026 prize structure</p></div>
         </div>
         <div id="payoutSummary" class="payout-summary"></div>
+        <div id="halfTotals" class="payout-summary half-total-summary"></div>
         <div class="section-heading"><div><h3>Weekly Bounty History</h3><p>2,500 every week · split among 4–0 entries</p></div></div><div class="history-toolbar"><select id="payoutWeek" aria-label="Payout history week"><option value="5">Week 5 · Current</option><option value="4">Week 4 · Final</option><option value="3">Week 3 · Final</option><option value="2">Week 2 · Final</option><option value="1">Week 1 · Final</option></select></div>
         <div id="weeklyPayout" class="payout-card"></div>
         <div class="section-heading"><div><h3>Each 9-Week Half</h3><p>Prizes are awarded once in each half</p></div></div>
@@ -129,6 +138,6 @@
   </div>
 
   <script src="data.js?v=week5-lines"></script>
-  <script src="app.js?v=week5-overall-points"></script>
+  <script src="app.js?v=week5-overall-points-v2"></script>
 </body>
 </html>
