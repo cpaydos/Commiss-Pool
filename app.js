@@ -1,5 +1,5 @@
 const DATA=window.POOL_DATA;
-const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{});
+const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{});
 const state={scores:{},historyScores:staticHistoryScores,lastUpdated:null,overallView:'season'};
 const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3000]]};
 const REMOVED_ENTRY_IDS=new Set([104]);
@@ -7,7 +7,7 @@ const $=id=>document.getElementById(id);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
-const SEASON={currentWeek:4,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3]};
+const SEASON={currentWeek:5,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4]};
 const aliases={
   'MIDD TENN':'MIDDLE TENNESSEE','MIAMI (FL)':'MIAMI','SAN JOSE ST':'SAN JOSE STATE','EASTERN MICH':'EASTERN MICHIGAN','BOISE ST':'BOISE STATE','NORTH DAKOTA ST':'NORTH DAKOTA STATE','KANSAS ST':'KANSAS STATE','OKLAHOMA ST':'OKLAHOMA STATE','OREGON ST':'OREGON STATE','ARIZONA ST':'ARIZONA STATE','GEORGIA ST':'GEORGIA STATE','WASHINGTON ST':'WASHINGTON STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','APP ST':'APPALACHIAN STATE','SOUTH FLORIDA':'SOUTH FLORIDA','FLORIDA ATLANTIC':'FLORIDA ATLANTIC','SAM HOUSTON':'SAM HOUSTON','OLD DOMINION':'OLD DOMINION','UCF':'UCF','UTSA':'UTSA','UL-MONROE':'UL MONROE','SAN DIEGO ST':'SAN DIEGO STATE','FRESNO ST':'FRESNO STATE','BOSTON COLLEGE':'BOSTON COLLEGE','FIU':'FLORIDA INTERNATIONAL','PITT':'PITTSBURGH','UCONN':'CONNECTICUT','PENN ST':'PENN STATE','MISSISSIPPI ST':'MISSISSIPPI STATE','SACRAMENTO ST':'SACRAMENTO STATE','JACKSONVILLE ST':'JACKSONVILLE STATE','GEORGIA ST':'GEORGIA STATE','FRESNO ST':'FRESNO STATE','HAWAII':'HAWAI’I','NEW MEXICO ST':'NEW MEXICO STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','UCF':'CENTRAL FLORIDA','UAB':'UAB','UCF':'UCF','UCLA':'UCLA','USC':'USC'
 };
@@ -26,7 +26,7 @@ function classifyPick(p,g,scoreMap=state.scores){
   return underdogMargin===-g.spread?'loss':underdogMargin+g.spread>0?'win':'loss';
 }
 function bonusStatus(e,gameMap=gameById,scoreMap=state.scores){if(!e.bonus||!e.bonus.gameId)return 'pending';const p=e.bonus,g=gameMap[p.gameId],sc=g&&scoreMap[g.id];if(!g)return 'pending';if(!sc||sc.status==='scheduled')return 'pending';if(sc.status==='in')return 'live';if(sc.status!=='final')return 'pending';const awayPick=norm(p.team)===norm(g.away),picked=awayPick?sc.awayScore:sc.homeScore,other=awayPick?sc.homeScore:sc.awayScore;return picked>other?'alive':'eliminated'}
-function record(e,gameMap=gameById,scoreMap=state.scores){const r=e.picks.map(p=>classifyPick(p,gameMap[p.gameId],scoreMap));return{r,w:r.filter(x=>x==='win').length,l:r.filter(x=>x==='loss').length,live:r.filter(x=>x==='live').length,pending:r.filter(x=>x==='pending').length}}
+function record(e,gameMap=gameById,scoreMap=state.scores){if(!Array.isArray(e.picks)||e.picks.length===0)return{r:[],w:0,l:0,live:0,pending:4,notLoaded:true};const r=e.picks.map(p=>classifyPick(p,gameMap[p.gameId],scoreMap));return{r,w:r.filter(x=>x==='win').length,l:r.filter(x=>x==='loss').length,live:r.filter(x=>x==='live').length,pending:r.filter(x=>x==='pending').length,notLoaded:false}}
 function sortEntries(arr){return arr.sort((a,b)=>{const ra=record(a),rb=record(b);if(rb.w!==ra.w)return rb.w-ra.w;if(ra.l!==rb.l)return ra.l-rb.l;if(rb.live!==ra.live)return rb.live-ra.live;return a.id-b.id})}
 function isFavorite(id){return getFavorites().has(String(id))}
 function getFavorites(){try{return new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String))}catch{return new Set()}}
@@ -37,7 +37,7 @@ function weekRows(week){return historyForWeek(week)||[]}
 function weekPayoutRows(week){if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}return weekRows(week)||[]}
 function renderPayouts(){
   $('payoutSummary').innerHTML=`<div class="payout-stat"><strong>${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class="payout-stat"><strong>${PAYOUTS.half.reduce((a,x)=>a+x[1],0).toLocaleString()}</strong><span>Half prizes</span></div><div class="payout-stat"><strong>${(PAYOUTS.weekly*18+PAYOUTS.half.reduce((a,x)=>a+x[1],0)*2).toLocaleString()}</strong><span>Listed prizes</span></div>`;
-  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4].map(w=>`<option value="${w}">Week ${w}${w<=3?' · Final':''}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
+  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5].map(w=>`<option value="${w}">Week ${w}${w<5?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0); const override3=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
   else if(!fours.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} · Final</strong><small>No entries finished 4–0.</small></div><strong>0</strong></div>`;
@@ -52,7 +52,7 @@ function renderLeaderboard(){
   if(favOnly)arr=arr.filter(e=>isFavorite(e.id));
   if(f!=='all')arr=arr.filter(e=>{const r=record(e);return f==='live'?r.live>0:f==='done'?r.pending===0:f==='pending'?r.pending>0:false});
   const list=$('leaderboardList');
-  list.innerHTML=arr.map((e,i)=>{const r=record(e),cls=r.live?'live':r.w?'win':'';return `<div class="entry-row" data-entry="${e.id}"><div class="rank ${i<3?'top':''}">${i+1}</div><div class="entry-copy">${starButton(e)}<div><div class="entry-name">${esc(e.name)}</div><div class="entry-meta">${r.pending} remaining${e.autoPick?' · commissioner auto-pick':''}</div></div></div><div class="record ${cls}">${r.w}-${r.l}<small>${r.live?`${r.live} live`:r.pending?`${r.pending} pending`:'complete'}</small></div></div>`}).join('')||'<div class="empty">No entries found.</div>';
+  list.innerHTML=arr.map((e,i)=>{const r=record(e),cls=r.live?'live':r.w?'win':'';return `<div class="entry-row" data-entry="${e.id}"><div class="rank ${i<3?'top':''}">${i+1}</div><div class="entry-copy">${starButton(e)}<div><div class="entry-name">${esc(e.name)}</div><div class="entry-meta">${r.notLoaded?'Picks not loaded':`${r.pending} remaining`}${e.autoPick?' · commissioner auto-pick':''}</div></div></div><div class="record ${cls}">${r.w}-${r.l}<small>${r.live?`${r.live} live`:r.pending?`${r.pending} pending`:'complete'}</small></div></div>`}).join('')||'<div class="empty">No entries found.</div>';
   bindEntryRows(list);bindStars(list)
 }
 function historyForWeek(week){
@@ -98,17 +98,41 @@ function renderHistoricalWeek(week){
   const gamesHtml=games.map(g=>{const sc=state.historyScores[g.id];return `<div class="game-row historical-game"><div class="game-top"><div><div class="game-status ${sc?.status||'scheduled'}">${sc?.status==='final'?'FINAL':'PENDING'}</div><div class="game-teams">${esc(g.away)} @ ${esc(g.home)}</div></div><div class="game-score">${sc?.awayScore!=null?`${sc.awayScore} - ${sc.homeScore}`:'—'}</div></div><div class="game-line">Official: ${esc(favoriteOf(g))} -${g.spread} · Total ${g.total}</div></div>`}).join('');
   return `<div class="history-section"><div class="section-heading"><div><h3>Week ${week} Results · Final</h3><p>${finalCount}/${games.length} games final</p></div></div>${payout}<div class="history-games">${gamesHtml}</div></div>`;
 }
-function bindEntryRows(container){container.querySelectorAll('[data-entry]').forEach(x=>x.onclick=ev=>{if(ev.target.closest('[data-star]'))return;openEntry(+x.dataset.entry,x.dataset.week?Number(x.dataset.week):null)})}
+
+function showSnakeBearEasterEgg(){
+  let overlay=$('snakeBearEasterEgg');
+  if(!overlay){
+    overlay=document.createElement('div');
+    overlay.id='snakeBearEasterEgg';
+    overlay.className='snake-bear-overlay';
+    overlay.innerHTML=`<div class="snake-bear-card"><div class="snake-bear-art" aria-hidden="true"><span>🐍</span><span>🐻</span></div><div class="snake-bear-title">SNAKE BEAR</div><div class="snake-bear-sub">EASTER EGG</div><div class="snake-bear-hint">Tap anywhere to close</div></div>`;
+    document.body.appendChild(overlay);
+    overlay.onclick=()=>overlay.remove();
+  }
+  overlay.classList.remove('snake-bear-shake');
+  void overlay.offsetWidth;
+  overlay.classList.add('snake-bear-shake');
+}
+function bindSnakeBear(container){
+  const row=container?.querySelector?.('[data-entry="112"]');
+  if(!row)return;
+  let timer=null;
+  const clear=()=>{if(timer){clearTimeout(timer);timer=null}};
+  row.addEventListener('pointerdown',()=>{clear();timer=setTimeout(()=>{timer=null;showSnakeBearEasterEgg()},750)});
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>row.addEventListener(ev,clear));
+}
+
+function bindEntryRows(container){container.querySelectorAll('[data-entry]').forEach(x=>x.onclick=ev=>{if(ev.target.closest('[data-star]'))return;openEntry(+x.dataset.entry,x.dataset.week?Number(x.dataset.week):null)});bindSnakeBear(container)}
 function bindStars(container){container.querySelectorAll('[data-star]').forEach(b=>b.onclick=ev=>{ev.stopPropagation();toggleFavorite(+b.dataset.star)})}
 function populateOverallSelector(){
   const sel=$('overallWeek');
   const options=[['season','Season Total'],['first','First Half'],...SEASON.firstHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`]),['second','Second Half'],...SEASON.secondHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`])];
   sel.innerHTML=options.map(([v,l])=>{const n=v.startsWith('week')?Number(v.slice(4)):0;const available=v==='season'||(v==='first'&&SEASON.currentWeek>=1)||(v==='second'&&SEASON.currentWeek>=10)||(n>0&&n<=SEASON.currentWeek);return `<option value="${v}" ${available?'':'disabled'}>${l}</option>`}).join('');sel.value='season'
 }
-const FINAL_BONUS_OUT={1:new Set([7,20,30,33,77,90,134]),2:new Set([7,20,30,33,77,90,134]),3:new Set([4,5,9,12,13,18,22,25,28,31,32,36,37,42,50,51,54,56,66,75,78,84,89,91,94,95,97,99,101,102,106,108,115,121,123,124,125,130])};
+const FINAL_BONUS_OUT={1:new Set([7,20,30,33,77,90,134]),2:new Set([7,20,30,33,77,90,134]),3:new Set([4,5,9,12,13,18,22,25,28,31,32,36,37,42,50,51,54,56,66,75,78,84,89,91,94,95,97,99,101,102,106,108,115,121,123,124,125,130]),4:new Set([8,16,23,26,27,29,38,40,45,47,48,49,53,57,59,61,62,63,69,71,73,76,80,81,82,83,96,98,107,112,113,117,122,127,133])};
 function priorBonusStatus(id){for(const w of [3,2,1]){if(FINAL_BONUS_OUT[w]?.has(id))return 'eliminated';const rows=historyForWeek(w);const hit=rows?.find(r=>r.id===id);if(hit?.bonus)return hit.bonus;}return null}
 function renderBonus(){
-  const week=Number($('bonusWeek')?.value||4);
+  const week=Number($('bonusWeek')?.value||5);
   const order={alive:0,live:1,pending:2,eliminated:3};
   if(week===1){
     const h=DATA.history?.[1],gm=h?Object.fromEntries(h.games.map(g=>[g.id,g])):{};
@@ -125,13 +149,28 @@ function renderBonus(){
     const arr=(h?.entries||[]).map(e=>{const row=(h?.rows||[]).find(r=>r.id===e.id);const s=FINAL_BONUS_OUT[3]?.has(e.id)?'eliminated':(row?.bonus||'eliminated');return{e,s}}).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
     const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusContext').textContent='Week 3 · Final · max favorite 7 points';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':'PENDING';const sub=e.bonus?.gameId?esc(e.bonus.team):'No bonus pick';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
+  }else if(week===4){
+    const h=DATA.history?.[4];
+    const arr=(h?.entries||[]).filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>{const s=FINAL_BONUS_OUT[4]?.has(e.id)?'eliminated':((h?.rows||[]).find(r=>r.id===e.id)?.bonus||'pending');return{e,s}}).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
+    const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusContext').textContent='Week 4 · Final · max favorite 6 points';
+    $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':'PENDING';const sub=e.bonus?.gameId?esc(e.bonus.team):'No bonus pick';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
   }else{
-    const currentEntries=DATA.entries?.length?DATA.entries:DATA.history?.[3]?.entries||[];
-    const h3=DATA.history?.[3];
-    const arr=currentEntries.filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>{const prior=priorBonusStatus(e.id);const hasPick=!!e.bonus?.gameId;const s=prior==='eliminated'?'eliminated':hasPick?bonusStatus(e):'pending';return{e,s,prior}}).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
-    const eligible=h3?.rows?.length?h3.rows.filter(r=>r.bonus==='alive'&&!REMOVED_ENTRY_IDS.has(r.id)).length:arr.filter(x=>x.prior!=='eliminated').length;
-    $('bonusAlive').textContent=`${eligible} alive`;$('bonusContext').textContent='Week 4 · Current · max favorite 6 points';
-    $('bonusList').innerHTML=arr.map(({e,s,prior})=>{const sub=prior==='eliminated'?'':e.bonus?.gameId?esc(e.bonus.team):'Not loaded';const label=prior==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
+    const currentEntries=DATA.entries?.length?DATA.entries:DATA.history?.[4]?.entries||[];
+    const eligibleIds=new Set(DATA.week5BonusEligibleIds||[]);
+    const arr=currentEntries.filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>{
+      const eligible=eligibleIds.has(e.id);
+      const hasPick=!!e.bonus?.gameId;
+      const s=!eligible?'eliminated':hasPick?bonusStatus(e):'alive';
+      return{e,s,eligible};
+    }).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
+    const eligible=eligibleIds.size;
+    $('bonusAlive').textContent=`${eligible} alive`;
+    $('bonusContext').textContent='Week 5 · Current · max favorite 5 points';
+    $('bonusList').innerHTML=arr.map(({e,s,eligible})=>{
+      const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';
+      const sub=!eligible?'':e.bonus?.gameId?esc(e.bonus.team):'Not loaded';
+      return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`;
+    }).join('');
   }
   bindStars($('bonusList'));
 }

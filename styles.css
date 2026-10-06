@@ -56,3 +56,16 @@
 .payout-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0 14px}.payout-stat,.payout-card,.payout-row{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px}.payout-stat{text-align:center}.payout-stat strong{display:block;font-size:17px}.payout-stat span,.payout-row small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.payout-list{display:flex;flex-direction:column;gap:7px}.payout-row{display:flex;justify-content:space-between;align-items:center;gap:10px}.payout-row>strong{font-size:15px}.payout-highlight{border-color:var(--green)}.payout-entry{cursor:pointer}.payout-entry:active{transform:scale(.995)}.payout-note{margin:14px 2px;color:var(--muted);font-size:11px;line-height:1.5}.section-heading h3{margin:0 0 3px;font-size:15px}@media(max-width:600px){.tabs{grid-template-columns:repeat(3,1fr)}.payout-summary{grid-template-columns:1fr 1fr 1fr}.payout-stat{padding:10px 6px}.payout-stat strong{font-size:14px}}
 
 .history-toolbar{display:flex;gap:8px;margin:8px 0 10px}.history-toolbar select{flex:1;background:var(--card2);border:1px solid var(--line);border-radius:12px;color:var(--text);padding:10px 12px}.history-section{margin-top:14px}.history-payout-card{border:1px solid var(--green);background:var(--card);border-radius:14px;padding:12px;margin-bottom:10px}.history-payout-card>div:first-child strong,.history-payout-card>strong{display:block;font-size:14px}.history-payout-card small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.history-payout-row{display:flex;justify-content:space-between;padding-top:9px;margin-top:8px;border-top:1px solid var(--line);font-size:12px}.history-games{display:flex;flex-direction:column;gap:7px}.historical-game{cursor:default}.historical-game .game-score{font-size:18px}.historical-game .game-status.final{color:var(--blue)}
+
+
+/* Snake Bear Easter Egg — isolated visual overlay; does not affect picks, favorites, standings, or score feed. */
+.snake-bear-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(5,8,14,.94);backdrop-filter:blur(8px);cursor:pointer}
+.snake-bear-card{width:min(88vw,520px);padding:34px 24px;text-align:center;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:linear-gradient(145deg,#111927,#0a0e16);box-shadow:0 24px 90px rgba(0,0,0,.55)}
+.snake-bear-art{font-size:clamp(76px,22vw,150px);line-height:.9;display:flex;justify-content:center;gap:8px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.45))}
+.snake-bear-art span:first-child{transform:rotate(-10deg)}
+.snake-bear-art span:last-child{transform:rotate(8deg)}
+.snake-bear-title{margin-top:20px;font-size:clamp(30px,8vw,52px);font-weight:900;letter-spacing:.08em}
+.snake-bear-sub{margin-top:6px;font-size:12px;letter-spacing:.28em;opacity:.65}
+.snake-bear-hint{margin-top:28px;font-size:13px;opacity:.55}
+.snake-bear-shake .snake-bear-card{animation:snakeBearShake .55s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes snakeBearShake{10%,90%{transform:translate3d(-3px,0,0) rotate(-.4deg)}20%,80%{transform:translate3d(6px,0,0) rotate(.5deg)}30%,50%,70%{transform:translate3d(-9px,0,0) rotate(-.8deg)}40%,60%{transform:translate3d(9px,0,0) rotate(.8deg)}}
