@@ -56,20 +56,3 @@
 .payout-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0 14px}.payout-stat,.payout-card,.payout-row{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px}.payout-stat{text-align:center}.payout-stat strong{display:block;font-size:17px}.payout-stat span,.payout-row small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.payout-list{display:flex;flex-direction:column;gap:7px}.payout-row{display:flex;justify-content:space-between;align-items:center;gap:10px}.payout-row>strong{font-size:15px}.payout-highlight{border-color:var(--green)}.payout-entry{cursor:pointer}.payout-entry:active{transform:scale(.995)}.payout-note{margin:14px 2px;color:var(--muted);font-size:11px;line-height:1.5}.section-heading h3{margin:0 0 3px;font-size:15px}@media(max-width:600px){.tabs{grid-template-columns:repeat(3,1fr)}.payout-summary{grid-template-columns:1fr 1fr 1fr}.payout-stat{padding:10px 6px}.payout-stat strong{font-size:14px}}
 
 .history-toolbar{display:flex;gap:8px;margin:8px 0 10px}.history-toolbar select{flex:1;background:var(--card2);border:1px solid var(--line);border-radius:12px;color:var(--text);padding:10px 12px}.history-section{margin-top:14px}.history-payout-card{border:1px solid var(--green);background:var(--card);border-radius:14px;padding:12px;margin-bottom:10px}.history-payout-card>div:first-child strong,.history-payout-card>strong{display:block;font-size:14px}.history-payout-card small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.history-payout-row{display:flex;justify-content:space-between;padding-top:9px;margin-top:8px;border-top:1px solid var(--line);font-size:12px}.history-games{display:flex;flex-direction:column;gap:7px}.historical-game{cursor:default}.historical-game .game-score{font-size:18px}.historical-game .game-status.final{color:var(--blue)}
-
-
-/* Hidden Snake Bear Easter egg */
-.snake-bear-egg{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;cursor:pointer}
-.snake-bear-egg.hidden{display:none}
-.snake-bear-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(7px)}
-.snake-bear-stage{position:relative;width:min(94vw,760px);max-height:94vh;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:snakeBearReveal .42s cubic-bezier(.2,.9,.2,1) both}
-.snake-bear-art{display:block;width:100%;max-height:78vh;object-fit:contain;border-radius:18px;box-shadow:0 0 55px rgba(0,0,0,.75);user-select:none;-webkit-user-drag:none;animation:snakeBearRoar .16s ease-in-out infinite alternate}
-.snake-bear-caption{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);width:calc(100% - 28px);text-align:center;font-size:clamp(15px,3.8vw,28px);font-weight:950;letter-spacing:.08em;text-shadow:0 3px 12px #000;color:#fff;pointer-events:none}
-.snake-bear-hint{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.15em;font-weight:850;color:rgba(255,255,255,.8);white-space:nowrap;pointer-events:none}
-.snake-bear-screen-shake .app-shell{animation:snakeBearScreenShake .12s linear infinite}
-.snake-bear-active .snake-bear-stage{animation:snakeBearReveal .42s cubic-bezier(.2,.9,.2,1) both, snakeBearStageShake .12s linear infinite .42s}
-@keyframes snakeBearReveal{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
-@keyframes snakeBearRoar{from{transform:translateX(-2px) rotate(-.25deg) scale(1.002)}to{transform:translateX(2px) rotate(.25deg) scale(1.006)}}
-@keyframes snakeBearStageShake{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-4px,2px) rotate(-.35deg)}50%{transform:translate(4px,-2px) rotate(.35deg)}75%{transform:translate(-3px,-1px) rotate(-.25deg)}}
-@keyframes snakeBearScreenShake{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,1px)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,-1px)}}
-@media(prefers-reduced-motion:reduce){.snake-bear-screen-shake .app-shell,.snake-bear-active .snake-bear-stage,.snake-bear-art{animation:none}}
