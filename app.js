@@ -42,10 +42,24 @@ const POINTS_BY_WEEK={
   4:{'AIDEN BRADY':278,'BARTLES & JAMES':278,'BIG K':278,'DOIN WORK':278,'FAST EDDIE':278,'FLANSAM':278,'M & M BOYS':278,'PAPA EAGLE':278,'SNAKE BEAR':278}
 };
 function pointsForEntryName(name,week){const map=POINTS_BY_WEEK[week]||{};const key=Object.keys(map).find(k=>norm(k)===norm(name));return Number(key?map[key]:0)}
+function pointsWeeksForView(view){
+  return view==='first'?[1,2,3,4,5]:view==='second'?[10,11,12,13,14,15,16,17,18]:view==='season'?[1,2,3,4,5]:[Number(view.replace('week',''))];
+}
 function pointsRows(view){
-  const weeks=view==='first'?[1,2,3,4,5]:view==='second'?[10,11,12,13,14,15,16,17,18]:view==='season'?[1,2,3,4,5]:[Number(view.replace('week',''))];
+  const weeks=pointsWeeksForView(view);
   const entries=DATA.entries.filter(e=>!REMOVED_ENTRY_IDS.has(e.id));
-  return entries.map(e=>{const vals=weeks.map(w=>pointsForEntryName(e.name,w));return{id:e.id,name:e.name,points:vals.reduce((a,b)=>a+b,0),weeks:vals}}).sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name));
+  return entries.map(e=>{const vals=weeks.map(w=>pointsForEntryName(e.name,w));return{id:e.id,name:e.name,points:vals.reduce((a,b)=>a+b,0),weeks:vals}})
+    .filter(r=>r.points>0)
+    .sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name));
+}
+function openPointsBreakdown(entryId,view){
+  const e=DATA.entries.find(x=>x.id===entryId);if(!e)return;
+  const weeks=pointsWeeksForView(view);
+  const contributions=weeks.map(w=>({week:w,points:pointsForEntryName(e.name,w)})).filter(x=>x.points>0);
+  const total=contributions.reduce((sum,x)=>sum+x.points,0);
+  const viewLabel=view==='first'?'First Half':view==='second'?'Second Half':view==='season'?'Overall':`Week ${Number(view.slice(4))}`;
+  $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${total.toLocaleString()} points</div><div class="entry-meta">${viewLabel} breakdown · tap a week to see what contributed</div></div><div class="points-breakdown">${contributions.map(x=>`<div class="pick-detail points-breakdown-row"><div><div class="pick-main">Week ${x.week}</div><div class="pick-sub">Points earned / payout shown on the official points sheet</div></div><strong>${x.points.toLocaleString()} <span class="points-dollar">($${x.points.toLocaleString()} won)</span></strong></div>`).join('')}</div><div class="payout-note">Total: <strong>${total.toLocaleString()} points</strong>. Weekly values are the rounded amounts from the official points sheet.</div>`;
+  $('entryModal').classList.remove('hidden');
 }
 function renderPoints(){
   const sel=$('pointsView');if(!sel)return;
@@ -56,8 +70,13 @@ function renderPoints(){
   const view=sel.value;const rows=pointsRows(view);
   const label=view==='season'?`Overall · through Week ${SEASON.currentWeek}`:view==='first'?`First Half · through Week ${Math.min(SEASON.currentWeek,9)}`:view==='second'?`Second Half · through Week ${SEASON.currentWeek}`:`Week ${Number(view.slice(4))} · ${SEASON.lockedWeeks.includes(Number(view.slice(4)))?'Final':'Current'}`;
   $('pointsContext').textContent=`${label} · rounded points from the official points sheet`;
-  $('pointsList').innerHTML=rows.map((r,i)=>`<div class="payout-row payout-entry" data-entry="${r.id}"><div><strong>${i+1}. ${esc(r.name)}</strong><small>${r.points?`${r.points.toLocaleString()} points`:'No points yet'}</small></div><strong>${r.points? r.points.toLocaleString():'—'}</strong></div>`).join('');
-  bindEntryRows($('pointsList'));
+  const aggregate=view==='season'||view==='first'||view==='second';
+  $('pointsList').innerHTML=rows.map((r,i)=>`<div class="payout-row payout-entry points-entry-row" data-points-entry="${r.id}" data-points-view="${view}" role="button" tabindex="0"><div><strong>${i+1}. ${esc(r.name)}</strong><small>${r.points.toLocaleString()} points${aggregate?' · tap for breakdown':''}</small></div><strong>${r.points.toLocaleString()}</strong></div>`).join('')||'<div class="empty">No winners recorded for this week yet.</div>';
+  $('pointsList').querySelectorAll('[data-points-entry]').forEach(row=>{
+    const open=()=>openPointsBreakdown(Number(row.dataset.pointsEntry),row.dataset.pointsView);
+    row.onclick=open;
+    row.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}};
+  });
 }
 
 function renderPayouts(){

@@ -68,3 +68,6 @@
 @media (prefers-reduced-motion:reduce){.snake-bear-shake{animation:none}}
 
 #pointsList .payout-entry{display:flex}.payout-entry .payout-rank{color:var(--muted);margin-right:6px}.payout-note{line-height:1.45}
+
+/* Accumulated points interactions */
+.points-entry-row{cursor:pointer;transition:transform .12s ease,border-color .12s ease}.points-entry-row:active{transform:scale(.995)}.points-entry-row:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.points-breakdown{display:flex;flex-direction:column;gap:8px;margin-top:12px}.points-breakdown-row{margin-top:0}.points-breakdown-row>strong{white-space:nowrap;text-align:right}.points-dollar{font-size:10px;color:var(--muted);font-weight:700}
