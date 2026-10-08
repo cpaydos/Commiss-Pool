@@ -3,707 +3,707 @@ window.POOL_DATA = {
   "week": 5,
   "bonusMax": 5,
   "games": [
-  {
-    "id": "nfl-2026-10-08-cowboys-buccaneers",
-    "sport": "NFL",
-    "date": "2026-10-08",
-    "away": "COWBOYS",
-    "home": "Buccaneers",
-    "spread": 9.5,
-    "total": 47.5,
-    "favorite": "COWBOYS"
-  },
-  {
-    "id": "nfl-2026-10-11-bears-packers",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Bears",
-    "home": "PACKERS",
-    "spread": 3,
-    "total": 45.5,
-    "favorite": "Bears"
-  },
-  {
-    "id": "nfl-2026-10-11-bengals-dolphins",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Bengals",
-    "home": "DOLPHINS",
-    "spread": 7,
-    "total": 42.5,
-    "favorite": "Bengals"
-  },
-  {
-    "id": "nfl-2026-10-11-broncos-chargers",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Broncos",
-    "home": "CHARGERS",
-    "spread": 3.5,
-    "total": 42.5,
-    "favorite": "Broncos"
-  },
-  {
-    "id": "nfl-2026-10-11-commanders-giants",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "COMMANDERS",
-    "home": "Giants",
-    "spread": 3,
-    "total": 43.5,
-    "favorite": "COMMANDERS"
-  },
-  {
-    "id": "nfl-2026-10-11-eagles-jaguars",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Eagles",
-    "home": "Jaguars",
-    "spread": 7,
-    "total": 42.5,
-    "favorite": "Jaguars"
-  },
-  {
-    "id": "nfl-2026-10-11-jets-browns",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "JETS",
-    "home": "Browns",
-    "spread": 2.5,
-    "total": 39.5,
-    "favorite": "JETS"
-  },
-  {
-    "id": "nfl-2026-10-11-lions-cardinals",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Lions",
-    "home": "CARDINALS",
-    "spread": 4.5,
-    "total": 54.5,
-    "favorite": "Lions"
-  },
-  {
-    "id": "nfl-2026-10-11-patriots-raiders",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "PATRIOTS",
-    "home": "Raiders",
-    "spread": 3.5,
-    "total": 45.5,
-    "favorite": "PATRIOTS"
-  },
-  {
-    "id": "nfl-2026-10-11-ravens-falcons",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Ravens",
-    "home": "FALCONS",
-    "spread": 3.5,
-    "total": 46.5,
-    "favorite": "Ravens"
-  },
-  {
-    "id": "nfl-2026-10-11-seahawks-49ers",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "SEAHAWKS",
-    "home": "49ers",
-    "spread": 2.5,
-    "total": 47.5,
-    "favorite": "SEAHAWKS"
-  },
-  {
-    "id": "nfl-2026-10-11-steelers-colts",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "STEELERS",
-    "home": "Colts",
-    "spread": 2.5,
-    "total": 44.5,
-    "favorite": "STEELERS"
-  },
-  {
-    "id": "nfl-2026-10-11-texans-titans",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Texans",
-    "home": "TITANS",
-    "spread": 7,
-    "total": 39.5,
-    "favorite": "Texans"
-  },
-  {
-    "id": "nfl-2026-10-11-vikings-saints",
-    "sport": "NFL",
-    "date": "2026-10-11",
-    "away": "Vikings",
-    "home": "SAINTS",
-    "spread": 1.5,
-    "total": 42.5,
-    "favorite": "Vikings"
-  },
-  {
-    "id": "nfl-2026-10-12-rams-bills",
-    "sport": "NFL",
-    "date": "2026-10-12",
-    "away": "RAMS",
-    "home": "Bills",
-    "spread": 2.5,
-    "total": 54.5,
-    "favorite": "RAMS"
-  },
-  {
-    "id": "ncaa-2026-10-08-arkansasst-southalabama",
-    "sport": "NCAA",
-    "date": "2026-10-08",
-    "away": "ARKANSAS ST",
-    "home": "South Alabama",
-    "spread": 1.5,
-    "total": 57.5,
-    "favorite": "ARKANSAS ST"
-  },
-  {
-    "id": "ncaa-2026-10-08-liberty-samhouston",
-    "sport": "NCAA",
-    "date": "2026-10-08",
-    "away": "LIBERTY",
-    "home": "Sam Houston",
-    "spread": 13.5,
-    "total": 52.5,
-    "favorite": "LIBERTY"
-  },
-  {
-    "id": "ncaa-2026-10-08-utsa-southflorida",
-    "sport": "NCAA",
-    "date": "2026-10-08",
-    "away": "UTSA",
-    "home": "South Florida",
-    "spread": 7,
-    "total": 49.5,
-    "favorite": "UTSA"
-  },
-  {
-    "id": "ncaa-2026-10-08-westernkentucky-missourist",
-    "sport": "NCAA",
-    "date": "2026-10-08",
-    "away": "WESTERN KENTUCKY",
-    "home": "Missouri St",
-    "spread": 2.5,
-    "total": 56.5,
-    "favorite": "WESTERN KENTUCKY"
-  },
-  {
-    "id": "ncaa-2026-10-09-byu-iowast",
-    "sport": "NCAA",
-    "date": "2026-10-09",
-    "away": "BYU",
-    "home": "Iowa St",
-    "spread": 10.5,
-    "total": 48.5,
-    "favorite": "BYU"
-  },
-  {
-    "id": "ncaa-2026-10-09-louisville-floridast",
-    "sport": "NCAA",
-    "date": "2026-10-09",
-    "away": "LOUISVILLE",
-    "home": "Florida St",
-    "spread": 3.5,
-    "total": 59.5,
-    "favorite": "LOUISVILLE"
-  },
-  {
-    "id": "ncaa-2026-10-09-sanjosest-wyoming",
-    "sport": "NCAA",
-    "date": "2026-10-09",
-    "away": "SAN JOSE ST",
-    "home": "Wyoming",
-    "spread": 6.5,
-    "total": 43.5,
-    "favorite": "SAN JOSE ST"
-  },
-  {
-    "id": "ncaa-2026-10-09-utahst-washingtonst",
-    "sport": "NCAA",
-    "date": "2026-10-09",
-    "away": "UTAH ST",
-    "home": "Washington St",
-    "spread": 5.5,
-    "total": 43.5,
-    "favorite": "UTAH ST"
-  },
-  {
-    "id": "ncaa-2026-10-09-washington-iowa",
-    "sport": "NCAA",
-    "date": "2026-10-09",
-    "away": "WASHINGTON",
-    "home": "Iowa",
-    "spread": 3,
-    "total": 41.5,
-    "favorite": "WASHINGTON"
-  },
-  {
-    "id": "ncaa-2026-10-10-airforce-northernillinois",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Air Force",
-    "home": "NORTHERN ILLINOIS",
-    "spread": 7.5,
-    "total": 46.5,
-    "favorite": "Air Force"
-  },
-  {
-    "id": "ncaa-2026-10-10-alabama-georgia",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "ALABAMA",
-    "home": "Georgia",
-    "spread": 1.5,
-    "total": 55.5,
-    "favorite": "ALABAMA"
-  },
-  {
-    "id": "ncaa-2026-10-10-appst-olddominion",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "APP ST",
-    "home": "Old Dominion",
-    "spread": 9.5,
-    "total": 50.5,
-    "favorite": "APP ST"
-  },
-  {
-    "id": "ncaa-2026-10-10-arizona-westvirginia",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Arizona",
-    "home": "WEST VIRGINIA",
-    "spread": 3.5,
-    "total": 61.5,
-    "favorite": "Arizona"
-  },
-  {
-    "id": "ncaa-2026-10-10-arizonast-hawaii",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "ARIZONA ST",
-    "home": "Hawaii",
-    "spread": 20.5,
-    "total": 51.5,
-    "favorite": "ARIZONA ST"
-  },
-  {
-    "id": "ncaa-2026-10-10-army-tulane",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "ARMY",
-    "home": "Tulane",
-    "spread": 3,
-    "total": 48.5,
-    "favorite": "ARMY"
-  },
-  {
-    "id": "ncaa-2026-10-10-boisest-fresnost",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Boise St",
-    "home": "FRESNO ST",
-    "spread": 6.5,
-    "total": 48.5,
-    "favorite": "Boise St"
-  },
-  {
-    "id": "ncaa-2026-10-10-bowlinggreen-sacramentost",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "BOWLING GREEN",
-    "home": "Sacramento St",
-    "spread": 7,
-    "total": 44.5,
-    "favorite": "BOWLING GREEN"
-  },
-  {
-    "id": "ncaa-2026-10-10-duke-georgiatech",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Duke",
-    "home": "GEORGIA TECH",
-    "spread": 7,
-    "total": 49.5,
-    "favorite": "Duke"
-  },
-  {
-    "id": "ncaa-2026-10-10-eastcarolina-rice",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "EAST CAROLINA",
-    "home": "Rice",
-    "spread": 10,
-    "total": 48.5,
-    "favorite": "EAST CAROLINA"
-  },
-  {
-    "id": "ncaa-2026-10-10-easternmich-akron",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Eastern Mich",
-    "home": "AKRON",
-    "spread": 7,
-    "total": 51.5,
-    "favorite": "Eastern Mich"
-  },
-  {
-    "id": "ncaa-2026-10-10-florida-southcarolina",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "FLORIDA",
-    "home": "South Carolina",
-    "spread": 12.5,
-    "total": 61.5,
-    "favorite": "FLORIDA"
-  },
-  {
-    "id": "ncaa-2026-10-10-illinois-michiganst",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Illinois",
-    "home": "MICHIGAN ST",
-    "spread": 2.5,
-    "total": 49.5,
-    "favorite": "Illinois"
-  },
-  {
-    "id": "ncaa-2026-10-10-indiana-nebraska",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Indiana",
-    "home": "NEBRASKA",
-    "spread": 7.5,
-    "total": 51.5,
-    "favorite": "Indiana"
-  },
-  {
-    "id": "ncaa-2026-10-10-jamesmadison-georgiasouthern",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "James Madison",
-    "home": "GEORGIA SOUTHERN",
-    "spread": 7.5,
-    "total": 54.5,
-    "favorite": "James Madison"
-  },
-  {
-    "id": "ncaa-2026-10-10-kansasst-houston",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "KANSAS ST",
-    "home": "Houston",
-    "spread": 2.5,
-    "total": 56.5,
-    "favorite": "KANSAS ST"
-  },
-  {
-    "id": "ncaa-2026-10-10-louisianatech-louisiana",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "LOUISIANA TECH",
-    "home": "Louisiana",
-    "spread": 3,
-    "total": 48.5,
-    "favorite": "LOUISIANA TECH"
-  },
-  {
-    "id": "ncaa-2026-10-10-lsu-kentucky",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Lsu",
-    "home": "KENTUCKY",
-    "spread": 8.5,
-    "total": 54.5,
-    "favorite": "Lsu"
-  },
-  {
-    "id": "ncaa-2026-10-10-marshall-coastalcarolina",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "MARSHALL",
-    "home": "Coastal Carolina",
-    "spread": 3,
-    "total": 58.5,
-    "favorite": "MARSHALL"
-  },
-  {
-    "id": "ncaa-2026-10-10-memphis-uab",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "MEMPHIS",
-    "home": "Uab",
-    "spread": 14,
-    "total": 57.5,
-    "favorite": "MEMPHIS"
-  },
-  {
-    "id": "ncaa-2026-10-10-miamioh-umass",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Miami (Oh)",
-    "home": "UMASS",
-    "spread": 2.5,
-    "total": 46.5,
-    "favorite": "Miami (Oh)"
-  },
-  {
-    "id": "ncaa-2026-10-10-minnesota-purdue",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Minnesota",
-    "home": "PURDUE",
-    "spread": 2.5,
-    "total": 50.5,
-    "favorite": "Minnesota"
-  },
-  {
-    "id": "ncaa-2026-10-10-missouri-texasaandm",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "MISSOURI",
-    "home": "Texas A&M",
-    "spread": 3.5,
-    "total": 48.5,
-    "favorite": "MISSOURI"
-  },
-  {
-    "id": "ncaa-2026-10-10-navy-tulsa",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "NAVY",
-    "home": "Tulsa",
-    "spread": 2.5,
-    "total": 48.5,
-    "favorite": "NAVY"
-  },
-  {
-    "id": "ncaa-2026-10-10-nevada-utep",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Nevada",
-    "home": "UTEP",
-    "spread": 8.5,
-    "total": 49.5,
-    "favorite": "Nevada"
-  },
-  {
-    "id": "ncaa-2026-10-10-northdakotast-unlv",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "North Dakota St",
-    "home": "UNLV",
-    "spread": 3,
-    "total": 48.5,
-    "favorite": "North Dakota St"
-  },
-  {
-    "id": "ncaa-2026-10-10-northtexas-charlotte",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "NORTH TEXAS",
-    "home": "Charlotte",
-    "spread": 27.5,
-    "total": 57.5,
-    "favorite": "NORTH TEXAS"
-  },
-  {
-    "id": "ncaa-2026-10-10-northwestern-ballst",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "NORTHWESTERN",
-    "home": "Ball St",
-    "spread": 36.5,
-    "total": 52.5,
-    "favorite": "NORTHWESTERN"
-  },
-  {
-    "id": "ncaa-2026-10-10-notredame-stanford",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "NOTRE DAME",
-    "home": "Stanford",
-    "spread": 37.5,
-    "total": 53.5,
-    "favorite": "NOTRE DAME"
-  },
-  {
-    "id": "ncaa-2026-10-10-ohio-centralmich",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "OHIO",
-    "home": "Central Mich",
-    "spread": 3,
-    "total": 46.5,
-    "favorite": "OHIO"
-  },
-  {
-    "id": "ncaa-2026-10-10-ohiost-maryland",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "OHIO ST",
-    "home": "Maryland",
-    "spread": 34.5,
-    "total": 56.5,
-    "favorite": "OHIO ST"
-  },
-  {
-    "id": "ncaa-2026-10-10-oklahomast-ucf",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "OKLAHOMA ST",
-    "home": "Ucf",
-    "spread": 9.5,
-    "total": 53.5,
-    "favorite": "OKLAHOMA ST"
-  },
-  {
-    "id": "ncaa-2026-10-10-olemiss-vanderbilt",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Ole Miss",
-    "home": "VANDERBILT",
-    "spread": 9.5,
-    "total": 58.5,
-    "favorite": "Ole Miss"
-  },
-  {
-    "id": "ncaa-2026-10-10-oregon-ucla",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "OREGON",
-    "home": "Ucla",
-    "spread": 11.5,
-    "total": 59.5,
-    "favorite": "OREGON"
-  },
-  {
-    "id": "ncaa-2026-10-10-oregonst-sandiegost",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "OREGON ST",
-    "home": "San Diego St",
-    "spread": 14,
-    "total": 55.5,
-    "favorite": "OREGON ST"
-  },
-  {
-    "id": "ncaa-2026-10-10-pennst-usc",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "PENN ST",
-    "home": "Usc",
-    "spread": 1.5,
-    "total": 54.5,
-    "favorite": "PENN ST"
-  },
-  {
-    "id": "ncaa-2026-10-10-pitt-northcarolina",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "PITT",
-    "home": "North Carolina",
-    "spread": 4,
-    "total": 47.5,
-    "favorite": "PITT"
-  },
-  {
-    "id": "ncaa-2026-10-10-temple-uconn",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "TEMPLE",
-    "home": "Uconn",
-    "spread": 3.5,
-    "total": 54.5,
-    "favorite": "TEMPLE"
-  },
-  {
-    "id": "ncaa-2026-10-10-tennessee-arkansas",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Tennessee",
-    "home": "ARKANSAS",
-    "spread": 13.5,
-    "total": 51.5,
-    "favorite": "Tennessee"
-  },
-  {
-    "id": "ncaa-2026-10-10-texas-oklahoma",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Texas",
-    "home": "Oklahoma",
-    "spread": 8.5,
-    "total": 39.5,
-    "favorite": "Texas"
-  },
-  {
-    "id": "ncaa-2026-10-10-toledo-buffalo",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "TOLEDO",
-    "home": "Buffalo",
-    "spread": 19.5,
-    "total": 54.5,
-    "favorite": "TOLEDO"
-  },
-  {
-    "id": "ncaa-2026-10-10-utah-kansas",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "UTAH",
-    "home": "Kansas",
-    "spread": 15.5,
-    "total": 52.5,
-    "favorite": "UTAH"
-  },
-  {
-    "id": "ncaa-2026-10-10-virginia-syracuse",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "VIRGINIA",
-    "home": "Syracuse",
-    "spread": 9.5,
-    "total": 50.5,
-    "favorite": "VIRGINIA"
-  },
-  {
-    "id": "ncaa-2026-10-10-virginiatech-california",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Virginia Tech",
-    "home": "CALIFORNIA",
-    "spread": 8.5,
-    "total": 53.5,
-    "favorite": "Virginia Tech"
-  },
-  {
-    "id": "ncaa-2026-10-10-wakeforest-ncstate",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "Wake Forest",
-    "home": "NC STATE",
-    "spread": 4,
-    "total": 59.5,
-    "favorite": "Wake Forest"
-  },
-  {
-    "id": "ncaa-2026-10-10-westernmich-kentst",
-    "sport": "NCAA",
-    "date": "2026-10-10",
-    "away": "WESTERN MICH",
-    "home": "Kent St",
-    "spread": 13.5,
-    "total": 43.5,
-    "favorite": "WESTERN MICH"
-  }
-],
+    {
+      "id": "nfl-2026-10-08-cowboys-buccaneers",
+      "sport": "NFL",
+      "date": "2026-10-08",
+      "away": "Buccaneers",
+      "home": "COWBOYS",
+      "spread": 9.5,
+      "total": 47.5,
+      "favorite": "COWBOYS"
+    },
+    {
+      "id": "nfl-2026-10-11-bears-packers",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Bears",
+      "home": "PACKERS",
+      "spread": 3.0,
+      "total": 45.5,
+      "favorite": "Bears"
+    },
+    {
+      "id": "nfl-2026-10-11-bengals-dolphins",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Bengals",
+      "home": "DOLPHINS",
+      "spread": 7.0,
+      "total": 42.5,
+      "favorite": "Bengals"
+    },
+    {
+      "id": "nfl-2026-10-11-broncos-chargers",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Broncos",
+      "home": "CHARGERS",
+      "spread": 3.5,
+      "total": 42.5,
+      "favorite": "Broncos"
+    },
+    {
+      "id": "nfl-2026-10-11-commanders-giants",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Giants",
+      "home": "COMMANDERS",
+      "spread": 3.0,
+      "total": 43.5,
+      "favorite": "COMMANDERS"
+    },
+    {
+      "id": "nfl-2026-10-11-eagles-jaguars",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Eagles",
+      "home": "Jaguars",
+      "spread": 7.0,
+      "total": 42.5,
+      "favorite": "Jaguars"
+    },
+    {
+      "id": "nfl-2026-10-11-jets-browns",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Browns",
+      "home": "JETS",
+      "spread": 2.5,
+      "total": 39.5,
+      "favorite": "JETS"
+    },
+    {
+      "id": "nfl-2026-10-11-lions-cardinals",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Lions",
+      "home": "CARDINALS",
+      "spread": 4.5,
+      "total": 54.5,
+      "favorite": "Lions"
+    },
+    {
+      "id": "nfl-2026-10-11-patriots-raiders",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Raiders",
+      "home": "PATRIOTS",
+      "spread": 3.5,
+      "total": 45.5,
+      "favorite": "PATRIOTS"
+    },
+    {
+      "id": "nfl-2026-10-11-ravens-falcons",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Ravens",
+      "home": "FALCONS",
+      "spread": 3.5,
+      "total": 46.5,
+      "favorite": "Ravens"
+    },
+    {
+      "id": "nfl-2026-10-11-seahawks-49ers",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "49ers",
+      "home": "SEAHAWKS",
+      "spread": 2.5,
+      "total": 47.5,
+      "favorite": "SEAHAWKS"
+    },
+    {
+      "id": "nfl-2026-10-11-steelers-colts",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Colts",
+      "home": "STEELERS",
+      "spread": 2.5,
+      "total": 44.5,
+      "favorite": "STEELERS"
+    },
+    {
+      "id": "nfl-2026-10-11-texans-titans",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Texans",
+      "home": "TITANS",
+      "spread": 7.0,
+      "total": 39.5,
+      "favorite": "Texans"
+    },
+    {
+      "id": "nfl-2026-10-11-vikings-saints",
+      "sport": "NFL",
+      "date": "2026-10-11",
+      "away": "Vikings",
+      "home": "SAINTS",
+      "spread": 1.5,
+      "total": 42.5,
+      "favorite": "Vikings"
+    },
+    {
+      "id": "nfl-2026-10-12-rams-bills",
+      "sport": "NFL",
+      "date": "2026-10-12",
+      "away": "Bills",
+      "home": "RAMS",
+      "spread": 2.5,
+      "total": 54.5,
+      "favorite": "RAMS"
+    },
+    {
+      "id": "ncaa-2026-10-08-arkansasst-southalabama",
+      "sport": "NCAA",
+      "date": "2026-10-08",
+      "away": "South Alabama",
+      "home": "ARKANSAS ST",
+      "spread": 1.5,
+      "total": 57.5,
+      "favorite": "ARKANSAS ST"
+    },
+    {
+      "id": "ncaa-2026-10-08-liberty-samhouston",
+      "sport": "NCAA",
+      "date": "2026-10-08",
+      "away": "Sam Houston",
+      "home": "LIBERTY",
+      "spread": 13.5,
+      "total": 52.5,
+      "favorite": "LIBERTY"
+    },
+    {
+      "id": "ncaa-2026-10-08-utsa-southflorida",
+      "sport": "NCAA",
+      "date": "2026-10-08",
+      "away": "South Florida",
+      "home": "UTSA",
+      "spread": 7.0,
+      "total": 49.5,
+      "favorite": "UTSA"
+    },
+    {
+      "id": "ncaa-2026-10-08-westernkentucky-missourist",
+      "sport": "NCAA",
+      "date": "2026-10-08",
+      "away": "Missouri St",
+      "home": "WESTERN KENTUCKY",
+      "spread": 2.5,
+      "total": 56.5,
+      "favorite": "WESTERN KENTUCKY"
+    },
+    {
+      "id": "ncaa-2026-10-09-byu-iowast",
+      "sport": "NCAA",
+      "date": "2026-10-09",
+      "away": "Iowa St",
+      "home": "BYU",
+      "spread": 10.5,
+      "total": 48.5,
+      "favorite": "BYU"
+    },
+    {
+      "id": "ncaa-2026-10-09-louisville-floridast",
+      "sport": "NCAA",
+      "date": "2026-10-09",
+      "away": "Florida St",
+      "home": "LOUISVILLE",
+      "spread": 3.5,
+      "total": 59.5,
+      "favorite": "LOUISVILLE"
+    },
+    {
+      "id": "ncaa-2026-10-09-sanjosest-wyoming",
+      "sport": "NCAA",
+      "date": "2026-10-09",
+      "away": "Wyoming",
+      "home": "SAN JOSE ST",
+      "spread": 6.5,
+      "total": 43.5,
+      "favorite": "SAN JOSE ST"
+    },
+    {
+      "id": "ncaa-2026-10-09-utahst-washingtonst",
+      "sport": "NCAA",
+      "date": "2026-10-09",
+      "away": "Washington St",
+      "home": "UTAH ST",
+      "spread": 5.5,
+      "total": 43.5,
+      "favorite": "UTAH ST"
+    },
+    {
+      "id": "ncaa-2026-10-09-washington-iowa",
+      "sport": "NCAA",
+      "date": "2026-10-09",
+      "away": "Iowa",
+      "home": "WASHINGTON",
+      "spread": 3.0,
+      "total": 41.5,
+      "favorite": "WASHINGTON"
+    },
+    {
+      "id": "ncaa-2026-10-10-airforce-northernillinois",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Air Force",
+      "home": "NORTHERN ILLINOIS",
+      "spread": 7.5,
+      "total": 46.5,
+      "favorite": "Air Force"
+    },
+    {
+      "id": "ncaa-2026-10-10-alabama-georgia",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Georgia",
+      "home": "ALABAMA",
+      "spread": 1.5,
+      "total": 55.5,
+      "favorite": "ALABAMA"
+    },
+    {
+      "id": "ncaa-2026-10-10-appst-olddominion",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Old Dominion",
+      "home": "APP ST",
+      "spread": 9.5,
+      "total": 50.5,
+      "favorite": "APP ST"
+    },
+    {
+      "id": "ncaa-2026-10-10-arizona-westvirginia",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Arizona",
+      "home": "WEST VIRGINIA",
+      "spread": 3.5,
+      "total": 61.5,
+      "favorite": "Arizona"
+    },
+    {
+      "id": "ncaa-2026-10-10-arizonast-hawaii",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Hawaii",
+      "home": "ARIZONA ST",
+      "spread": 20.5,
+      "total": 51.5,
+      "favorite": "ARIZONA ST"
+    },
+    {
+      "id": "ncaa-2026-10-10-army-tulane",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Tulane",
+      "home": "ARMY",
+      "spread": 3.0,
+      "total": 48.5,
+      "favorite": "ARMY"
+    },
+    {
+      "id": "ncaa-2026-10-10-boisest-fresnost",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Boise St",
+      "home": "FRESNO ST",
+      "spread": 6.5,
+      "total": 48.5,
+      "favorite": "Boise St"
+    },
+    {
+      "id": "ncaa-2026-10-10-bowlinggreen-sacramentost",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Sacramento St",
+      "home": "BOWLING GREEN",
+      "spread": 7.0,
+      "total": 44.5,
+      "favorite": "BOWLING GREEN"
+    },
+    {
+      "id": "ncaa-2026-10-10-duke-georgiatech",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Duke",
+      "home": "GEORGIA TECH",
+      "spread": 7.0,
+      "total": 49.5,
+      "favorite": "Duke"
+    },
+    {
+      "id": "ncaa-2026-10-10-eastcarolina-rice",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Rice",
+      "home": "EAST CAROLINA",
+      "spread": 10.0,
+      "total": 48.5,
+      "favorite": "EAST CAROLINA"
+    },
+    {
+      "id": "ncaa-2026-10-10-easternmich-akron",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Eastern Mich",
+      "home": "AKRON",
+      "spread": 7.0,
+      "total": 51.5,
+      "favorite": "Eastern Mich"
+    },
+    {
+      "id": "ncaa-2026-10-10-florida-southcarolina",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "South Carolina",
+      "home": "FLORIDA",
+      "spread": 12.5,
+      "total": 61.5,
+      "favorite": "FLORIDA"
+    },
+    {
+      "id": "ncaa-2026-10-10-illinois-michiganst",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Illinois",
+      "home": "MICHIGAN ST",
+      "spread": 2.5,
+      "total": 49.5,
+      "favorite": "Illinois"
+    },
+    {
+      "id": "ncaa-2026-10-10-indiana-nebraska",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Indiana",
+      "home": "NEBRASKA",
+      "spread": 7.5,
+      "total": 51.5,
+      "favorite": "Indiana"
+    },
+    {
+      "id": "ncaa-2026-10-10-jamesmadison-georgiasouthern",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "James Madison",
+      "home": "GEORGIA SOUTHERN",
+      "spread": 7.5,
+      "total": 54.5,
+      "favorite": "James Madison"
+    },
+    {
+      "id": "ncaa-2026-10-10-kansasst-houston",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Houston",
+      "home": "KANSAS ST",
+      "spread": 2.5,
+      "total": 56.5,
+      "favorite": "KANSAS ST"
+    },
+    {
+      "id": "ncaa-2026-10-10-louisianatech-louisiana",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Louisiana",
+      "home": "LOUISIANA TECH",
+      "spread": 3.0,
+      "total": 48.5,
+      "favorite": "LOUISIANA TECH"
+    },
+    {
+      "id": "ncaa-2026-10-10-lsu-kentucky",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Lsu",
+      "home": "KENTUCKY",
+      "spread": 8.5,
+      "total": 54.5,
+      "favorite": "Lsu"
+    },
+    {
+      "id": "ncaa-2026-10-10-marshall-coastalcarolina",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Coastal Carolina",
+      "home": "MARSHALL",
+      "spread": 3.0,
+      "total": 58.5,
+      "favorite": "MARSHALL"
+    },
+    {
+      "id": "ncaa-2026-10-10-memphis-uab",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Uab",
+      "home": "MEMPHIS",
+      "spread": 14.0,
+      "total": 57.5,
+      "favorite": "MEMPHIS"
+    },
+    {
+      "id": "ncaa-2026-10-10-miamioh-umass",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Miami (Oh)",
+      "home": "UMASS",
+      "spread": 2.5,
+      "total": 46.5,
+      "favorite": "Miami (Oh)"
+    },
+    {
+      "id": "ncaa-2026-10-10-minnesota-purdue",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Minnesota",
+      "home": "PURDUE",
+      "spread": 2.5,
+      "total": 50.5,
+      "favorite": "Minnesota"
+    },
+    {
+      "id": "ncaa-2026-10-10-missouri-texasaandm",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Texas A&M",
+      "home": "MISSOURI",
+      "spread": 3.5,
+      "total": 48.5,
+      "favorite": "MISSOURI"
+    },
+    {
+      "id": "ncaa-2026-10-10-navy-tulsa",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Tulsa",
+      "home": "NAVY",
+      "spread": 2.5,
+      "total": 48.5,
+      "favorite": "NAVY"
+    },
+    {
+      "id": "ncaa-2026-10-10-nevada-utep",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Nevada",
+      "home": "UTEP",
+      "spread": 8.5,
+      "total": 49.5,
+      "favorite": "Nevada"
+    },
+    {
+      "id": "ncaa-2026-10-10-northdakotast-unlv",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "North Dakota St",
+      "home": "UNLV",
+      "spread": 3.0,
+      "total": 48.5,
+      "favorite": "North Dakota St"
+    },
+    {
+      "id": "ncaa-2026-10-10-northtexas-charlotte",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Charlotte",
+      "home": "NORTH TEXAS",
+      "spread": 27.5,
+      "total": 57.5,
+      "favorite": "NORTH TEXAS"
+    },
+    {
+      "id": "ncaa-2026-10-10-northwestern-ballst",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Ball St",
+      "home": "NORTHWESTERN",
+      "spread": 36.5,
+      "total": 52.5,
+      "favorite": "NORTHWESTERN"
+    },
+    {
+      "id": "ncaa-2026-10-10-notredame-stanford",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Stanford",
+      "home": "NOTRE DAME",
+      "spread": 37.5,
+      "total": 53.5,
+      "favorite": "NOTRE DAME"
+    },
+    {
+      "id": "ncaa-2026-10-10-ohio-centralmich",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Central Mich",
+      "home": "OHIO",
+      "spread": 3.0,
+      "total": 46.5,
+      "favorite": "OHIO"
+    },
+    {
+      "id": "ncaa-2026-10-10-ohiost-maryland",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Maryland",
+      "home": "OHIO ST",
+      "spread": 34.5,
+      "total": 56.5,
+      "favorite": "OHIO ST"
+    },
+    {
+      "id": "ncaa-2026-10-10-oklahomast-ucf",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Ucf",
+      "home": "OKLAHOMA ST",
+      "spread": 9.5,
+      "total": 53.5,
+      "favorite": "OKLAHOMA ST"
+    },
+    {
+      "id": "ncaa-2026-10-10-olemiss-vanderbilt",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Ole Miss",
+      "home": "VANDERBILT",
+      "spread": 9.5,
+      "total": 58.5,
+      "favorite": "Ole Miss"
+    },
+    {
+      "id": "ncaa-2026-10-10-oregon-ucla",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Ucla",
+      "home": "OREGON",
+      "spread": 11.5,
+      "total": 59.5,
+      "favorite": "OREGON"
+    },
+    {
+      "id": "ncaa-2026-10-10-oregonst-sandiegost",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "San Diego St",
+      "home": "OREGON ST",
+      "spread": 14.0,
+      "total": 55.5,
+      "favorite": "OREGON ST"
+    },
+    {
+      "id": "ncaa-2026-10-10-pennst-usc",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Usc",
+      "home": "PENN ST",
+      "spread": 1.5,
+      "total": 54.5,
+      "favorite": "PENN ST"
+    },
+    {
+      "id": "ncaa-2026-10-10-pitt-northcarolina",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "North Carolina",
+      "home": "PITT",
+      "spread": 4.0,
+      "total": 47.5,
+      "favorite": "PITT"
+    },
+    {
+      "id": "ncaa-2026-10-10-temple-uconn",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Uconn",
+      "home": "TEMPLE",
+      "spread": 3.5,
+      "total": 54.5,
+      "favorite": "TEMPLE"
+    },
+    {
+      "id": "ncaa-2026-10-10-tennessee-arkansas",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Tennessee",
+      "home": "ARKANSAS",
+      "spread": 13.5,
+      "total": 51.5,
+      "favorite": "Tennessee"
+    },
+    {
+      "id": "ncaa-2026-10-10-texas-oklahoma",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Texas",
+      "home": "Oklahoma",
+      "spread": 8.5,
+      "total": 39.5,
+      "favorite": "Texas"
+    },
+    {
+      "id": "ncaa-2026-10-10-toledo-buffalo",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Buffalo",
+      "home": "TOLEDO",
+      "spread": 19.5,
+      "total": 54.5,
+      "favorite": "TOLEDO"
+    },
+    {
+      "id": "ncaa-2026-10-10-utah-kansas",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Kansas",
+      "home": "UTAH",
+      "spread": 15.5,
+      "total": 52.5,
+      "favorite": "UTAH"
+    },
+    {
+      "id": "ncaa-2026-10-10-virginia-syracuse",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Syracuse",
+      "home": "VIRGINIA",
+      "spread": 9.5,
+      "total": 50.5,
+      "favorite": "VIRGINIA"
+    },
+    {
+      "id": "ncaa-2026-10-10-virginiatech-california",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Virginia Tech",
+      "home": "CALIFORNIA",
+      "spread": 8.5,
+      "total": 53.5,
+      "favorite": "Virginia Tech"
+    },
+    {
+      "id": "ncaa-2026-10-10-wakeforest-ncstate",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Wake Forest",
+      "home": "NC STATE",
+      "spread": 4.0,
+      "total": 59.5,
+      "favorite": "Wake Forest"
+    },
+    {
+      "id": "ncaa-2026-10-10-westernmich-kentst",
+      "sport": "NCAA",
+      "date": "2026-10-10",
+      "away": "Kent St",
+      "home": "WESTERN MICH",
+      "spread": 13.5,
+      "total": 43.5,
+      "favorite": "WESTERN MICH"
+    }
+  ],
   "entries": [
     {
       "id": 1,
