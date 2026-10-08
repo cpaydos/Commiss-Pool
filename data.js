@@ -708,962 +708,5274 @@ window.POOL_DATA = {
     {
       "id": 1,
       "name": "44&10",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "JAGUARS UNDER",
+          "team": "JAGUARS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 2,
       "name": "ABANDONED",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "STEELERS",
+        "team": "STEELERS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-steelers-colts"
+      },
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "CARDINALS",
+          "team": "CARDINALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 3,
       "name": "AIDEN BRADY",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "CARDINALS",
+          "team": "CARDINALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 4,
       "name": "ANGRY BEAVERS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "EAGLES",
+          "team": "EAGLES",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 5,
       "name": "AVERAGE JOES",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "COWBOYS UNDER",
+          "team": "COWBOYS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "JETS UNDER",
+          "team": "JETS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-jets-browns"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 6,
       "name": "B&G PRO",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "SEAHAWKS",
+        "team": "SEAHAWKS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-seahawks-49ers"
+      },
+      "picks": [
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "JAMES MADISON",
+          "team": "JAMES MADISON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-jamesmadison-georgiasouthern"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 7,
       "name": "B&M",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "NOTRE DAME",
+          "team": "NOTRE DAME",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        },
+        {
+          "raw": "RAVENS OVER",
+          "team": "RAVENS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "SEAHAWKS OVER",
+          "team": "SEAHAWKS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "UTAH OVER",
+          "team": "UTAH",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-utah-kansas"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 8,
       "name": "BAD HOMBRES",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "WESTERN MICH OVER",
+          "team": "WESTERN MICH",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-westernmich-kentst"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 9,
       "name": "BALD LIVES MATTER",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAMS OVER",
+          "team": "RAMS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-12-rams-bills"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 10,
       "name": "BARBER BEEFCAKES",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "EAGLES",
+          "team": "EAGLES",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "SAINTS",
+          "team": "SAINTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 11,
       "name": "BARTLES & JAMES",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "TITANS",
+          "team": "TITANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 12,
       "name": "BERNARD",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "NORTH CAROLINA",
+          "team": "NORTH CAROLINA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        },
+        {
+          "raw": "NORTHWESTERN",
+          "team": "NORTHWESTERN",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-northwestern-ballst"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 13,
       "name": "BET BOX",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "COWBOYS OVER",
+          "team": "COWBOYS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 15,
       "name": "BIG AL, JR AND KID",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "MISSOURI",
+        "team": "MISSOURI",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "ncaa-2026-10-10-missouri-texasaandm"
+      },
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "MISSOURI",
+          "team": "MISSOURI",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-missouri-texasaandm"
+        },
+        {
+          "raw": "WASHINGTON",
+          "team": "WASHINGTON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-washington-iowa"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 14,
       "name": "BIG K",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "BRONCOS",
+        "team": "BRONCOS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-broncos-chargers"
+      },
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 16,
       "name": "BILL S & LA FAMILIA",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "NORTH DAKOTA ST",
+          "team": "NORTH DAKOTA ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-northdakotast-unlv"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 17,
       "name": "BILL Z",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 18,
       "name": "BLACKIE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "SAINTS",
+          "team": "SAINTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 19,
       "name": "BOBBY G & SON",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "UMASS",
+          "team": "UMASS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-miamioh-umass"
+        },
+        {
+          "raw": "WASHINGTON",
+          "team": "WASHINGTON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-washington-iowa"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 20,
       "name": "BOPPO & GUS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "CARDINALS",
+          "team": "CARDINALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "SAINTS",
+          "team": "SAINTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 21,
       "name": "BOX TO WIRE",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "NAVY",
+          "team": "NAVY",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-navy-tulsa"
+        },
+        {
+          "raw": "USC",
+          "team": "USC",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pennst-usc"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 22,
       "name": "BOY DAD",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 23,
       "name": "BREW MASTER",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "SAINTS",
+          "team": "SAINTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "ARMY",
+          "team": "ARMY",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-army-tulane"
+        },
+        {
+          "raw": "UMASS",
+          "team": "UMASS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-miamioh-umass"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 24,
       "name": "C&K ENTERPRISES",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "COMMANDERS",
+          "team": "COMMANDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "DOLPHINS",
+          "team": "DOLPHINS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "RAVENS",
+          "team": "RAVENS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 25,
       "name": "CADDY",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "EAGLES",
+          "team": "EAGLES",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAVENS",
+          "team": "RAVENS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 26,
       "name": "CALIENTE TAKEDOWN",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "EASTERN MICH",
+          "team": "EASTERN MICH",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-easternmich-akron"
+        },
+        {
+          "raw": "LIBERTY",
+          "team": "LIBERTY",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-08-liberty-samhouston"
+        },
+        {
+          "raw": "MARSHALL",
+          "team": "MARSHALL",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-marshall-coastalcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 27,
       "name": "CASPER",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "SAINTS",
+          "team": "SAINTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "NEBRASKA",
+          "team": "NEBRASKA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-indiana-nebraska"
+        },
+        {
+          "raw": "PENN ST",
+          "team": "PENN ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pennst-usc"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 28,
       "name": "CHAMPION SWEATPANTS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 29,
       "name": "CHATEAU MEATBALL",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "DOLPHINS",
+          "team": "DOLPHINS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "TITANS",
+          "team": "TITANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "TEXANS UNDER",
+          "team": "TEXANS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "VIKINGS UNDER",
+          "team": "VIKINGS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 30,
       "name": "CLIFF & PUCK",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "VIRGINIA TECH",
+          "team": "VIRGINIA TECH",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-virginiatech-california"
+        },
+        {
+          "raw": "WAKE FOREST",
+          "team": "WAKE FOREST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-wakeforest-ncstate"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 31,
       "name": "COLOMBO 21",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "FLORIDA",
+          "team": "FLORIDA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-florida-southcarolina"
+        },
+        {
+          "raw": "TEXAS A&M",
+          "team": "TEXAS A&M",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-missouri-texasaandm"
+        },
+        {
+          "raw": "RAVENS OVER",
+          "team": "RAVENS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 32,
       "name": "COLONY PIZZA",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "VIKINGS UNDER",
+          "team": "VIKINGS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 33,
       "name": "DICK ALONE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "CARDINALS",
+          "team": "CARDINALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 34,
       "name": "DICKY 76",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PITT",
+        "team": "PITT",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+      },
+      "picks": [
+        {
+          "raw": "ARIZONA ST",
+          "team": "ARIZONA ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-arizonast-hawaii"
+        },
+        {
+          "raw": "GEORGIA SOUTHERN",
+          "team": "GEORGIA SOUTHERN",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-jamesmadison-georgiasouthern"
+        },
+        {
+          "raw": "NORTHERN ILLINOIS",
+          "team": "NORTHERN ILLINOIS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-airforce-northernillinois"
+        },
+        {
+          "raw": "VIRGINIA TECH",
+          "team": "VIRGINIA TECH",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-virginiatech-california"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 35,
       "name": "DIRTY DOLLAR",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "VIKINGS",
+        "team": "VIKINGS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-vikings-saints"
+      },
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "COMMANDERS",
+          "team": "COMMANDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 36,
       "name": "DOE LANE BOYZ",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "LIONS OVER",
+          "team": "LIONS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "VIKINGS OVER",
+          "team": "VIKINGS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 37,
       "name": "DOIN WORK",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "JAMES MADISON",
+          "team": "JAMES MADISON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-jamesmadison-georgiasouthern"
+        },
+        {
+          "raw": "RAVENS UNDER",
+          "team": "RAVENS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 38,
       "name": "DOS BRENDANS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "RAVENS UNDER",
+          "team": "RAVENS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 39,
       "name": "DR. DADDY",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 40,
       "name": "DREAM TEAM",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "EAGLES",
+          "team": "EAGLES",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "COWBOYS OVER",
+          "team": "COWBOYS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 41,
       "name": "EASY MONEY",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "APP ST",
+          "team": "APP ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-appst-olddominion"
+        },
+        {
+          "raw": "LIONS OVER",
+          "team": "LIONS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 42,
       "name": "EL NINO",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "ALABAMA UNDER",
+          "team": "ALABAMA",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "BYU UNDER",
+          "team": "BYU",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-09-byu-iowast"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 43,
       "name": "EMMO",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 44,
       "name": "EXETER HAWKS",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "BRONCOS",
+        "team": "BRONCOS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-broncos-chargers"
+      },
+      "picks": [
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "LIONS OVER",
+          "team": "LIONS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 45,
       "name": "FAMOUS DAVE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 46,
       "name": "FAST EDDIE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "ALABAMA",
+          "team": "ALABAMA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "FLORIDA ST",
+          "team": "FLORIDA ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-louisville-floridast"
+        },
+        {
+          "raw": "NEBRASKA",
+          "team": "NEBRASKA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-indiana-nebraska"
+        },
+        {
+          "raw": "VIRGINIA TECH",
+          "team": "VIRGINIA TECH",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-virginiatech-california"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 47,
       "name": "FAT ATTACK",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "ARKANSAS ST OVER",
+          "team": "ARKANSAS ST",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-08-arkansasst-southalabama"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 48,
       "name": "FIREBALL",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "BOISE ST",
+          "team": "BOISE ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-boisest-fresnost"
+        },
+        {
+          "raw": "GEORGIA",
+          "team": "GEORGIA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 49,
       "name": "FLANSAM",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BYU",
+          "team": "BYU",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-byu-iowast"
+        },
+        {
+          "raw": "INDIANA",
+          "team": "INDIANA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-indiana-nebraska"
+        },
+        {
+          "raw": "NAVY",
+          "team": "NAVY",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-navy-tulsa"
+        },
+        {
+          "raw": "WASHINGTON",
+          "team": "WASHINGTON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-washington-iowa"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 50,
       "name": "FLESHY FUN BRIDGE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 51,
       "name": "GAME DAY",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "CARDINALS",
+          "team": "CARDINALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 52,
       "name": "GOOSE EGG",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PITT",
+        "team": "PITT",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+      },
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 53,
       "name": "GRANT SLAM",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 54,
       "name": "GREEK'S KID",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BUCCANEERS",
+          "team": "BUCCANEERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 55,
       "name": "HAMMER TIME 44",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "RAVENS",
+        "team": "RAVENS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-ravens-falcons"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAVENS",
+          "team": "RAVENS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 56,
       "name": "HANOVER INDIANS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "LIONS OVER",
+          "team": "LIONS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "TEXANS UNDER",
+          "team": "TEXANS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 57,
       "name": "HAWKEYES",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "TEXAS",
+          "team": "TEXAS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-texas-oklahoma"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 58,
       "name": "HH & PABLO",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 59,
       "name": "HONK SHOE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BUCCANEERS",
+          "team": "BUCCANEERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "DOLPHINS",
+          "team": "DOLPHINS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "RAVENS",
+          "team": "RAVENS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 60,
       "name": "HOOTIE",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "WASHINGTON",
+        "team": "WASHINGTON",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "ncaa-2026-10-09-washington-iowa"
+      },
+      "picks": [
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "TITANS",
+          "team": "TITANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "OREGON ST",
+          "team": "OREGON ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-oregonst-sandiegost"
+        },
+        {
+          "raw": "UCLA",
+          "team": "UCLA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-oregon-ucla"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 61,
       "name": "HOSS TROTTERS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 62,
       "name": "HOW YA DOON",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "RAVENS UNDER",
+          "team": "RAVENS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 63,
       "name": "HUNTERS EDGE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "DUKE",
+          "team": "DUKE",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-duke-georgiatech"
+        },
+        {
+          "raw": "IOWA",
+          "team": "IOWA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-washington-iowa"
+        },
+        {
+          "raw": "OLE MISS",
+          "team": "OLE MISS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-olemiss-vanderbilt"
+        },
+        {
+          "raw": "VIRGINIA",
+          "team": "VIRGINIA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-virginia-syracuse"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 64,
       "name": "HURRICANE BOB",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 65,
       "name": "ITALIAN FIGHTING IRISH",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BUCCANEERS",
+          "team": "BUCCANEERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "COMMANDERS",
+          "team": "COMMANDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 66,
       "name": "JABBERTIME",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "GEORGIA",
+          "team": "GEORGIA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "VIKINGS OVER",
+          "team": "VIKINGS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "TEXANS UNDER",
+          "team": "TEXANS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 67,
       "name": "JAZZMAN",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "BEARS",
+        "team": "BEARS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-bears-packers"
+      },
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "OHIO ST",
+          "team": "OHIO ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-ohiost-maryland"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 68,
       "name": "JET",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "VIKINGS",
+        "team": "VIKINGS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-vikings-saints"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 69,
       "name": "JETMAN",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "PATRIOTS OVER",
+          "team": "PATRIOTS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "SEAHAWKS OVER",
+          "team": "SEAHAWKS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 70,
       "name": "JIMMY TWA",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 71,
       "name": "JOE VALLACHI",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "COMMANDERS UNDER",
+          "team": "COMMANDERS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "STEELERS UNDER",
+          "team": "STEELERS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 72,
       "name": "JOE VALLACHI'S GRANDSON",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 73,
       "name": "JOE VALLACHI'S SON",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "JAGUARS OVER",
+          "team": "JAGUARS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 74,
       "name": "JUMP BALL",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 75,
       "name": "JUNIOR & SENIOR",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "EAGLES",
+          "team": "EAGLES",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "TEXAS",
+          "team": "TEXAS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-texas-oklahoma"
+        },
+        {
+          "raw": "WAKE FOREST",
+          "team": "WAKE FOREST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-wakeforest-ncstate"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 76,
       "name": "JUNK SQUAD",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "OREGON",
+          "team": "OREGON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-oregon-ucla"
+        },
+        {
+          "raw": "RAMS OVER",
+          "team": "RAMS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "ARIZONA OVER",
+          "team": "ARIZONA",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-arizona-westvirginia"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 77,
       "name": "KELL & JACK",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "ALABAMA",
+          "team": "ALABAMA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "MISSOURI",
+          "team": "MISSOURI",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-missouri-texasaandm"
+        },
+        {
+          "raw": "NAVY",
+          "team": "NAVY",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-navy-tulsa"
+        },
+        {
+          "raw": "NEBRASKA",
+          "team": "NEBRASKA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-indiana-nebraska"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 78,
       "name": "KELLY ALONE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 79,
       "name": "LADIES CHOICES",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 80,
       "name": "LEMON DROP KID",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "ALABAMA",
+          "team": "ALABAMA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "LOUISVILLE",
+          "team": "LOUISVILLE",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-louisville-floridast"
+        },
+        {
+          "raw": "TEXANS UNDER",
+          "team": "TEXANS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 81,
       "name": "LOLO THE MILF",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "FLORIDA",
+          "team": "FLORIDA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-florida-southcarolina"
+        },
+        {
+          "raw": "OREGON ST",
+          "team": "OREGON ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-oregonst-sandiegost"
+        },
+        {
+          "raw": "FLORIDA OVER",
+          "team": "FLORIDA",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-florida-southcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 82,
       "name": "LORENZO & TC",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "LOUISVILLE",
+          "team": "LOUISVILLE",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-louisville-floridast"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 83,
       "name": "LYNN SHORE SEA LIONS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "AIR FORCE",
+          "team": "AIR FORCE",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-airforce-northernillinois"
+        },
+        {
+          "raw": "DUKE",
+          "team": "DUKE",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-duke-georgiatech"
+        },
+        {
+          "raw": "JAMES MADISON",
+          "team": "JAMES MADISON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-jamesmadison-georgiasouthern"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 84,
       "name": "M & M BOYS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "COWBOYS OVER",
+          "team": "COWBOYS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "LOUISIANA TECH OVER",
+          "team": "LOUISIANA TECH",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-louisianatech-louisiana"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 85,
       "name": "MARCH MADNESS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 86,
       "name": "MARKALD",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "ARIZONA ST",
+          "team": "ARIZONA ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-arizonast-hawaii"
+        },
+        {
+          "raw": "MIAMI (OH)",
+          "team": "MIAMI (OH)",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-miamioh-umass"
+        },
+        {
+          "raw": "OHIO ST",
+          "team": "OHIO ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-ohiost-maryland"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 87,
       "name": "MAZDA & GEO",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "MISSOURI",
+          "team": "MISSOURI",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-missouri-texasaandm"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 88,
       "name": "MEOW KITTY",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 89,
       "name": "METROWEST GRIT",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "OHIO ST",
+          "team": "OHIO ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-ohiost-maryland"
+        },
+        {
+          "raw": "LIONS OVER",
+          "team": "LIONS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 90,
       "name": "MISSISSIPPI MUD",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 91,
       "name": "MODEL C",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FLORIDA",
+          "team": "FLORIDA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-florida-southcarolina"
+        },
+        {
+          "raw": "GEORGIA",
+          "team": "GEORGIA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        },
+        {
+          "raw": "JAGUARS OVER",
+          "team": "JAGUARS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 92,
       "name": "NUMBER 1",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "BEARS",
+        "team": "BEARS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-bears-packers"
+      },
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "LIONS OVER",
+          "team": "LIONS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 93,
       "name": "MUGGS ALONE",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "BOWLING GREEN",
+          "team": "BOWLING GREEN",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-bowlinggreen-sacramentost"
+        },
+        {
+          "raw": "JAMES MADISON",
+          "team": "JAMES MADISON",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-jamesmadison-georgiasouthern"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 94,
       "name": "ONE PUTT 55",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "JETS",
+          "team": "JETS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "BENGALS UNDER",
+          "team": "BENGALS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 95,
       "name": "PAPA EAGLE ",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "RAVENS OVER",
+          "team": "RAVENS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 96,
       "name": "PASTAMAN",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "ARIZONA UNDER",
+          "team": "ARIZONA",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-arizona-westvirginia"
+        },
+        {
+          "raw": "OREGON UNDER",
+          "team": "OREGON",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-oregon-ucla"
+        },
+        {
+          "raw": "WAKE FOREST UNDER",
+          "team": "WAKE FOREST",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-wakeforest-ncstate"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 97,
       "name": "PEPIN",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "TEXANS UNDER",
+          "team": "TEXANS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "INDIANA UNDER",
+          "team": "INDIANA",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-indiana-nebraska"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 98,
       "name": "PETER THE GOOD",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "COMMANDERS",
+          "team": "COMMANDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 99,
       "name": "PETE'S COLTS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "ARKANSAS",
+          "team": "ARKANSAS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-tennessee-arkansas"
+        },
+        {
+          "raw": "UCF",
+          "team": "UCF",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-oklahomast-ucf"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 100,
       "name": "PIG BENIS",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "SEAHAWKS",
+        "team": "SEAHAWKS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-seahawks-49ers"
+      },
+      "picks": [
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "RAMS OVER",
+          "team": "RAMS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-12-rams-bills"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 101,
       "name": "POINT SPREAD CRUSHERS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "BRONCOS OVER",
+          "team": "BRONCOS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 102,
       "name": "REMY KEV & IN LAW",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "BEARS",
+          "team": "BEARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 103,
       "name": "RICHIE G",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "CHARGERS",
+          "team": "CHARGERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "LOUISVILLE OVER",
+          "team": "LOUISVILLE",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-09-louisville-floridast"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 105,
       "name": "ROTTEN APPLES",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "RAVENS",
+        "team": "RAVENS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-ravens-falcons"
+      },
+      "picks": [
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "RAVENS",
+          "team": "RAVENS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 106,
       "name": "SAMBA",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "SAINTS",
+          "team": "SAINTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 107,
       "name": "SAMCWO",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "FLORIDA OVER",
+          "team": "FLORIDA",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-florida-southcarolina"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 108,
       "name": "SEAL WITH IT",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 109,
       "name": "SIZZLING FAJITAS",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "BRONCOS",
+        "team": "BRONCOS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-broncos-chargers"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "STEELERS",
+          "team": "STEELERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 110,
       "name": "SLIME PIGS",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PACKERS",
+        "team": "PACKERS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-bears-packers"
+      },
+      "picks": [
+        {
+          "raw": "PACKERS",
+          "team": "PACKERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bears-packers"
+        },
+        {
+          "raw": "BOWLING GREEN",
+          "team": "BOWLING GREEN",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-bowlinggreen-sacramentost"
+        },
+        {
+          "raw": "IOWA",
+          "team": "IOWA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-washington-iowa"
+        },
+        {
+          "raw": "DUKE OVER",
+          "team": "DUKE",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-duke-georgiatech"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 111,
       "name": "SLOPPY STEAKS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "RAVENS",
+          "team": "RAVENS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "OLE MISS",
+          "team": "OLE MISS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-olemiss-vanderbilt"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 112,
       "name": "SNAKE BEAR",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "UCLA",
+          "team": "UCLA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-oregon-ucla"
+        },
+        {
+          "raw": "LOUISVILLE OVER",
+          "team": "LOUISVILLE",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-09-louisville-floridast"
+        },
+        {
+          "raw": "NORTH TEXAS UNDER",
+          "team": "NORTH TEXAS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-northtexas-charlotte"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 113,
       "name": "SOUTHIE BOYS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "SEAHAWKS",
+          "team": "SEAHAWKS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "ALABAMA",
+          "team": "ALABAMA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 114,
       "name": "SPEED NOT ACCURACY",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "BRONCOS",
+        "team": "BRONCOS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-broncos-chargers"
+      },
+      "picks": [
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "NOTRE DAME",
+          "team": "NOTRE DAME",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        },
+        {
+          "raw": "WEST VIRGINIA",
+          "team": "WEST VIRGINIA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-arizona-westvirginia"
+        },
+        {
+          "raw": "LOUISVILLE OVER",
+          "team": "LOUISVILLE",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-09-louisville-floridast"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 115,
       "name": "SPONGE 1430",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "NOTRE DAME",
+          "team": "NOTRE DAME",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        },
+        {
+          "raw": "OHIO ST",
+          "team": "OHIO ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-ohiost-maryland"
+        },
+        {
+          "raw": "FLORIDA OVER",
+          "team": "FLORIDA",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-florida-southcarolina"
+        },
+        {
+          "raw": "NOTRE DAME OVER",
+          "team": "NOTRE DAME",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 116,
       "name": "T CORMIER",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "VIKINGS",
+        "team": "VIKINGS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-vikings-saints"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "STEELERS OVER",
+          "team": "STEELERS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "TEXANS OVER",
+          "team": "TEXANS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 117,
       "name": "TEAM SODA",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "GEORGIA",
+          "team": "GEORGIA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "OHIO ST",
+          "team": "OHIO ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-ohiost-maryland"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 118,
       "name": "THE FRUITCAKES",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "BEARS UNDER",
+          "team": "BEARS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-bears-packers"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 119,
       "name": "THE FUTURE CHAMP",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 120,
       "name": "THE HORSE",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "EAGLES",
+          "team": "EAGLES",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 121,
       "name": "THE LINE DANCE",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "RAVENS",
+          "team": "RAVENS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 122,
       "name": "THE MAD LOOPER",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BUCCANEERS",
+          "team": "BUCCANEERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "RAIDERS",
+          "team": "RAIDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "TEXANS UNDER",
+          "team": "TEXANS",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "nfl-2026-10-11-texans-titans"
+        },
+        {
+          "raw": "ALABAMA UNDER",
+          "team": "ALABAMA",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 123,
       "name": "THE MOOPS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "COMMANDERS",
+          "team": "COMMANDERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "TEXANS",
+          "team": "TEXANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 124,
       "name": "TOBINOLAS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 125,
       "name": "TOMMY B",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BALL ST",
+          "team": "BALL ST",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-northwestern-ballst"
+        },
+        {
+          "raw": "CHARLOTTE",
+          "team": "CHARLOTTE",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-northtexas-charlotte"
+        },
+        {
+          "raw": "MARYLAND",
+          "team": "MARYLAND",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-ohiost-maryland"
+        },
+        {
+          "raw": "STANFORD",
+          "team": "STANFORD",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 126,
       "name": "TOMMY G",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "STEELERS",
+        "team": "STEELERS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-steelers-colts"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "COWBOYS",
+          "team": "COWBOYS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "NEBRASKA",
+          "team": "NEBRASKA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-indiana-nebraska"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 127,
       "name": "TOMMY PO",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "NORTH TEXAS",
+          "team": "NORTH TEXAS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-northtexas-charlotte"
+        },
+        {
+          "raw": "NOTRE DAME",
+          "team": "NOTRE DAME",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        },
+        {
+          "raw": "UTAH",
+          "team": "UTAH",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-utah-kansas"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 128,
       "name": "TONY SNAKE & SEFF",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "SAINTS",
+          "team": "SAINTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        },
+        {
+          "raw": "TITANS",
+          "team": "TITANS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-texans-titans"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 129,
       "name": "TWGSITW",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "49ERS",
+          "team": "49ERS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-seahawks-49ers"
+        },
+        {
+          "raw": "COLTS",
+          "team": "COLTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-steelers-colts"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 130,
       "name": "TWO LIVE CREW",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "GIANTS",
+          "team": "GIANTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-commanders-giants"
+        },
+        {
+          "raw": "EAGLES",
+          "team": "EAGLES",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "RAMS",
+          "team": "RAMS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 131,
       "name": "WACKY JACKIE",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "BRONCOS",
+        "team": "BRONCOS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-broncos-chargers"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "VIKINGS",
+          "team": "VIKINGS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-vikings-saints"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 132,
       "name": "WAGS",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "MINNESOTA",
+          "team": "MINNESOTA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-minnesota-purdue"
+        },
+        {
+          "raw": "TENNESSEE",
+          "team": "TENNESSEE",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-tennessee-arkansas"
+        },
+        {
+          "raw": "TEXAS",
+          "team": "TEXAS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-texas-oklahoma"
+        },
+        {
+          "raw": "ARIZONA UNDER",
+          "team": "ARIZONA",
+          "kind": "total",
+          "direction": "under",
+          "gameId": "ncaa-2026-10-10-arizona-westvirginia"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 133,
       "name": "WOLFPACK 1",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "NOTRE DAME",
+          "team": "NOTRE DAME",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        },
+        {
+          "raw": "COWBOYS OVER",
+          "team": "COWBOYS",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "nfl-2026-10-08-cowboys-buccaneers"
+        },
+        {
+          "raw": "NOTRE DAME OVER",
+          "team": "NOTRE DAME",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-notredame-stanford"
+        },
+        {
+          "raw": "WAKE FOREST OVER",
+          "team": "WAKE FOREST",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-wakeforest-ncstate"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 134,
       "name": "WOODSHED",
       "bonus": null,
-      "picks": [],
+      "picks": [
+        {
+          "raw": "BYU",
+          "team": "BYU",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-09-byu-iowast"
+        },
+        {
+          "raw": "PITT",
+          "team": "PITT",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-pitt-northcarolina"
+        },
+        {
+          "raw": "WESTERN KENTUCKY",
+          "team": "WESTERN KENTUCKY",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-08-westernkentucky-missourist"
+        },
+        {
+          "raw": "MISSOURI OVER",
+          "team": "MISSOURI",
+          "kind": "total",
+          "direction": "over",
+          "gameId": "ncaa-2026-10-10-missouri-texasaandm"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 135,
       "name": "YACHT CLUB CASUAL",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "PATRIOTS",
+        "team": "PATRIOTS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-patriots-raiders"
+      },
+      "picks": [
+        {
+          "raw": "BENGALS",
+          "team": "BENGALS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-bengals-dolphins"
+        },
+        {
+          "raw": "BRONCOS",
+          "team": "BRONCOS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-broncos-chargers"
+        },
+        {
+          "raw": "FALCONS",
+          "team": "FALCONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-ravens-falcons"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 136,
       "name": "YETI",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BROWNS",
+          "team": "BROWNS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-jets-browns"
+        },
+        {
+          "raw": "GEORGIA",
+          "team": "GEORGIA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-alabama-georgia"
+        },
+        {
+          "raw": "LSU",
+          "team": "LSU",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-lsu-kentucky"
+        },
+        {
+          "raw": "UCLA",
+          "team": "UCLA",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "ncaa-2026-10-10-oregon-ucla"
+        }
+      ],
       "autoPick": false
     },
     {
       "id": 137,
       "name": "YOU BET 2",
-      "bonus": null,
-      "picks": [],
+      "bonus": {
+        "raw": "LIONS",
+        "team": "LIONS",
+        "kind": "bonus",
+        "direction": null,
+        "gameId": "nfl-2026-10-11-lions-cardinals"
+      },
+      "picks": [
+        {
+          "raw": "BILLS",
+          "team": "BILLS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-12-rams-bills"
+        },
+        {
+          "raw": "JAGUARS",
+          "team": "JAGUARS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-eagles-jaguars"
+        },
+        {
+          "raw": "LIONS",
+          "team": "LIONS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-lions-cardinals"
+        },
+        {
+          "raw": "PATRIOTS",
+          "team": "PATRIOTS",
+          "kind": "spread",
+          "direction": null,
+          "gameId": "nfl-2026-10-11-patriots-raiders"
+        }
+      ],
       "autoPick": false
     }
   ],
   "validation": {
     "entries": 136,
-    "regularPicks": 0,
-    "bonusPicks": 0,
-    "regularDistribution": {},
-    "bonusDistribution": {},
+    "regularPicks": 544,
+    "bonusPicks": 38,
+    "regularDistribution": {
+      "49ERS": 13,
+      "AIR FORCE": 1,
+      "ALABAMA": 4,
+      "ALABAMA UNDER": 2,
+      "APP ST": 1,
+      "ARIZONA OVER": 1,
+      "ARIZONA ST": 2,
+      "ARIZONA UNDER": 2,
+      "ARKANSAS": 1,
+      "ARKANSAS ST OVER": 1,
+      "ARMY": 1,
+      "BALL ST": 1,
+      "BEARS": 14,
+      "BEARS UNDER": 1,
+      "BENGALS": 24,
+      "BENGALS UNDER": 1,
+      "BILLS": 10,
+      "BOISE ST": 1,
+      "BOWLING GREEN": 2,
+      "BRONCOS": 13,
+      "BRONCOS OVER": 1,
+      "BROWNS": 15,
+      "BUCCANEERS": 4,
+      "BYU": 2,
+      "BYU UNDER": 1,
+      "CARDINALS": 5,
+      "CHARGERS": 9,
+      "CHARLOTTE": 1,
+      "COLTS": 11,
+      "COMMANDERS": 5,
+      "COMMANDERS UNDER": 1,
+      "COWBOYS": 11,
+      "COWBOYS OVER": 4,
+      "COWBOYS UNDER": 1,
+      "DOLPHINS": 3,
+      "DUKE": 2,
+      "DUKE OVER": 1,
+      "EAGLES": 7,
+      "EASTERN MICH": 1,
+      "FALCONS": 38,
+      "FLORIDA": 3,
+      "FLORIDA OVER": 3,
+      "FLORIDA ST": 1,
+      "GEORGIA": 5,
+      "GEORGIA SOUTHERN": 1,
+      "GIANTS": 13,
+      "INDIANA": 1,
+      "INDIANA UNDER": 1,
+      "IOWA": 2,
+      "JAGUARS": 20,
+      "JAGUARS OVER": 2,
+      "JAGUARS UNDER": 1,
+      "JAMES MADISON": 4,
+      "JETS": 1,
+      "JETS UNDER": 1,
+      "LIBERTY": 1,
+      "LIONS": 16,
+      "LIONS OVER": 6,
+      "LOUISIANA TECH OVER": 1,
+      "LOUISVILLE": 2,
+      "LOUISVILLE OVER": 3,
+      "LSU": 1,
+      "MARSHALL": 1,
+      "MARYLAND": 1,
+      "MIAMI (OH)": 1,
+      "MINNESOTA": 1,
+      "MISSOURI": 3,
+      "MISSOURI OVER": 1,
+      "NAVY": 3,
+      "NEBRASKA": 4,
+      "NORTH CAROLINA": 1,
+      "NORTH DAKOTA ST": 1,
+      "NORTH TEXAS": 1,
+      "NORTH TEXAS UNDER": 1,
+      "NORTHERN ILLINOIS": 1,
+      "NORTHWESTERN": 1,
+      "NOTRE DAME": 5,
+      "NOTRE DAME OVER": 2,
+      "OHIO ST": 5,
+      "OLE MISS": 2,
+      "OREGON": 1,
+      "OREGON ST": 2,
+      "OREGON UNDER": 1,
+      "PACKERS": 9,
+      "PATRIOTS": 18,
+      "PATRIOTS OVER": 1,
+      "PENN ST": 1,
+      "PITT": 8,
+      "RAIDERS": 12,
+      "RAMS": 14,
+      "RAMS OVER": 3,
+      "RAVENS": 7,
+      "RAVENS OVER": 3,
+      "RAVENS UNDER": 3,
+      "SAINTS": 7,
+      "SEAHAWKS": 17,
+      "SEAHAWKS OVER": 2,
+      "STANFORD": 1,
+      "STEELERS": 12,
+      "STEELERS OVER": 1,
+      "STEELERS UNDER": 1,
+      "TENNESSEE": 1,
+      "TEXANS": 10,
+      "TEXANS OVER": 1,
+      "TEXANS UNDER": 6,
+      "TEXAS": 3,
+      "TEXAS A&M": 1,
+      "TITANS": 4,
+      "UCF": 1,
+      "UCLA": 3,
+      "UMASS": 2,
+      "USC": 1,
+      "UTAH": 1,
+      "UTAH OVER": 1,
+      "VIKINGS": 24,
+      "VIKINGS OVER": 2,
+      "VIKINGS UNDER": 2,
+      "VIRGINIA": 1,
+      "VIRGINIA TECH": 3,
+      "WAKE FOREST": 2,
+      "WAKE FOREST OVER": 1,
+      "WAKE FOREST UNDER": 1,
+      "WASHINGTON": 3,
+      "WEST VIRGINIA": 1,
+      "WESTERN KENTUCKY": 1,
+      "WESTERN MICH OVER": 1
+    },
+    "bonusDistribution": {
+      "BEARS": 2,
+      "BRONCOS": 5,
+      "LIONS": 9,
+      "MISSOURI": 1,
+      "PACKERS": 1,
+      "PATRIOTS": 8,
+      "PITT": 2,
+      "RAVENS": 2,
+      "SEAHAWKS": 2,
+      "STEELERS": 2,
+      "VIKINGS": 3,
+      "WASHINGTON": 1
+    },
     "week5LinesGames": 70,
     "week5LinesNote": "Source PDF contains 15 NFL games and 55 NCAA games. Jaguars are explicitly stored as home vs Eagles; Oklahoma is stored as home vs Texas."
   },
