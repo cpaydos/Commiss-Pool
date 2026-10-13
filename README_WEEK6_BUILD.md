@@ -1,10 +1,20 @@
-# Commiss Pool Week 6 build
+# Commiss Pool — Week 6 Build
 
-- Built from the uploaded `Commiss-Pool-Week5-LOCKED-BASELINE(1).zip`.
-- Week 1–4 historical records and score data preserved unchanged.
-- Week 5 lines and picks are archived in `history[5]`; this baseline did not contain final Week 5 score/results or a verified Week 5 payout-winner list, so those historical rows are explicitly pending rather than fabricated.
-- Week 6 title and current data are active. Week 6 has 69 games: 14 NFL and 55 NCAA. Bonus Max = 4.
-- Week 6 picks are blank pending the Week 6 picks sheet. Existing entry IDs and names are retained.
-- Jaguars are explicitly stored as the home team vs. Texans despite lowercase/mixed-case typography. Home/away is otherwise inferred from the uppercase-team convention in the supplied lines.
-- ESPN/live-feed architecture, Favorites/localStorage behavior, Snake Bear Easter egg, and existing payout settings are preserved. ESPN endpoint and matching logic were not rewritten.
-- Week 6 bonus eligibility is provisionally carried from the Week 5 eligibility list in the supplied baseline; verify/replace it with the finalized Week 5 bonus survivor outcomes before treating that count as final.
+## Week 6 active slate
+- 69 games total: 14 NFL and 55 NCAA.
+- Dates: October 15–19, 2026.
+- Bonus Max: 4.
+- Texans are away and Jaguars are home for the October 18 game.
+- Week 6 picks are blank, ready for the new lines/picks workflow.
+- All 136 entry IDs/names are retained. ESPN scoring/feed logic, Favorites behavior, and Snake Bear Easter egg are retained from the supplied working build.
+
+## Week 5 carry-forward status
+- Week 5 game lines and all 136 saved entries/picks are archived in `history[5]`.
+- Confirmed weekly bounty winners: Angry Beavers, B&M, Slime Pigs, Sloppy Steaks, The Future Champ, and Tommy Po. The $2,500 bounty is split six ways at $416.67 each (rounded to cents).
+- The uploaded Week 5 baseline did not include a final score map or finalized historical result rows. Those scores, each entry’s final 4-pick record, and the bonus survivor/elimination outcome are not fabricated. Week 5 is therefore marked pending in the history controls until the score snapshot can be reconstructed and validated.
+- The score merge now includes `history[5].scores` so the app will consume the Week 5 score snapshot once populated.
+
+## Validation performed
+- Parsed the embedded data JSON successfully.
+- Verified 69 active games (14 NFL / 55 NCAA), Bonus Max 4, all 136 entries, and Jaguars home vs. Texans.
+- Preserved Weeks 1–4 history from the Week 6 build ZIP.
