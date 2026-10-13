@@ -7,7 +7,7 @@ const $=id=>document.getElementById(id);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
-const SEASON={currentWeek:5,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4]};
+const SEASON={currentWeek:6,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5]};
 const aliases={
   'MIDD TENN':'MIDDLE TENNESSEE','MIAMI (FL)':'MIAMI','SAN JOSE ST':'SAN JOSE STATE','EASTERN MICH':'EASTERN MICHIGAN','BOISE ST':'BOISE STATE','NORTH DAKOTA ST':'NORTH DAKOTA STATE','KANSAS ST':'KANSAS STATE','OKLAHOMA ST':'OKLAHOMA STATE','OREGON ST':'OREGON STATE','ARIZONA ST':'ARIZONA STATE','GEORGIA ST':'GEORGIA STATE','WASHINGTON ST':'WASHINGTON STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','APP ST':'APPALACHIAN STATE','SOUTH FLORIDA':'SOUTH FLORIDA','FLORIDA ATLANTIC':'FLORIDA ATLANTIC','SAM HOUSTON':'SAM HOUSTON','OLD DOMINION':'OLD DOMINION','UCF':'UCF','UTSA':'UTSA','UL-MONROE':'UL MONROE','SAN DIEGO ST':'SAN DIEGO STATE','FRESNO ST':'FRESNO STATE','BOSTON COLLEGE':'BOSTON COLLEGE','FIU':'FLORIDA INTERNATIONAL','PITT':'PITTSBURGH','UCONN':'CONNECTICUT','PENN ST':'PENN STATE','MISSISSIPPI ST':'MISSISSIPPI STATE','SACRAMENTO ST':'SACRAMENTO STATE','JACKSONVILLE ST':'JACKSONVILLE STATE','GEORGIA ST':'GEORGIA STATE','FRESNO ST':'FRESNO STATE','HAWAII':'HAWAI’I','NEW MEXICO ST':'NEW MEXICO STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','UCF':'CENTRAL FLORIDA','UAB':'UAB','UCF':'UCF','UCLA':'UCLA','USC':'USC'
 };
@@ -82,7 +82,7 @@ function renderPoints(){
 
 function renderPayouts(){
   $('payoutSummary').innerHTML=`<div class="payout-stat"><strong>${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class="payout-stat"><strong>${PAYOUTS.half.reduce((a,x)=>a+x[1],0).toLocaleString()}</strong><span>Half prizes</span></div><div class="payout-stat"><strong>${(PAYOUTS.weekly*18+PAYOUTS.half.reduce((a,x)=>a+x[1],0)*2).toLocaleString()}</strong><span>Listed prizes</span></div>`;
-  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5].map(w=>`<option value="${w}">Week ${w}${w<5?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
+  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5,6].map(w=>`<option value="${w}">Week ${w}${w<6?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5','6'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0); const override3=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
   else if(!fours.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} · Final</strong><small>No entries finished 4–0.</small></div><strong>0</strong></div>`;
@@ -200,9 +200,14 @@ function renderBonus(){
     const arr=(h?.entries||[]).filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>{const s=FINAL_BONUS_OUT[4]?.has(e.id)?'eliminated':((h?.rows||[]).find(r=>r.id===e.id)?.bonus||'pending');return{e,s}}).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
     const alive=arr.filter(x=>x.s==='alive').length;$('bonusAlive').textContent=`${alive} alive`;$('bonusContext').textContent='Week 4 · Final · max favorite 6 points';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':'PENDING';const sub=e.bonus?.gameId?esc(e.bonus.team):'No bonus pick';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
+  }else if(week===5){
+    const h=DATA.history?.[5];
+    const arr=(h?.entries||[]).filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>({e,s:'pending'})).sort((a,b)=>a.e.id-b.e.id);
+    $('bonusAlive').textContent='Results pending';$('bonusContext').textContent='Week 5 · Historical · max favorite 5 points';
+    $('bonusList').innerHTML=arr.map(({e})=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div>PENDING</div></div>`).join('');
   }else{
-    const currentEntries=DATA.entries?.length?DATA.entries:DATA.history?.[4]?.entries||[];
-    const eligibleIds=new Set(DATA.week5BonusEligibleIds||[]);
+    const currentEntries=DATA.entries?.length?DATA.entries:DATA.history?.[5]?.entries||[];
+    const eligibleIds=new Set(DATA.week6BonusEligibleIds||[]);
     const arr=currentEntries.filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>{
       const eligible=eligibleIds.has(e.id);
       const hasPick=!!e.bonus?.gameId;
@@ -211,7 +216,7 @@ function renderBonus(){
     }).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
     const eligible=eligibleIds.size;
     $('bonusAlive').textContent=`${eligible} alive`;
-    $('bonusContext').textContent='Week 5 · Current · max favorite 5 points';
+    $('bonusContext').textContent='Week 6 · Current · max favorite 4 points';
     $('bonusList').innerHTML=arr.map(({e,s,eligible})=>{
       const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';
       const sub=!eligible?'':e.bonus?.gameId?esc(e.bonus.team):'Not loaded';

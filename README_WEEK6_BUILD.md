@@ -1,20 +1,23 @@
-# Commiss Pool — Week 6 Build
+COMMISS POOL — WEEK 6 BUILD
 
-## Week 6 active slate
-- 69 games total: 14 NFL and 55 NCAA.
-- Dates: October 15–19, 2026.
-- Bonus Max: 4.
-- Texans are away and Jaguars are home for the October 18 game.
-- Week 6 picks are blank, ready for the new lines/picks workflow.
-- All 136 entry IDs/names are retained. ESPN scoring/feed logic, Favorites behavior, and Snake Bear Easter egg are retained from the supplied working build.
+Source baseline: Commiss-Pool-Week5-FINAL-VERIFIED(1).zip
+Week 6 lines: user-provided Week 6 Lines PDF.
 
-## Week 5 carry-forward status
-- Week 5 game lines and all 136 saved entries/picks are archived in `history[5]`.
-- Confirmed weekly bounty winners: Angry Beavers, B&M, Slime Pigs, Sloppy Steaks, The Future Champ, and Tommy Po. The $2,500 bounty is split six ways at $416.67 each (rounded to cents).
-- The uploaded Week 5 baseline did not include a final score map or finalized historical result rows. Those scores, each entry’s final 4-pick record, and the bonus survivor/elimination outcome are not fabricated. Week 5 is therefore marked pending in the history controls until the score snapshot can be reconstructed and validated.
-- The score merge now includes `history[5].scores` so the app will consume the Week 5 score snapshot once populated.
+Week 6:
+- 69 games total: 14 NFL and 55 NCAA
+- Bonus Max = 4
+- Week 6 regular and bonus picks are blank for the new week.
+- Capitalized teams in the lines sheet are home teams; favorites are the left-column teams.
+- Explicit exception handled: Jaguars are home vs. Texans, despite Jaguars not being capitalized.
+- 136 entry IDs/names retained.
+- Existing ESPN/live-feed architecture and UI files retained from the Week 6 build package.
+- Personal Favorites remain client-side and are not shared pool data.
 
-## Validation performed
-- Parsed the embedded data JSON successfully.
-- Verified 69 active games (14 NFL / 55 NCAA), Bonus Max 4, all 136 entries, and Jaguars home vs. Texans.
-- Preserved Weeks 1–4 history from the Week 6 build ZIP.
+Historical data:
+- Weeks 1–4 history carried from the supplied Week 5 FINAL VERIFIED baseline.
+- Week 5 games and saved picks archived from that baseline.
+- Week 5 history is explicitly marked awaiting-final-results because the baseline itself does not contain the final score map/rows. The screenshots confirm the displayed standings and six bounty winners, but cannot establish every raw final score.
+- Week 6 bonus eligible count is 38 as shown in the supplied Week 5 survivor screenshots, but the ID list in the source build was originally provisional and needs final cross-check against the screenshots before claiming the survivor IDs are fully verified.
+- No missing Week 5 scores or records have been fabricated.
+
+Before deployment, verify Week 5 final records and survivor IDs in the app. This ZIP is the Week 6 working build, not a claim that every Week 5 score has been reconstructed.
