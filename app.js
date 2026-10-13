@@ -39,7 +39,8 @@ const POINTS_BY_WEEK={
   1:{'AVERAGE JOES':278,'BAD HOMBRES':278,'CHAMPION SWEATPANTS':278,'JOE VALLACHI\'S SON':278,'MODEL C':278,'SLIME PIGS':278,'SPEED NOT ACCURACY':278,'THE HORSE':278,'TWGSITW':278},
   2:{'44&10':625,'FLANSAM':625,'GREEK\'S KID':625,'SAMBA':625},
   3:{'CASPER':500,'DOE LANE BOYZ':500,'LOLO THE MILF':500,'PETER THE GOOD':500,'SEAL WITH IT':325,'SOUTHIE BOYS':500,'THE HORSE':325},
-  4:{'AIDEN BRADY':278,'BARTLES & JAMES':278,'BIG K':278,'DOIN WORK':278,'FAST EDDIE':278,'FLANSAM':278,'M & M BOYS':278,'PAPA EAGLE':278,'SNAKE BEAR':278}
+  4:{'AIDEN BRADY':278,'BARTLES & JAMES':278,'BIG K':278,'DOIN WORK':278,'FAST EDDIE':278,'FLANSAM':278,'M & M BOYS':278,'PAPA EAGLE':278,'SNAKE BEAR':278},
+  5:{'ANGRY BEAVERS':417,'B&M':417,'SLIME PIGS':417,'SLOPPY STEAKS':417,'THE FUTURE CHAMP':417,'TOMMY PO':417}
 };
 function pointsForEntryName(name,week){const map=POINTS_BY_WEEK[week]||{};const key=Object.keys(map).find(k=>norm(k)===norm(name));return Number(key?map[key]:0)}
 function pointsWeeksForView(view){
@@ -82,7 +83,7 @@ function renderPoints(){
 
 function renderPayouts(){
   $('payoutSummary').innerHTML=`<div class="payout-stat"><strong>${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class="payout-stat"><strong>${PAYOUTS.half.reduce((a,x)=>a+x[1],0).toLocaleString()}</strong><span>Half prizes</span></div><div class="payout-stat"><strong>${(PAYOUTS.weekly*18+PAYOUTS.half.reduce((a,x)=>a+x[1],0)*2).toLocaleString()}</strong><span>Listed prizes</span></div>`;
-  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5,6].map(w=>`<option value="${w}">Week ${w}${w<5?' · Final':w===5?' · Pending':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5','6'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
+  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5,6].map(w=>`<option value="${w}">Week ${w}${w<6?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5','6'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0); const override3=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
   else if(!fours.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} · Final</strong><small>No entries finished 4–0.</small></div><strong>0</strong></div>`;

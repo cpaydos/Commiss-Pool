@@ -1,0 +1,1 @@
+Week 6 payout correction: Week 5 is Final. Week 5 bounty winners are Angry Beavers, B&M, Slime Pigs, Sloppy Steaks, The Future Champ, and Tommy Po. Each receives a displayed rounded payout of $417; the official weekly pool remains $2,500 (exact split $416.67 per winner). Week 5 payout points are included in Overall and First Half accumulated points.
