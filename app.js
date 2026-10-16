@@ -269,8 +269,14 @@ function scoreFromEvent(ev,g,target){
     if(!a||!h)return false;
     away=a; home=h;
   }
-  const stateName=ev.status?.type?.state;
-  const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
+  const statusType=ev.status?.type||{};
+  const stateName=statusType.state;
+  // ESPN normally uses state='post', but some scoreboard responses expose
+  // completion via type.completed/name/description instead. Recognize those
+  // final forms without changing team matching or score parsing.
+  const statusText=[statusType.name,statusType.description,statusType.detail,statusType.shortDetail].filter(Boolean).join(' ');
+  const isFinal=stateName==='post'||statusType.completed===true||/STATUS_FINAL|\bfinal\b|completed/i.test(statusText);
+  const status=isFinal?'final':stateName==='in'?'in':'scheduled';
   target[g.id]={
     status,
     awayScore:Number(away.raw.score||0),
