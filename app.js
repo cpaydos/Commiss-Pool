@@ -32,7 +32,7 @@ function isFavorite(id){return getFavorites().has(String(id))}
 function getFavorites(){try{return new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String))}catch{return new Set()}}
 function toggleFavorite(id){const f=getFavorites();const key=String(id);f.has(key)?f.delete(key):f.add(key);localStorage.setItem('commissFavorites',JSON.stringify([...f]));render()}
 function starButton(e){return `<button class="star-btn ${isFavorite(e.id)?'starred':''}" data-star="${e.id}" aria-label="${isFavorite(e.id)?'Remove':'Add'} ${esc(e.name)} ${isFavorite(e.id)?'from':'to'} favorites">${isFavorite(e.id)?'★':'☆'}</button>`}
-function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();updateHero();renderDistribution();renderPayouts();renderPoints()}
+function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();renderPoints();updateHero()}
 function weekRows(week){return historyForWeek(week)||[]}
 function weekPayoutRows(week){if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}return weekRows(week)||[]}
 const POINTS_BY_WEEK={
