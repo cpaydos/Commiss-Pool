@@ -6,19 +6,6 @@ const REMOVED_ENTRY_IDS=new Set([104]);
 const $=id=>document.getElementById(id);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
-// One shared final-status check for ESPN events, pick grading, bonus grading, and the completed-game counter.
-function isFinalStatus(value){
-  if(value && typeof value==='object'){
-    const type=value.type||value;
-    const state=String(type.state||value.state||'').toLowerCase();
-    if(String(value.status||'').toLowerCase()==='final')return true;
-    if(String(value.status||'').toLowerCase()==='post')return true;
-    const text=[type.name,type.description,type.detail,type.shortDetail,value.name,value.description].filter(Boolean).join(' ');
-    return state==='post'||type.completed===true||value.completed===true||/STATUS_FINAL|\bfinal\b|completed/i.test(text);
-  }
-  return String(value||'').toLowerCase()==='final'||String(value||'').toLowerCase()==='post';
-}
-const isFinalScore=sc=>isFinalStatus(sc);
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
 const SEASON={currentWeek:6,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5]};
 const aliases={
@@ -27,8 +14,9 @@ const aliases={
 function teamMatches(line,espn){const a=norm(line),b=norm(espn);const aliasKey=Object.keys(aliases).find(k=>norm(k)===a);const alias=aliasKey?aliases[aliasKey]:line;const aa=norm(alias);return a===b||aa===b||b.includes(a)||b.includes(aa)||a.includes(b)||aa.includes(b)}
 function classifyPick(p,g,scoreMap=state.scores){
   const sc=scoreMap[g.id];
-  if(!sc||(!isFinalScore(sc)&&sc.status!=='in'))return 'pending';
-  if(sc.status==='in'&&!isFinalScore(sc))return 'live';
+  if(!sc||sc.status==='scheduled')return 'pending';
+  if(sc.status==='in')return 'live';
+  if(sc.status!=='final')return 'pending';
   const away=sc.awayScore,home=sc.homeScore;
   if(p.kind==='total'){const total=away+home;if(total===g.total)return 'loss';return p.direction==='over'?(total>g.total?'win':'loss'):(total<g.total?'win':'loss')}
   const favorite=norm(favoriteOf(g)),pickIsFavorite=norm(p.team)===favorite;
@@ -37,7 +25,7 @@ function classifyPick(p,g,scoreMap=state.scores){
   const underdogMargin=-favoriteMargin;
   return underdogMargin===-g.spread?'loss':underdogMargin+g.spread>0?'win':'loss';
 }
-function bonusStatus(e,gameMap=gameById,scoreMap=state.scores){if(!e.bonus||!e.bonus.gameId)return 'pending';const p=e.bonus,g=gameMap[p.gameId],sc=g&&scoreMap[g.id];if(!g)return 'pending';if(!sc||(!isFinalScore(sc)&&sc.status!=='in'))return 'pending';if(sc.status==='in'&&!isFinalScore(sc))return 'live';const awayPick=norm(p.team)===norm(g.away),picked=awayPick?sc.awayScore:sc.homeScore,other=awayPick?sc.homeScore:sc.awayScore;return picked>other?'alive':'eliminated'}
+function bonusStatus(e,gameMap=gameById,scoreMap=state.scores){if(!e.bonus||!e.bonus.gameId)return 'pending';const p=e.bonus,g=gameMap[p.gameId],sc=g&&scoreMap[g.id];if(!g)return 'pending';if(!sc||sc.status==='scheduled')return 'pending';if(sc.status==='in')return 'live';if(sc.status!=='final')return 'pending';const awayPick=norm(p.team)===norm(g.away),picked=awayPick?sc.awayScore:sc.homeScore,other=awayPick?sc.homeScore:sc.awayScore;return picked>other?'alive':'eliminated'}
 function record(e,gameMap=gameById,scoreMap=state.scores){if(!Array.isArray(e.picks)||e.picks.length===0)return{r:[],w:0,l:0,live:0,pending:4,notLoaded:true};const r=e.picks.map(p=>classifyPick(p,gameMap[p.gameId],scoreMap));return{r,w:r.filter(x=>x==='win').length,l:r.filter(x=>x==='loss').length,live:r.filter(x=>x==='live').length,pending:r.filter(x=>x==='pending').length,notLoaded:false}}
 function sortEntries(arr){return arr.sort((a,b)=>{const ra=record(a),rb=record(b);if(rb.w!==ra.w)return rb.w-ra.w;if(ra.l!==rb.l)return ra.l-rb.l;if(rb.live!==ra.live)return rb.live-ra.live;return a.id-b.id})}
 function isFavorite(id){return getFavorites().has(String(id))}
@@ -257,7 +245,7 @@ function formatLiveDetail(g){const sc=state.scores[g.id];if(!sc||sc.status!=='in
 function formatGameTimeDisplay(g){return formatLiveDetail(g)||formatGameDateTime(g)}
 function renderGames(){const sf=$('sportFilter').value,gf=$('gameFilter').value,games=DATA.games.filter(g=>sf==='all'||g.sport===sf).filter(g=>{const s=gameStatus(g);return gf==='all'||gf==='live'&&s==='in'||gf==='final'&&s==='final'||gf==='upcoming'&&s==='scheduled'}).sort((a,b)=>(new Date(gameStartTime(a)||a.date))-(new Date(gameStartTime(b)||b.date)));$('gameList').innerHTML=games.map(g=>{const sc=state.scores[g.id]||{status:'scheduled'};const when=formatGameDateTime(g);const liveDetail=formatLiveDetail(g);return `<div class="game-row"><div class="game-top"><div><div class="game-status ${sc.status||''}">${sc.status==='in'?liveDetail||'LIVE':sc.status==='final'?'FINAL':when}</div><div class="game-teams">${esc(g.away)} @ ${esc(g.home)}</div></div><div class="game-score">${sc.awayScore!=null?`${sc.awayScore} - ${sc.homeScore}`:'0 - 0'}</div></div><div class="game-line">Official: ${esc(favoriteOf(g))} -${g.spread} · Total ${g.total}</div></div>`}).join('')}
 function gameStatus(g){return state.scores[g.id]?.status||'scheduled'}
-function updateHero(){const rs=DATA.entries.map(record);$('fourZeroCount').textContent=rs.filter(r=>r.w===4&&r.l===0).length;const done=(DATA.games||[]).filter(g=>isFinalScore(state.scores[g.id])).length;$('gamesDone').textContent=`${done}/${DATA.games.length}`}
+function updateHero(){const rs=DATA.entries.map(record);$('fourZeroCount').textContent=rs.filter(r=>r.w===4&&r.l===0).length;const done=(DATA.games||[]).filter(g=>state.scores[g.id]?.status==='final').length;$('gamesDone').textContent=`${done}/${DATA.games.length}`}
 function openEntry(id,week=null){
   let e,gm,scoreMap,weekBonusMax=DATA.bonusMax;if(week){const h=DATA.history?.[week];e=h?.entries?.find(x=>x.id===id);gm=h?Object.fromEntries(h.games.map(g=>[g.id,g])):{};scoreMap=state.historyScores;weekBonusMax=h?.bonusMax||weekBonusMax}else{e=DATA.entries.find(x=>x.id===id);gm=gameById;scoreMap=state.scores}if(!e)return;const r=record(e,gm,scoreMap),bstat=bonusStatus(e,gm,scoreMap);
   $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${week?` · Week ${week} · Final`:''}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map(p=>{const g=gm[p.gameId],res=classifyPick(p,g,scoreMap),sc=scoreMap[g?.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-time">${week?formatDate(g.date):formatGameTimeDisplay(g)}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus?.team||'Not loaded')}</div><div class="pick-sub">Outright win required · max favorite ${weekBonusMax}</div></div><div class="${bstat==='eliminated'?'result-loss':bstat==='alive'?'result-win':'result-pending'}">${bstat.toUpperCase()}</div></div>`;$('entryModal').classList.remove('hidden')}
@@ -281,9 +269,8 @@ function scoreFromEvent(ev,g,target){
     if(!a||!h)return false;
     away=a; home=h;
   }
-  const statusInfo=ev.status||{};
-  const stateName=String(statusInfo.type?.state||statusInfo.state||'').toLowerCase();
-  const status=isFinalStatus(statusInfo)?'final':stateName==='in'?'in':'scheduled';
+  const stateName=ev.status?.type?.state;
+  const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
   target[g.id]={
     status,
     awayScore:Number(away.raw.score||0),
