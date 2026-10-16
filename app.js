@@ -32,7 +32,7 @@ function isFavorite(id){return getFavorites().has(String(id))}
 function getFavorites(){try{return new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String))}catch{return new Set()}}
 function toggleFavorite(id){const f=getFavorites();const key=String(id);f.has(key)?f.delete(key):f.add(key);localStorage.setItem('commissFavorites',JSON.stringify([...f]));render()}
 function starButton(e){return `<button class="star-btn ${isFavorite(e.id)?'starred':''}" data-star="${e.id}" aria-label="${isFavorite(e.id)?'Remove':'Add'} ${esc(e.name)} ${isFavorite(e.id)?'from':'to'} favorites">${isFavorite(e.id)?'★':'☆'}</button>`}
-function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();renderPoints();updateHero()}
+function render(){updateHero();renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();renderPoints()}
 function weekRows(week){return historyForWeek(week)||[]}
 function weekPayoutRows(week){if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}return weekRows(week)||[]}
 const POINTS_BY_WEEK={
@@ -338,7 +338,14 @@ async function refreshScores(){
     }
   }
 
-  state.scores=found;
+  // Keep already-final scores if ESPN temporarily omits an event on a later poll.
+  // Fresh results still update every matched game; a final result is never downgraded.
+  const mergedScores={...state.scores};
+  for(const [id,next] of Object.entries(found)){
+    const previous=mergedScores[id];
+    mergedScores[id]=(previous?.status==='final' && next.status!=='final')?previous:next;
+  }
+  state.scores=mergedScores;
   state.lastUpdated=new Date();
   const failures=results.filter(x=>x.includes('✕'));
   if(failures.length===0){
