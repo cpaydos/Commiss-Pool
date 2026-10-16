@@ -335,14 +335,19 @@ async function refreshScores(){
   state.scores=found;
   state.lastUpdated=new Date();
   const failures=results.filter(x=>x.includes('✕'));
+  const finalCount=(DATA.games||[]).filter(g=>found[g.id]?.status==='final').length;
   if(failures.length===0){
-    setFeed(`Live feed connected · ${Object.keys(found).length}/${DATA.games.length} matched · ${results.join(' · ')}`,'ok');
+    setFeed(`Live feed connected · ${Object.keys(found).length}/${DATA.games.length} matched · ${finalCount} final · ${results.join(' · ')}`,'ok');
   }else if(Object.keys(found).length>0){
-    setFeed(`Live feed partial · ${Object.keys(found).length}/${DATA.games.length} matched · ${results.join(' · ')}`,'ok');
+    setFeed(`Live feed partial · ${Object.keys(found).length}/${DATA.games.length} matched · ${finalCount} final · ${results.join(' · ')}`,'ok');
   }else{
     setFeed(`Live feed error · ${results.join(' · ')}`,'bad');
   }
-  try{render()}catch(err){console.error('Render error after live feed update:',err)}
+  try{render()}catch(err){
+    console.error('Render error after live feed update:',err);
+    const done=(DATA.games||[]).filter(g=>state.scores[g.id]?.status==='final').length;
+    setFeed(`Render error · ${err?.message||String(err)} · ${done}/${DATA.games.length} final in score state`,'bad');
+  }
 }
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
