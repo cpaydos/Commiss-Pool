@@ -13,6 +13,7 @@ const aliases={
 };
 function teamMatches(line,espn){const a=norm(line),b=norm(espn);const aliasKey=Object.keys(aliases).find(k=>norm(k)===a);const alias=aliasKey?aliases[aliasKey]:line;const aa=norm(alias);return a===b||aa===b||b.includes(a)||b.includes(aa)||a.includes(b)||aa.includes(b)}
 function classifyPick(p,g,scoreMap=state.scores){
+  if(!p||!g)return 'pending';
   const sc=scoreMap[g.id];
   if(!sc||sc.status==='scheduled')return 'pending';
   if(sc.status==='in')return 'live';
@@ -335,20 +336,14 @@ async function refreshScores(){
   state.scores=found;
   state.lastUpdated=new Date();
   const failures=results.filter(x=>x.includes('✕'));
-  const finalCount=(DATA.games||[]).filter(g=>found[g.id]?.status==='final').length;
   if(failures.length===0){
-    setFeed(`Live feed connected · ${Object.keys(found).length}/${DATA.games.length} matched · ${finalCount} final · ${results.join(' · ')}`,'ok');
+    setFeed(`Live feed connected · ${Object.keys(found).length}/${DATA.games.length} matched · ${results.join(' · ')}`,'ok');
   }else if(Object.keys(found).length>0){
-    setFeed(`Live feed partial · ${Object.keys(found).length}/${DATA.games.length} matched · ${finalCount} final · ${results.join(' · ')}`,'ok');
+    setFeed(`Live feed partial · ${Object.keys(found).length}/${DATA.games.length} matched · ${results.join(' · ')}`,'ok');
   }else{
     setFeed(`Live feed error · ${results.join(' · ')}`,'bad');
   }
-  try{render()}catch(err){
-    console.error('Render error after live feed update:',err);
-    const done=(DATA.games||[]).filter(g=>state.scores[g.id]?.status==='final').length;
-    const stackLine=String(err?.stack||'').split('\n').slice(1,4).join(' | ').replace(/\s+/g,' ').slice(0,240);
-    setFeed(`Render error · ${err?.message||String(err)} · ${done}/${DATA.games.length} final · ${stackLine||'stack unavailable'}`,'bad');
-  }
+  try{render()}catch(err){console.error('Render error after live feed update:',err)}
 }
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
