@@ -346,7 +346,8 @@ async function refreshScores(){
   try{render()}catch(err){
     console.error('Render error after live feed update:',err);
     const done=(DATA.games||[]).filter(g=>state.scores[g.id]?.status==='final').length;
-    setFeed(`Render error · ${err?.message||String(err)} · ${done}/${DATA.games.length} final in score state`,'bad');
+    const stackLine=String(err?.stack||'').split('\n').slice(1,4).join(' | ').replace(/\s+/g,' ').slice(0,240);
+    setFeed(`Render error · ${err?.message||String(err)} · ${done}/${DATA.games.length} final · ${stackLine||'stack unavailable'}`,'bad');
   }
 }
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
