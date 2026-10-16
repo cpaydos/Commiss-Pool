@@ -32,7 +32,7 @@ function isFavorite(id){return getFavorites().has(String(id))}
 function getFavorites(){try{return new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String))}catch{return new Set()}}
 function toggleFavorite(id){const f=getFavorites();const key=String(id);f.has(key)?f.delete(key):f.add(key);localStorage.setItem('commissFavorites',JSON.stringify([...f]));render()}
 function starButton(e){return `<button class="star-btn ${isFavorite(e.id)?'starred':''}" data-star="${e.id}" aria-label="${isFavorite(e.id)?'Remove':'Add'} ${esc(e.name)} ${isFavorite(e.id)?'from':'to'} favorites">${isFavorite(e.id)?'★':'☆'}</button>`}
-function render(){updateHero();renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();renderPoints()}
+function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();renderPoints();updateHero()}
 function weekRows(week){return historyForWeek(week)||[]}
 function weekPayoutRows(week){if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}return weekRows(week)||[]}
 const POINTS_BY_WEEK={
@@ -269,14 +269,8 @@ function scoreFromEvent(ev,g,target){
     if(!a||!h)return false;
     away=a; home=h;
   }
-  const statusType=ev.status?.type||{};
-  const stateName=statusType.state;
-  // ESPN normally uses state='post', but some scoreboard responses expose
-  // completion via type.completed/name/description instead. Recognize those
-  // final forms without changing team matching or score parsing.
-  const statusText=[statusType.name,statusType.description,statusType.detail,statusType.shortDetail].filter(Boolean).join(' ');
-  const isFinal=stateName==='post'||statusType.completed===true||/STATUS_FINAL|\bfinal\b|completed/i.test(statusText);
-  const status=isFinal?'final':stateName==='in'?'in':'scheduled';
+  const stateName=ev.status?.type?.state;
+  const status=stateName==='post'?'final':stateName==='in'?'in':'scheduled';
   target[g.id]={
     status,
     awayScore:Number(away.raw.score||0),
@@ -338,14 +332,7 @@ async function refreshScores(){
     }
   }
 
-  // Keep already-final scores if ESPN temporarily omits an event on a later poll.
-  // Fresh results still update every matched game; a final result is never downgraded.
-  const mergedScores={...state.scores};
-  for(const [id,next] of Object.entries(found)){
-    const previous=mergedScores[id];
-    mergedScores[id]=(previous?.status==='final' && next.status!=='final')?previous:next;
-  }
-  state.scores=mergedScores;
+  state.scores=found;
   state.lastUpdated=new Date();
   const failures=results.filter(x=>x.includes('✕'));
   if(failures.length===0){
