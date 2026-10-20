@@ -54,7 +54,16 @@ const POINTS_BY_WEEK={
   5:{'ANGRY BEAVERS':417,'B&M':417,'SLIME PIGS':417,'SLOPPY STEAKS':417,'THE FUTURE CHAMP':417,'TOMMY PO':417},
   6:{'HONK SHOE':1250,'YETI':1250}
 };
-function pointsForEntryName(name,week){const map=POINTS_BY_WEEK[week]||{};const key=Object.keys(map).find(k=>norm(k)===norm(name));return Number(key?map[key]:0)}
+function pointsForEntryName(name,week){
+  const map=POINTS_BY_WEEK[week]||{};
+  const key=Object.keys(map).find(k=>norm(k)===norm(name));
+  if(key)return Number(map[key])||0;
+  // Frozen payoutRecord is the source of truth for locked weekly bounty awards.
+  // Use it as a fallback so historical points render even if a display map is incomplete.
+  const winners=DATA.history?.[week]?.payoutRecord?.winners||[];
+  const winner=winners.find(x=>norm(x.name)===norm(name));
+  return Number(winner?.amount)||0;
+}
 function pointsWeeksForView(view){
   return view==='first'?[1,2,3,4,5,6,7,8,9]:view==='second'?[10,11,12,13,14,15,16,17,18]:view==='season'?[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]:[Number(view.replace('week',''))];
 }

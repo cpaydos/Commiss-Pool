@@ -32,3 +32,6 @@
 - Added Week 6 locked bounty winners to the accumulated points/payout view: HONK SHOE $1,250 and YETI $1,250.
 - Overall and first-half point views now include Week 6; Week 6 is still locked historical data and Week 7 remains current.
 - Historical payout rendering now uses `DATA.history[week].payoutRecord.winners` as an authoritative fallback so frozen bounty winners render even if row-derived 4–0 data is unavailable.
+
+
+WEEK 7 HISTORY RENDER FIX (v18): The accumulated-points calculation now falls back to each locked week's payoutRecord when the display map lacks a name. Week 6 frozen payoutRecord is retained: HONK SHOE (ID 59) $1,250 and YETI (ID 136) $1,250. Service-worker cache version bumped to force the corrected app shell to refresh.
