@@ -1,5 +1,5 @@
 const DATA=window.POOL_DATA;
-const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{},DATA.history?.[5]?.scores||{});
+const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{},DATA.history?.[5]?.scores||{},DATA.history?.[6]?.scores||{});
 const state={scores:{},historyScores:staticHistoryScores,lastUpdated:null,overallView:'season'};
 const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3000]]};
 const REMOVED_ENTRY_IDS=new Set([104]);
@@ -7,13 +7,12 @@ const $=id=>document.getElementById(id);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
-const SEASON={currentWeek:6,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5]};
+const SEASON={currentWeek:7,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5,6]};
 const aliases={
   'MIDD TENN':'MIDDLE TENNESSEE','MIAMI (FL)':'MIAMI','SAN JOSE ST':'SAN JOSE STATE','EASTERN MICH':'EASTERN MICHIGAN','BOISE ST':'BOISE STATE','NORTH DAKOTA ST':'NORTH DAKOTA STATE','KANSAS ST':'KANSAS STATE','OKLAHOMA ST':'OKLAHOMA STATE','OREGON ST':'OREGON STATE','ARIZONA ST':'ARIZONA STATE','GEORGIA ST':'GEORGIA STATE','WASHINGTON ST':'WASHINGTON STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','APP ST':'APPALACHIAN STATE','SOUTH FLORIDA':'SOUTH FLORIDA','FLORIDA ATLANTIC':'FLORIDA ATLANTIC','SAM HOUSTON':'SAM HOUSTON','OLD DOMINION':'OLD DOMINION','UCF':'UCF','UTSA':'UTSA','UL-MONROE':'UL MONROE','SAN DIEGO ST':'SAN DIEGO STATE','FRESNO ST':'FRESNO STATE','BOSTON COLLEGE':'BOSTON COLLEGE','FIU':'FLORIDA INTERNATIONAL','PITT':'PITTSBURGH','UCONN':'CONNECTICUT','PENN ST':'PENN STATE','MISSISSIPPI ST':'MISSISSIPPI STATE','SACRAMENTO ST':'SACRAMENTO STATE','JACKSONVILLE ST':'JACKSONVILLE STATE','GEORGIA ST':'GEORGIA STATE','FRESNO ST':'FRESNO STATE','HAWAII':'HAWAI’I','NEW MEXICO ST':'NEW MEXICO STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','UCF':'CENTRAL FLORIDA','UAB':'UAB','UCF':'UCF','UCLA':'UCLA','USC':'USC'
 };
 function teamMatches(line,espn){const a=norm(line),b=norm(espn);const aliasKey=Object.keys(aliases).find(k=>norm(k)===a);const alias=aliasKey?aliases[aliasKey]:line;const aa=norm(alias);return a===b||aa===b||b.includes(a)||b.includes(aa)||a.includes(b)||aa.includes(b)}
 function classifyPick(p,g,scoreMap=state.scores){
-  if(!p||!g)return 'pending';
   const sc=scoreMap[g.id];
   if(!sc||sc.status==='scheduled')return 'pending';
   if(sc.status==='in')return 'live';
@@ -84,7 +83,7 @@ function renderPoints(){
 
 function renderPayouts(){
   $('payoutSummary').innerHTML=`<div class="payout-stat"><strong>${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class="payout-stat"><strong>${PAYOUTS.half.reduce((a,x)=>a+x[1],0).toLocaleString()}</strong><span>Half prizes</span></div><div class="payout-stat"><strong>${(PAYOUTS.weekly*18+PAYOUTS.half.reduce((a,x)=>a+x[1],0)*2).toLocaleString()}</strong><span>Listed prizes</span></div>`;
-  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5,6].map(w=>`<option value="${w}">Week ${w}${w<6?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5','6'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
+  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5,6,7].map(w=>`<option value="${w}">Week ${w}${w<7?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5','6','7'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0); const override3=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
   else if(!fours.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} · Final</strong><small>No entries finished 4–0.</small></div><strong>0</strong></div>`;
@@ -209,6 +208,19 @@ function renderBonus(){
     const arr=(h?.entries||[]).filter(e=>eligibleIds.has(e.id)&&e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>({e,s:aliveIds.has(e.id)?'alive':'eliminated'})).sort((a,b)=>a.e.id-b.e.id);
     $('bonusAlive').textContent=`${aliveIds.size} alive`;$('bonusContext').textContent='Week 5 · Final · max favorite 5 points (team must win outright)';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':'ALIVE';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':'alive'}">${label}</div></div>`}).join('');
+  }else if(week===6){
+    const h=DATA.history?.[6];
+    const rows=new Map((h?.rows||[]).map(r=>[r.id,r]));
+    const arr=(h?.entries||[]).filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).map(e=>({e,s:rows.get(e.id)?.bonusStatus||'pending'})).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
+    const alive=arr.filter(x=>x.s==='alive').length;
+    $('bonusAlive').textContent=`${alive} alive`;
+    $('bonusContext').textContent='Week 6 · Final · max favorite 4 points';
+    $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
+  }else if(week===7){
+    const arr=(DATA.entries||[]).filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);
+    $('bonusAlive').textContent=`${arr.length} eligible`;
+    $('bonusContext').textContent='Week 7 · Current · max favorite 3 points · picks not loaded';
+    $('bonusList').innerHTML=arr.map(e=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">Bonus pick not loaded</div></div></div><div class="">PENDING</div></div>`).join('');
   }else{
     const currentEntries=DATA.entries?.length?DATA.entries:DATA.history?.[5]?.entries||[];
     const eligibleIds=new Set(DATA.week6BonusEligibleIds||[]);
@@ -246,7 +258,7 @@ function formatLiveDetail(g){const sc=state.scores[g.id];if(!sc||sc.status!=='in
 function formatGameTimeDisplay(g){return formatLiveDetail(g)||formatGameDateTime(g)}
 function renderGames(){const sf=$('sportFilter').value,gf=$('gameFilter').value,games=DATA.games.filter(g=>sf==='all'||g.sport===sf).filter(g=>{const s=gameStatus(g);return gf==='all'||gf==='live'&&s==='in'||gf==='final'&&s==='final'||gf==='upcoming'&&s==='scheduled'}).sort((a,b)=>(new Date(gameStartTime(a)||a.date))-(new Date(gameStartTime(b)||b.date)));$('gameList').innerHTML=games.map(g=>{const sc=state.scores[g.id]||{status:'scheduled'};const when=formatGameDateTime(g);const liveDetail=formatLiveDetail(g);return `<div class="game-row"><div class="game-top"><div><div class="game-status ${sc.status||''}">${sc.status==='in'?liveDetail||'LIVE':sc.status==='final'?'FINAL':when}</div><div class="game-teams">${esc(g.away)} @ ${esc(g.home)}</div></div><div class="game-score">${sc.awayScore!=null?`${sc.awayScore} - ${sc.homeScore}`:'0 - 0'}</div></div><div class="game-line">Official: ${esc(favoriteOf(g))} -${g.spread} · Total ${g.total}</div></div>`}).join('')}
 function gameStatus(g){return state.scores[g.id]?.status||'scheduled'}
-function updateHero(){const rs=DATA.entries.map(e=>record(e));$('fourZeroCount').textContent=rs.filter(r=>r.w===4&&r.l===0).length;const done=(DATA.games||[]).filter(g=>state.scores[g.id]?.status==='final').length;$('gamesDone').textContent=`${done}/${DATA.games.length}`}
+function updateHero(){const rs=DATA.entries.map(record);$('fourZeroCount').textContent=rs.filter(r=>r.w===4&&r.l===0).length;const done=(DATA.games||[]).filter(g=>state.scores[g.id]?.status==='final').length;$('gamesDone').textContent=`${done}/${DATA.games.length}`}
 function openEntry(id,week=null){
   let e,gm,scoreMap,weekBonusMax=DATA.bonusMax;if(week){const h=DATA.history?.[week];e=h?.entries?.find(x=>x.id===id);gm=h?Object.fromEntries(h.games.map(g=>[g.id,g])):{};scoreMap=state.historyScores;weekBonusMax=h?.bonusMax||weekBonusMax}else{e=DATA.entries.find(x=>x.id===id);gm=gameById;scoreMap=state.scores}if(!e)return;const r=record(e,gm,scoreMap),bstat=bonusStatus(e,gm,scoreMap);
   $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${r.w}-${r.l} <span class="muted">${r.pending} pending</span></div><div class="entry-meta">Entry ${e.id}${week?` · Week ${week} · Final`:''}${e.autoPick?' · Commissioner auto-pick':''}</div></div>${e.picks.map(p=>{const g=gm[p.gameId],res=classifyPick(p,g,scoreMap),sc=scoreMap[g?.id];return `<div class="pick-detail"><div><div class="pick-main">${esc(p.raw)}${e.autoPick?'<span class="auto-badge">AUTO</span>':''}</div><div class="pick-time">${week?formatDate(g.date):formatGameTimeDisplay(g)}</div><div class="pick-sub">${esc(g.away)} @ ${esc(g.home)} · ${p.kind==='total'?(p.direction==='over'?'Over':'Under')+' '+g.total:(norm(p.team)===norm(favoriteOf(g))?`${p.team} -${g.spread}`:`${p.team} +${g.spread}`)}</div>${sc&&sc.awayScore!=null?`<div class="pick-sub">Score: ${sc.awayScore}-${sc.homeScore}</div>`:''}</div><div class="result-${res}">${res==='win'?'WIN':res==='loss'?'LOSS':res==='live'?'LIVE':'PENDING'}</div></div>`}).join('')}<div class="pick-detail"><div><div class="pick-main">Bonus: ${esc(e.bonus?.team||'Not loaded')}</div><div class="pick-sub">Outright win required · max favorite ${weekBonusMax}</div></div><div class="${bstat==='eliminated'?'result-loss':bstat==='alive'?'result-win':'result-pending'}">${bstat.toUpperCase()}</div></div>`;$('entryModal').classList.remove('hidden')}
@@ -345,71 +357,9 @@ async function refreshScores(){
   }
   try{render()}catch(err){console.error('Render error after live feed update:',err)}
 }
-
-async function exportWeekSnapshot(){
-  const status=$('exportStatus');
-  const btn=$('exportWeekSnapshot');
-  if(status)status.textContent='Refreshing ESPN scores before export…';
-  if(btn)btn.disabled=true;
-  try{
-    await refreshScores();
-    const gameMap=Object.fromEntries((DATA.games||[]).map(g=>[g.id,g]));
-    const entries=(DATA.entries||[]).map(e=>{
-      const r=record(e,gameMap,state.scores);
-      return {...e,finalRecord:{wins:r.w,losses:r.l,live:r.live,pending:r.pending,pickResults:r.r,bonusStatus:bonusStatus(e,gameMap,state.scores)}};
-    });
-    const winnerRows=entries.filter(e=>e.finalRecord.wins===4&&e.finalRecord.losses===0);
-    const finalGameCount=(DATA.games||[]).filter(g=>state.scores[g.id]?.status==='final').length;
-    const snapshot={
-      schema:'commiss-pool-week-snapshot-v1',
-      exportedAt:new Date().toISOString(),
-      season:DATA.season,
-      week:DATA.week,
-      bonusMax:DATA.bonusMax,
-      status:finalGameCount===(DATA.games||[]).length?'all-games-final':'partial-or-unmatched-games',
-      validation:{
-        gameCount:(DATA.games||[]).length,
-        finalGameCount,
-        entriesCount:entries.length,
-        scoreMapCount:Object.keys(state.scores||{}).length,
-        fourZeroWinnerCount:winnerRows.length,
-        bountyTotal:2500,
-        bountyShare:winnerRows.length?2500/winnerRows.length:0,
-        expectedKnownWeek6Winners:['HONK SHOE','YETI'],
-        expectedKnownShareEach:1250
-      },
-      games:DATA.games,
-      scores:state.scores,
-      entries,
-      historicalWeeks:DATA.history||{},
-      payoutRecord:{
-        week:6,
-        total:2500,
-        winners:winnerRows.map(e=>({id:e.id,name:e.name,amount:winnerRows.length?2500/winnerRows.length:0}))
-      },
-      notes:[
-        'Exported from the separate Week 6 snapshot-export build.',
-        'This file is a capture, not an automatic lock or a replacement for validating the visible Week 6 payout history.',
-        'Check validation.finalGameCount against validation.gameCount and confirm HONK SHOE and YETI each receive 1250 before using as the frozen historical record.'
-      ]
-    };
-    const blob=new Blob([JSON.stringify(snapshot,null,2)],{type:'application/json'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;
-    a.download='Commiss-Pool-Week6-FINAL-SNAPSHOT.json';
-    document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),3000);
-    if(status)status.textContent=`Snapshot downloaded. ${finalGameCount}/${(DATA.games||[]).length} games marked final; ${winnerRows.length} computed 4–0 entries. Verify the JSON before locking history.`;
-  }catch(err){
-    console.error('Week 6 snapshot export failed:',err);
-    if(status)status.textContent='Export failed. Check the live score feed and try again.';
-  }finally{if(btn)btn.disabled=false}
-}
-
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
-$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('pointsView')?.addEventListener('change',renderPoints);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;$('exportWeekSnapshot')?.addEventListener('click',exportWeekSnapshot);document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
+$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('pointsView')?.addEventListener('change',renderPoints);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
 populateOverallSelector();
 // Start the live feed independently so a rendering/UI exception cannot prevent score polling.
 setTimeout(()=>{refreshScores().catch(err=>{console.error('Live feed startup error:',err);setFeed(`Live feed error · ${err?.message||String(err)}`,'bad')})},0);

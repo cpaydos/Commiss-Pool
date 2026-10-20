@@ -18,7 +18,7 @@
     <header class="topbar">
       <div>
         <div class="eyebrow">COMMISS FANTASY FOOTBALL</div>
-        <h1>Week 6 <span id="liveDot" class="live-dot"></span></h1>
+        <h1>Week 7 <span id="liveDot" class="live-dot"></span></h1>
         <div class="subhead">136 entries · 4 picks + Bonus</div>
       </div>
       <button id="refreshBtn" class="icon-btn" aria-label="Refresh scores">↻</button>
@@ -32,7 +32,7 @@
         </div>
         <div class="hero-stats">
           <div><strong id="fourZeroCount">0</strong><span>4-0</span></div>
-          <div><strong id="gamesDone">0/69</strong><span>games final</span></div>
+          <div><strong id="gamesDone">0/66</strong><span>games final</span></div>
         </div>
       </section>
 
@@ -76,7 +76,7 @@
           <div><h2>Bonus Pool</h2><p id="bonusContext">Week 3 max favorite: 7 points</p></div>
           <div id="bonusAlive" class="pill">130 alive</div>
         </div>
-        <div class="history-toolbar"><select id="bonusWeek" aria-label="Bonus history week"><option value="6">Week 6 · Current</option><option value="5">Week 5 · Pending</option><option value="4">Week 4 · Final</option><option value="3">Week 3 · Final</option><option value="2">Week 2 · Final</option><option value="1">Week 1 · Final</option></select></div>
+        <div class="history-toolbar"><select id="bonusWeek" aria-label="Bonus history week"><option value="7">Week 7 · Current</option><option value="6">Week 6 · Final</option><option value="5">Week 5 · Final</option><option value="4">Week 4 · Final</option><option value="3">Week 3 · Final</option><option value="2">Week 2 · Final</option><option value="1">Week 1 · Final</option></select></div>
         <div id="bonusList" class="bonus-list"></div>
       </section>
 
@@ -111,7 +111,7 @@
         <div class="history-toolbar"><select id="pointsView" aria-label="Accumulated points view"></select></div>
         <div id="pointsContext" class="payout-note" style="margin-top:0"></div>
         <div id="pointsList" class="payout-list"></div>
-        <div class="section-heading"><div><h3>Weekly Bounty History</h3><p>2,500 every week · split among 4–0 entries</p></div></div><div class="history-toolbar"><select id="payoutWeek" aria-label="Payout history week"><option value="6">Week 6 · Current</option><option value="5">Week 5 · Pending</option><option value="4">Week 4 · Final</option><option value="3">Week 3 · Final</option><option value="2">Week 2 · Final</option><option value="1">Week 1 · Final</option></select></div>
+        <div class="section-heading"><div><h3>Weekly Bounty History</h3><p>2,500 every week · split among 4–0 entries</p></div></div><div class="history-toolbar"><select id="payoutWeek" aria-label="Payout history week"><option value="7">Week 7 · Current</option><option value="6">Week 6 · Final</option><option value="5">Week 5 · Final</option><option value="4">Week 4 · Final</option><option value="3">Week 3 · Final</option><option value="2">Week 2 · Final</option><option value="1">Week 1 · Final</option></select></div>
         <div id="weeklyPayout" class="payout-card"></div>
         <div class="section-heading"><div><h3>Each 9-Week Half</h3><p>Prizes are awarded once in each half</p></div></div>
         <div id="halfPayouts" class="payout-list"></div>
@@ -121,12 +121,6 @@
       <section class="feed-status">
         <div><span id="feedIndicator" class="status-dot"></span><span id="feedStatus">Score feed not checked yet</span></div>
         <span class="feed-source">ESPN live scores</span>
-      </section>
-      <section class="export-tools" style="margin:14px 0;padding:14px;border:1px solid #334155;border-radius:14px;background:#111827">
-        <strong style="display:block;margin-bottom:6px">Week 6 Final Snapshot</strong>
-        <p style="margin:0 0 10px;color:#9ca3af;font-size:13px">Refreshes ESPN scores, then exports the current Week 6 games, picks, score map, entry records, bonus status, and bounty winners as a JSON backup. This does not lock or modify the live app.</p>
-        <button id="exportWeekSnapshot" class="icon-btn" style="width:100%;min-height:44px">Export Week 6 Snapshot (JSON)</button>
-        <div id="exportStatus" style="margin-top:8px;color:#9ca3af;font-size:13px" aria-live="polite"></div>
       </section>
     </main>
   </div>
@@ -139,7 +133,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=week6-snapshot-export-1"></script>
-  <script src="app.js?v=week6-snapshot-export-1"></script>
+  <script src="data.js?v=week6-frozen-history-v1"></script>
+  <script src="app.js?v=week6-frozen-history-v1"></script>
 </body>
 </html>
