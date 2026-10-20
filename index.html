@@ -122,6 +122,12 @@
         <div><span id="feedIndicator" class="status-dot"></span><span id="feedStatus">Score feed not checked yet</span></div>
         <span class="feed-source">ESPN live scores</span>
       </section>
+      <section class="export-tools" style="margin:14px 0;padding:14px;border:1px solid #334155;border-radius:14px;background:#111827">
+        <strong style="display:block;margin-bottom:6px">Week 6 Final Snapshot</strong>
+        <p style="margin:0 0 10px;color:#9ca3af;font-size:13px">Refreshes ESPN scores, then exports the current Week 6 games, picks, score map, entry records, bonus status, and bounty winners as a JSON backup. This does not lock or modify the live app.</p>
+        <button id="exportWeekSnapshot" class="icon-btn" style="width:100%;min-height:44px">Export Week 6 Snapshot (JSON)</button>
+        <div id="exportStatus" style="margin-top:8px;color:#9ca3af;font-size:13px" aria-live="polite"></div>
+      </section>
     </main>
   </div>
 
@@ -133,7 +139,7 @@
     </div>
   </div>
 
-  <script src="data.js?v=week6-hero-counter-fix-1"></script>
-  <script src="app.js?v=week6-hero-counter-fix-1"></script>
+  <script src="data.js?v=week6-snapshot-export-1"></script>
+  <script src="app.js?v=week6-snapshot-export-1"></script>
 </body>
 </html>
