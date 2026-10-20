@@ -26,3 +26,9 @@
 - Existing ESPN live-feed implementation and app features retained.
 - Favorites remain presentation-only; no Favorites changes were made to standings, payouts, or bonus eligibility logic.
 - No speculative changes to the scoring or live-feed matching rules.
+
+
+## Historical payout integration correction
+- Added Week 6 locked bounty winners to the accumulated points/payout view: HONK SHOE $1,250 and YETI $1,250.
+- Overall and first-half point views now include Week 6; Week 6 is still locked historical data and Week 7 remains current.
+- Historical payout rendering now uses `DATA.history[week].payoutRecord.winners` as an authoritative fallback so frozen bounty winners render even if row-derived 4–0 data is unavailable.

@@ -34,17 +34,29 @@ function toggleFavorite(id){const f=getFavorites();const key=String(id);f.has(ke
 function starButton(e){return `<button class="star-btn ${isFavorite(e.id)?'starred':''}" data-star="${e.id}" aria-label="${isFavorite(e.id)?'Remove':'Add'} ${esc(e.name)} ${isFavorite(e.id)?'from':'to'} favorites">${isFavorite(e.id)?'★':'☆'}</button>`}
 function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();renderPoints();updateHero()}
 function weekRows(week){return historyForWeek(week)||[]}
-function weekPayoutRows(week){if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}return weekRows(week)||[]}
+function weekPayoutRows(week){
+  if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}
+  const rows=weekRows(week)||[];
+  // Locked historical bounty records are authoritative if the stored row format ever changes.
+  const payout=DATA.history?.[week]?.payoutRecord;
+  if(payout?.winners?.length){
+    const byId=new Map(rows.map(r=>[Number(r.id),r]));
+    for(const winner of payout.winners){const prior=byId.get(Number(winner.id))||{};byId.set(Number(winner.id),{...prior,id:Number(winner.id),name:winner.name||prior.name,w:4,l:0,payout:Number(winner.amount)||0});}
+    return [...byId.values()];
+  }
+  return rows;
+}
 const POINTS_BY_WEEK={
   1:{'AVERAGE JOES':278,'BAD HOMBRES':278,'CHAMPION SWEATPANTS':278,'JOE VALLACHI\'S SON':278,'MODEL C':278,'SLIME PIGS':278,'SPEED NOT ACCURACY':278,'THE HORSE':278,'TWGSITW':278},
   2:{'44&10':625,'FLANSAM':625,'GREEK\'S KID':625,'SAMBA':625},
   3:{'CASPER':500,'DOE LANE BOYZ':500,'LOLO THE MILF':500,'PETER THE GOOD':500,'SEAL WITH IT':325,'SOUTHIE BOYS':500,'THE HORSE':325},
   4:{'AIDEN BRADY':278,'BARTLES & JAMES':278,'BIG K':278,'DOIN WORK':278,'FAST EDDIE':278,'FLANSAM':278,'M & M BOYS':278,'PAPA EAGLE':278,'SNAKE BEAR':278},
-  5:{'ANGRY BEAVERS':417,'B&M':417,'SLIME PIGS':417,'SLOPPY STEAKS':417,'THE FUTURE CHAMP':417,'TOMMY PO':417}
+  5:{'ANGRY BEAVERS':417,'B&M':417,'SLIME PIGS':417,'SLOPPY STEAKS':417,'THE FUTURE CHAMP':417,'TOMMY PO':417},
+  6:{'HONK SHOE':1250,'YETI':1250}
 };
 function pointsForEntryName(name,week){const map=POINTS_BY_WEEK[week]||{};const key=Object.keys(map).find(k=>norm(k)===norm(name));return Number(key?map[key]:0)}
 function pointsWeeksForView(view){
-  return view==='first'?[1,2,3,4,5]:view==='second'?[10,11,12,13,14,15,16,17,18]:view==='season'?[1,2,3,4,5]:[Number(view.replace('week',''))];
+  return view==='first'?[1,2,3,4,5,6,7,8,9]:view==='second'?[10,11,12,13,14,15,16,17,18]:view==='season'?[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]:[Number(view.replace('week',''))];
 }
 function pointsRows(view){
   const weeks=pointsWeeksForView(view);
