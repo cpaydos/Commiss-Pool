@@ -238,10 +238,11 @@ function renderBonus(){
     $('bonusContext').textContent='Week 6 · Final · max favorite 4 points';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
   }else if(week===7){
-    const arr=(DATA.entries||[]).filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);
-    $('bonusAlive').textContent=`${arr.length} eligible`;
-    $('bonusContext').textContent='Week 7 · Current · max favorite 3 points · picks not loaded';
-    $('bonusList').innerHTML=arr.map(e=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">Bonus pick not loaded</div></div></div><div class="">PENDING</div></div>`).join('');
+    const eligibleIds=new Set(DATA.week7BonusAliveIdsEnteringWeek||DATA.week7BonusEligibleIds||[]);
+    const arr=(DATA.entries||[]).filter(e=>eligibleIds.has(e.id)&&e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);
+    $('bonusAlive').textContent=`${arr.length} alive`;
+    $('bonusContext').textContent='Week 7 · Current · max favorite 3 points · 10 entries alive';
+    $('bonusList').innerHTML=arr.map(e=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'Bonus pick missing'}</div></div></div><div class="alive">ALIVE</div></div>`).join('');
   }else{
     const currentEntries=DATA.entries?.length?DATA.entries:DATA.history?.[5]?.entries||[];
     const eligibleIds=new Set(DATA.week6BonusEligibleIds||[]);
