@@ -238,18 +238,20 @@ function renderBonus(){
     $('bonusContext').textContent='Week 6 · Final · max favorite 4 points';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
   }else if(week===8){
-    // Week 8 is the active week. Do not fall through to the old Week 6 bonus pool.
-    const arr=(DATA.entries||[]).filter(e=>e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);
-    $('bonusAlive').textContent=`${arr.length} entries`;
+    // Week 8 bonus pool carries forward only the entries alive after Week 7.
+    const aliveIds=new Set(DATA.history?.[7]?.bonusAliveIdsAfterWeek||[]);
+    const all=(DATA.entries||[]).slice().sort((a,b)=>a.id-b.id);
+    const arr=all.filter(e=>aliveIds.has(e.id));
+    $('bonusAlive').textContent=`${arr.length} alive`;
     $('bonusContext').textContent='Week 8 · Current · max favorite 2 points';
     $('bonusList').innerHTML=arr.map(e=>{
       const hasPick=!!e.bonus?.gameId;
-      const s=hasPick?bonusStatus(e):'pending';
+      const s=hasPick?bonusStatus(e):'alive';
       const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'NOT LOADED';
-      const sub=hasPick?esc(e.bonus.team||'Bonus pick'): 'Not loaded';
+      const sub=hasPick?esc(e.bonus.team||'Bonus pick'):'Bonus pick not loaded';
       return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`;
-    }).join('');
-  }else if(week===7){
+    }).join('')||'<div class="empty">No bonus entries carried forward.</div>';
+}else if(week===7){
     const eligibleIds=new Set(DATA.week7BonusAliveIdsEnteringWeek||DATA.week7BonusEligibleIds||[]);
     const arr=(DATA.entries||[]).filter(e=>eligibleIds.has(e.id)&&e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);
     $('bonusAlive').textContent=`${arr.length} alive`;

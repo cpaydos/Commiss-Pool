@@ -25,3 +25,7 @@ This repair updates the static heading and app current-week logic to Week 8, set
 
 ## Week 8 Bonus Pool fix
 The Bonus tab now has a dedicated Week 8 current-week branch. It displays the Week 8 maximum favorite of 2 points and current entries as Not loaded until bonus picks are entered, rather than incorrectly falling through to the Week 6 bonus pool. Historical Week 1–7 branches remain unchanged.
+
+
+## Week 8 bonus carryover correction
+Week 8 bonus pool now carries forward the six entries recorded as alive after Week 7 (IDs from history[7].bonusAliveIdsAfterWeek). The Week 8 Bonus tab shows those six entries, not all 136 pool entries. Their Week 8 bonus picks remain unentered until provided. Historical Weeks 1–7 data remains in data.js.
