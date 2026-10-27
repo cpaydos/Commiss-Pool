@@ -379,30 +379,9 @@ async function refreshScores(){
   }
   try{render()}catch(err){console.error('Render error after live feed update:',err)}
 }
-function exportWeekScores(){
-  const games=(DATA.games||[]).map(g=>({
-    id:g.id,date:g.date,sport:g.sport,away:g.away,home:g.home,favorite:g.favorite,spread:g.spread,total:g.total,
-    score:state.scores[g.id]||null
-  }));
-  const finalCount=games.filter(g=>g.score?.status==='final').length;
-  const payload={
-    exportType:'commiss-pool-week-score-export',exportVersion:1,
-    exportedAt:new Date().toISOString(),season:DATA.season,week:DATA.week,
-    expectedGames:games.length,finalGames:finalCount,
-    note:finalCount===games.length?'All listed games are final.':'Some games are not marked final; verify before locking.',
-    games,
-    // Preserve the exact pool source data alongside scores for safe reconciliation.
-    poolData:DATA
-  };
-  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
-  const url=URL.createObjectURL(blob);const a=document.createElement('a');
-  a.href=url;a.download=`Commiss-Pool-Week${DATA.week}-SCORE-EXPORT.json`;
-  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-  setFeed(`Score export created · ${finalCount}/${games.length} games final`,finalCount===games.length?'ok':'bad');
-}
 function setFeed(t,cls){$('feedStatus').textContent=t;$('feedIndicator').className='status-dot '+cls}
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active-panel'));t.classList.add('active');$(t.dataset.tab).classList.add('active-panel')});
-$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('pointsView')?.addEventListener('change',renderPoints);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;$('exportScoresBtn')?.addEventListener('click',exportWeekScores);document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
+$('search').oninput=renderLeaderboard;$('statusFilter').onchange=renderLeaderboard;$('favoriteFilter').onchange=renderLeaderboard;$('overallWeek').onchange=renderOverall;$('overallFavoriteFilter').onchange=renderOverall;$('bonusWeek')?.addEventListener('change',renderBonus);$('payoutWeek')?.addEventListener('change',renderPayouts);$('pointsView')?.addEventListener('change',renderPoints);$('sportFilter').onchange=renderGames;$('gameFilter').onchange=renderGames;document.querySelectorAll('.dist-switch').forEach(b=>b.onclick=()=>{document.querySelectorAll('.dist-switch').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDistribution()});$('refreshBtn').onclick=refreshScores;document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('entryModal').classList.add('hidden'));
 populateOverallSelector();
 // Start the live feed independently so a rendering/UI exception cannot prevent score polling.
 setTimeout(()=>{refreshScores().catch(err=>{console.error('Live feed startup error:',err);setFeed(`Live feed error · ${err?.message||String(err)}`,'bad')})},0);

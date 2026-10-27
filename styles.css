@@ -71,8 +71,3 @@
 
 /* Accumulated points interactions */
 .points-entry-row{cursor:pointer;transition:transform .12s ease,border-color .12s ease}.points-entry-row:active{transform:scale(.995)}.points-entry-row:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.points-breakdown{display:flex;flex-direction:column;gap:8px;margin-top:12px}.points-breakdown-row{margin-top:0}.points-breakdown-row>strong{white-space:nowrap;text-align:right}.points-dollar{font-size:10px;color:var(--muted);font-weight:700}
-
-/* One-click Week score export; isolated from pool calculations and favorites. */
-.topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.export-btn{border:1px solid var(--line,#344054);background:var(--card,#172033);color:var(--text,#f8fafc);border-radius:10px;padding:10px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
-.export-btn:hover{filter:brightness(1.12)}
