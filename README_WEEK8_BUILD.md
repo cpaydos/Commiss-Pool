@@ -21,3 +21,7 @@ The service-worker cache key was bumped to `commiss-shell-v20-week8-bonus-2` so 
 
 ## Repaired Week 8 conversion
 This repair updates the static heading and app current-week logic to Week 8, sets the active bonus maximum to 2, clears Week 7 picks from the active entries so Week 8 starts with picks not loaded, and preserves the Week 1–7 history object. Week 7 bonus view reads its frozen historical entries.
+
+
+## Week 8 Bonus Pool fix
+The Bonus tab now has a dedicated Week 8 current-week branch. It displays the Week 8 maximum favorite of 2 points and current entries as Not loaded until bonus picks are entered, rather than incorrectly falling through to the Week 6 bonus pool. Historical Week 1–7 branches remain unchanged.
