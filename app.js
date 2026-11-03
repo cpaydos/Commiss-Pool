@@ -1,5 +1,5 @@
 const DATA=window.POOL_DATA;
-const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{},DATA.history?.[5]?.scores||{},DATA.history?.[6]?.scores||{});
+const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{},DATA.history?.[5]?.scores||{},DATA.history?.[6]?.scores||{},DATA.history?.[7]?.scores||{},DATA.history?.[8]?.scores||{});
 const state={scores:{},historyScores:staticHistoryScores,lastUpdated:null,overallView:'season'};
 const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3000]]};
 const REMOVED_ENTRY_IDS=new Set([104]);
@@ -7,7 +7,7 @@ const $=id=>document.getElementById(id);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
-const SEASON={currentWeek:8,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5,6]};
+const SEASON={currentWeek:9,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5,6,7,8]};
 const aliases={
   'MIDD TENN':'MIDDLE TENNESSEE','MIAMI (FL)':'MIAMI','SAN JOSE ST':'SAN JOSE STATE','EASTERN MICH':'EASTERN MICHIGAN','BOISE ST':'BOISE STATE','NORTH DAKOTA ST':'NORTH DAKOTA STATE','KANSAS ST':'KANSAS STATE','OKLAHOMA ST':'OKLAHOMA STATE','OREGON ST':'OREGON STATE','ARIZONA ST':'ARIZONA STATE','GEORGIA ST':'GEORGIA STATE','WASHINGTON ST':'WASHINGTON STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','APP ST':'APPALACHIAN STATE','SOUTH FLORIDA':'SOUTH FLORIDA','FLORIDA ATLANTIC':'FLORIDA ATLANTIC','SAM HOUSTON':'SAM HOUSTON','OLD DOMINION':'OLD DOMINION','UCF':'UCF','UTSA':'UTSA','UL-MONROE':'UL MONROE','SAN DIEGO ST':'SAN DIEGO STATE','FRESNO ST':'FRESNO STATE','BOSTON COLLEGE':'BOSTON COLLEGE','FIU':'FLORIDA INTERNATIONAL','PITT':'PITTSBURGH','UCONN':'CONNECTICUT','PENN ST':'PENN STATE','MISSISSIPPI ST':'MISSISSIPPI STATE','SACRAMENTO ST':'SACRAMENTO STATE','JACKSONVILLE ST':'JACKSONVILLE STATE','GEORGIA ST':'GEORGIA STATE','FRESNO ST':'FRESNO STATE','HAWAII':'HAWAI’I','NEW MEXICO ST':'NEW MEXICO STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','UCF':'CENTRAL FLORIDA','UAB':'UAB','UCF':'UCF','UCLA':'UCLA','USC':'USC'
 };
@@ -104,7 +104,7 @@ function renderPoints(){
 
 function renderPayouts(){
   $('payoutSummary').innerHTML=`<div class="payout-stat"><strong>${PAYOUTS.weekly.toLocaleString()}</strong><span>Weekly bounty</span></div><div class="payout-stat"><strong>${PAYOUTS.half.reduce((a,x)=>a+x[1],0).toLocaleString()}</strong><span>Half prizes</span></div><div class="payout-stat"><strong>${(PAYOUTS.weekly*18+PAYOUTS.half.reduce((a,x)=>a+x[1],0)*2).toLocaleString()}</strong><span>Listed prizes</span></div>`;
-  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const opts=[1,2,3,4,5,6,7].map(w=>`<option value="${w}">Week ${w}${w<7?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && ['1','2','3','4','5','6','7'].includes(selected))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
+  const sel=$('payoutWeek'); if(sel){const selected=sel.value;const weeks=Array.from({length:SEASON.currentWeek},(_,i)=>i+1);const opts=weeks.map(w=>`<option value="${w}">Week ${w}${w<SEASON.currentWeek?' · Final':' · Current'}</option>`).join('');if(sel.innerHTML!==opts)sel.innerHTML=opts;if(selected && weeks.includes(Number(selected)))sel.value=selected;else sel.value=String(SEASON.currentWeek)}
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0); const override3=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
   else if(!fours.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} · Final</strong><small>No entries finished 4–0.</small></div><strong>0</strong></div>`;
@@ -237,20 +237,19 @@ function renderBonus(){
     $('bonusAlive').textContent=`${alive} alive`;
     $('bonusContext').textContent='Week 6 · Final · max favorite 4 points';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
+  }else if(week===9){
+    $('bonusAlive').textContent='Paused';
+    $('bonusContext').textContent='Week 9 · No bonus picks · Returns Week 10';
+    $('bonusList').innerHTML='<div class="empty">There is no bonus contest this week. The Week 8 first-half survivor winner was SLIME PIGS ($3,000). The next bonus competition begins in Week 10.</div>';
   }else if(week===8){
-    // Week 8 bonus pool carries forward only the entries alive after Week 7.
-    const aliveIds=new Set(DATA.history?.[7]?.bonusAliveIdsAfterWeek||[]);
-    const all=(DATA.entries||[]).slice().sort((a,b)=>a.id-b.id);
-    const arr=all.filter(e=>aliveIds.has(e.id));
-    $('bonusAlive').textContent=`${arr.length} alive`;
-    $('bonusContext').textContent='Week 8 · Current · max favorite 2 points';
-    $('bonusList').innerHTML=arr.map(e=>{
-      const hasPick=!!e.bonus?.gameId;
-      const s=hasPick?bonusStatus(e):'alive';
-      const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'NOT LOADED';
-      const sub=hasPick?esc(e.bonus.team||'Bonus pick'):'Bonus pick not loaded';
-      return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${sub}${e.autoPick?' · auto-pick':''}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`;
-    }).join('')||'<div class="empty">No bonus entries carried forward.</div>';
+    const h=DATA.history?.[8];
+    const eligibleIds=new Set(h?.bonusEligibleIdsEnteringWeek||[]);
+    const aliveIds=new Set(h?.bonusAliveIdsAfterWeek||[]);
+    const rowsById=new Map((h?.rows||[]).map(r=>[r.id,r]));
+    const arr=(h?.entries||[]).filter(e=>eligibleIds.has(e.id)).map(e=>({e,s:aliveIds.has(e.id)?'alive':'eliminated'})).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
+    $('bonusAlive').textContent=`${aliveIds.size} alive`;
+    $('bonusContext').textContent='Week 8 · Final · max favorite 2 points';
+    $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':'ALIVE';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':'alive'}">${label}</div></div>`}).join('')+`<div class="empty">First-half survivor winner: ${esc(h?.bonusWinner?.name||'SLIME PIGS')} · $${Number(h?.bonusWinner?.amount||3000).toLocaleString()}</div>`;
 }else if(week===7){
     const eligibleIds=new Set(DATA.week7BonusAliveIdsEnteringWeek||DATA.week7BonusEligibleIds||[]);
     const arr=(DATA.entries||[]).filter(e=>eligibleIds.has(e.id)&&e.name!=='HH & PABLO'&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);

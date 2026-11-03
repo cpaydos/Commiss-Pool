@@ -1,15 +1,8 @@
-COMMISS POOL — WEEK 8 BUILD
-Baseline: Commiss-Pool-Week7-LOCKED-HISTORY(1).zip
-Active week: 8
-Games: 66 total (14 NFL, 52 NCAA)
-Bonus Max: 2
-Rules:
-- Team listed on the left of the source lines is the favorite.
-- Capitalized team name is the home team.
-- Weeks 1–7 historical records were retained from the locked baseline.
-- Week 8 picks are not loaded yet.
-- Bye teams: Saints, Giants, 49ers, Texans.
-
-REVIEW NOTE:
-The PDF text extraction did not identify an all-caps team for Notre Dame away / Navy home.
-That matchup is flagged in data.js validation for visual verification before picks are loaded.
+COMMISS POOL — WEEK 9 LINES-LOADED BUILD
+Active week: 9
+Games: 72 total (15 NFL, 57 NCAA)
+Entries: 136
+Week 9 picks not loaded yet.
+Bonus picks paused for Week 9; returns Week 10.
+Weeks 1–7 history preserved; Week 8 results frozen and archived.
+See README_WEEK8_FROZEN_HISTORY.md and README_WEEK9_BUILD.md for verification details.
