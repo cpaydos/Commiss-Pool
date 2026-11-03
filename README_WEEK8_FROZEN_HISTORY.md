@@ -9,7 +9,7 @@
 - Regular picks: 544 (4 per entry)
 - Bonus picks: 6
 - 4–0 winners: 17
-- Weekly bounty: $2,500 total; $147.06 displayed per winner (equal split)
+- Weekly bounty: $2,500 total; $147 per winner; $2,499 distributed and $1 undistributed after rounding down
 - Week 8 bonus entrants: 6
 - Week 8 bonus survivors: 1 (SLIME PIGS)
 - Week 8 bonus eliminations: 5

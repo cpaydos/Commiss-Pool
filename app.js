@@ -57,12 +57,10 @@ const POINTS_BY_WEEK={
 function pointsForEntryName(name,week){
   const map=POINTS_BY_WEEK[week]||{};
   const key=Object.keys(map).find(k=>norm(k)===norm(name));
-  if(key)return Number(map[key])||0;
-  // Frozen payoutRecord is the source of truth for locked weekly bounty awards.
-  // Use it as a fallback so historical points render even if a display map is incomplete.
-  const winners=DATA.history?.[week]?.payoutRecord?.winners||[];
-  const winner=winners.find(x=>norm(x.name)===norm(name));
-  return Number(winner?.amount)||0;
+  const weekly=key?(Number(map[key])||0):(()=>{const winners=DATA.history?.[week]?.payoutRecord?.winners||[];const winner=winners.find(x=>norm(x.name)===norm(name));return Number(winner?.amount)||0})();
+  const bonus=DATA.history?.[week]?.bonusPayoutRecord;
+  const bonusAmount=bonus&&norm(bonus.winnerName)===norm(name)?Number(bonus.amount)||0:0;
+  return weekly+bonusAmount;
 }
 function pointsWeeksForView(view){
   return view==='first'?[1,2,3,4,5,6,7,8,9]:view==='second'?[10,11,12,13,14,15,16,17,18]:view==='season'?[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]:[Number(view.replace('week',''))];
@@ -108,10 +106,10 @@ function renderPayouts(){
   const week=Number(sel?.value||1),rows=weekPayoutRows(week),fours=rows.filter(r=>Number(r.w)===4&&Number(r.l)===0); const override3=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
   if(!rows.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} bounty</strong><small>Results will appear once that week's picks are loaded.</small></div><strong>Pending</strong></div>`;
   else if(!fours.length)$('weeklyPayout').innerHTML=`<div class="payout-row"><div><strong>Week ${week} · Final</strong><small>No entries finished 4–0.</small></div><strong>0</strong></div>`;
-  else{const share=PAYOUTS.weekly/fours.length;$('weeklyPayout').innerHTML=`<div class="payout-row payout-highlight"><div><strong>Week ${week} · ${fours.length} ${fours.length===1?'winner':'winners'} at 4–0</strong><small>2,500 split equally · ${share.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})} each</small></div><strong>2,500</strong></div>${fours.map(r=>`<div class="payout-row payout-entry" data-entry="${r.id}" data-week="${week}" role="button" tabindex="0"><div><strong>${esc(r.name)}</strong><small>Week ${week} record · Tap to view picks</small></div><strong>${share.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>`).join('')}`}
+  else{const frozen=DATA.history?.[week]?.payoutRecord;const amounts=new Map((frozen?.winners||[]).map(w=>[Number(w.id),Number(w.amount)||0]));const shareFor=r=>amounts.has(Number(r.id))?amounts.get(Number(r.id)):PAYOUTS.weekly/fours.length;const distributed=fours.reduce((sum,r)=>sum+shareFor(r),0);const remainder=Number(frozen?.unallocatedRemainder)||0;const money=n=>Number(n).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2});$('weeklyPayout').innerHTML=`<div class="payout-row payout-highlight"><div><strong>Week ${week} · ${fours.length} ${fours.length===1?'winner':'winners'} at 4–0</strong><small>${money(distributed)} distributed${remainder?` · ${money(remainder)} undistributed after rounding down`:''}</small></div><strong>${money(distributed)}</strong></div>${fours.map(r=>`<div class="payout-row payout-entry" data-entry="${r.id}" data-week="${week}" role="button" tabindex="0"><div><strong>${esc(r.name)}</strong><small>Week ${week} record · Tap to view picks</small></div><strong>${money(shareFor(r))}</strong></div>`).join('')}` }
   bindEntryRows($('weeklyPayout'));bindStars($('weeklyPayout'));
   $('weeklyPayout').querySelectorAll('.payout-entry').forEach(row=>row.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();row.click()}});
-  $('halfPayouts').innerHTML=PAYOUTS.half.map(([name,amt])=>`<div class="payout-row"><div><strong>${esc(name)}</strong><small>Per half · awarded in Weeks 1–9 and 10–18</small></div><strong>${amt.toLocaleString()}</strong></div>`).join('') + (override3.length?`<div class="payout-row payout-highlight"><div><strong>Week 3 Back-to-Back 0’s · Split</strong><small>THE HORSE · $325 &nbsp;|&nbsp; SEAL WITH IT · $325</small></div><strong>$650</strong></div>`:'');
+  const bonusAward=DATA.history?.[8]?.bonusPayoutRecord;$('halfPayouts').innerHTML=PAYOUTS.half.map(([name,amt])=>`<div class="payout-row"><div><strong>${esc(name)}</strong><small>Per half · awarded in Weeks 1–9 and 10–18</small></div><strong>${amt.toLocaleString()}</strong></div>`).join('') + (bonusAward?`<div class="payout-row payout-highlight"><div><strong>First-Half Survivor Bonus · ${esc(bonusAward.winnerName)}</strong><small>Week 8 · Awarded</small></div><strong>${Number(bonusAward.amount).toLocaleString()}</strong></div>`:'') + (override3.length?`<div class="payout-row payout-highlight"><div><strong>Week 3 Back-to-Back 0’s · Split</strong><small>THE HORSE · $325 &nbsp;|&nbsp; SEAL WITH IT · $325</small></div><strong>$650</strong></div>`:'');
 }
 function renderLeaderboard(){
   const q=$('search').value.toLowerCase(),f=$('statusFilter').value,favOnly=$('favoriteFilter').checked;

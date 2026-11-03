@@ -9,9 +9,9 @@ Bonus: paused for Week 9; returns Week 10.
 
 ## Week 8 freeze
 - 66 / 66 games final; all 544 regular pick results independently recalculated and matched.
-- 17 entries went 4–0 and split the $2,500 weekly bounty.
+- 17 entries went 4–0 and receive $147 each ($2,499 distributed); $1 remains undistributed after rounding down.
 - Week 8 bonus field: 6 entered, 5 eliminated, 1 survivor (SLIME PIGS).
-- First-half survivor payout recorded to SLIME PIGS: $3,000.
+- First-half survivor payout awarded and credited to SLIME PIGS: $3,000; included in payout history and points totals..
 - Weeks 1–7 historical data retained; Week 8 archived as final history.
 
 ## Week 9 line handling
