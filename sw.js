@@ -1,4 +1,4 @@
-const CACHE = 'commiss-shell-v21-week8-bonus-carryover';
+const CACHE = 'commiss-shell-v22-week8-close-export';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './data.js', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
