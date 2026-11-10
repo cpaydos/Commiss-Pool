@@ -33,3 +33,11 @@
 - Data counts: 136 entries, 75 Week 10 games, 72 frozen Week 9 games/scores, 544 frozen Week 9 picks.
 - Week 9 4–0 winner count matches the score export (9).
 - First-half standings match the supplied workbook across all 136 entries.
+
+
+## First-half points-table correction
+- The official First Half Points workbook includes first-half placement awards in the half totals.
+- The app's First Half and Overall points tables now add the five placement awards: SLIME PIGS $1,800 (1st), SPEED NOT ACCURACY $1,370 (2nd), SIZZLING FAJITAS $1,000 (3rd), TOBINOLAS $650 (47th), and SEAL WITH IT $650 (last).
+- The $3,000 first-half survivor bonus for SLIME PIGS remains counted from the Week 8 bonus payout record; it is not added a second time.
+- Points breakdowns show the placement award as a separate first-half line item. Individual weekly tables and second-half totals are unchanged.
+- The Half Payouts panel identifies the first-half recipients for the five placement awards.

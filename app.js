@@ -65,10 +65,26 @@ function pointsForEntryName(name,week){
 function pointsWeeksForView(view){
   return view==='first'?[1,2,3,4,5,6,7,8,9]:view==='second'?[10,11,12,13,14,15,16,17,18]:view==='season'?[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]:[Number(view.replace('week',''))];
 }
+const FIRST_HALF_PLACEMENT_AWARDS={
+  'SLIME PIGS':{label:'1st Place',amount:1800},
+  'SPEED NOT ACCURACY':{label:'2nd Place',amount:1370},
+  'SIZZLING FAJITAS':{label:'3rd Place',amount:1000},
+  'TOBINOLAS':{label:'47th Place',amount:650},
+  'SEAL WITH IT':{label:'Last Place',amount:650}
+};
+function firstHalfPlacementAward(name){
+  const key=Object.keys(FIRST_HALF_PLACEMENT_AWARDS).find(k=>norm(k)===norm(name));
+  return key?FIRST_HALF_PLACEMENT_AWARDS[key]:null;
+}
 function pointsRows(view){
   const weeks=pointsWeeksForView(view);
+  const includeFirstHalfAwards=view==='first'||view==='season';
   const entries=DATA.entries.filter(e=>!REMOVED_ENTRY_IDS.has(e.id));
-  return entries.map(e=>{const vals=weeks.map(w=>pointsForEntryName(e.name,w));return{id:e.id,name:e.name,points:vals.reduce((a,b)=>a+b,0),weeks:vals}})
+  return entries.map(e=>{
+    const vals=weeks.map(w=>pointsForEntryName(e.name,w));
+    const placement=includeFirstHalfAwards?(firstHalfPlacementAward(e.name)?.amount||0):0;
+    return{id:e.id,name:e.name,points:vals.reduce((a,b)=>a+b,0)+placement,weeks:vals,placement};
+  })
     .filter(r=>r.points>0)
     .sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name));
 }
@@ -76,10 +92,11 @@ function openPointsBreakdown(entryId,view){
   const e=DATA.entries.find(x=>x.id===entryId);if(!e)return;
   const weeks=pointsWeeksForView(view);
   const contributions=weeks.map(w=>({week:w,points:pointsForEntryName(e.name,w)})).filter(x=>x.points>0);
-  const total=contributions.reduce((sum,x)=>sum+x.points,0);
+  const placement=(view==='first'||view==='season')?firstHalfPlacementAward(e.name):null;
+  const total=contributions.reduce((sum,x)=>sum+x.points,0)+(placement?.amount||0);
   const viewLabel=view==='first'?'First Half':view==='second'?'Second Half':view==='season'?'Overall':`Week ${Number(view.slice(4))}`;
   const backToBackOverrides=DATA.history?.[3]?.payoutOverrides?.backToBackZero||[];
-  $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${total.toLocaleString()} points</div><div class="entry-meta">${viewLabel} breakdown · tap a week to see what contributed</div></div><div class="points-breakdown">${contributions.map(x=>{const override=x.week===3&&backToBackOverrides.find(o=>Number(o.id)===Number(e.id));const isBackToBack=Boolean(override);const label=isBackToBack?'Back-to-Back 0’s bonus':'Weekly 4–0 bounty';return `<div class="pick-detail points-breakdown-row"><div><div class="pick-main">Week ${x.week} · ${label}</div><div class="pick-sub">${isBackToBack?'Back-to-Back 0’s prize':'Weekly winner'} · $${x.points.toLocaleString()} won</div></div><strong>${x.points.toLocaleString()} <span class="points-dollar">points</span></strong></div>`}).join('')}</div><div class="payout-note">Total: <strong>${total.toLocaleString()} points</strong>. Weekly values are the rounded amounts from the official points sheet.</div>`;
+  $('modalContent').innerHTML=`<div class="detail-header"><h2>${esc(e.name)}</h2><div class="detail-record">${total.toLocaleString()} points</div><div class="entry-meta">${viewLabel} breakdown · tap a week to see what contributed</div></div><div class="points-breakdown">${contributions.map(x=>{const override=x.week===3&&backToBackOverrides.find(o=>Number(o.id)===Number(e.id));const isBackToBack=Boolean(override);const label=isBackToBack?'Back-to-Back 0’s bonus':'Weekly 4–0 bounty';return `<div class="pick-detail points-breakdown-row"><div><div class="pick-main">Week ${x.week} · ${label}</div><div class="pick-sub">${isBackToBack?'Back-to-Back 0’s prize':'Weekly winner'} · $${x.points.toLocaleString()} won</div></div><strong>${x.points.toLocaleString()} <span class="points-dollar">points</span></strong></div>`}).join('')}${placement?`<div class="pick-detail points-breakdown-row"><div><div class="pick-main">First-Half ${esc(placement.label)} Award</div><div class="pick-sub">Official first-half placement payout</div></div><strong>${placement.amount.toLocaleString()} <span class="points-dollar">points</span></strong></div>`:''}</div><div class="payout-note">Total: <strong>${total.toLocaleString()} points</strong>. Includes weekly awards, the recorded survivor bonus, and any first-half placement award. Weekly values follow the official points sheet.</div>`;
   $('entryModal').classList.remove('hidden');
 }
 function renderPoints(){
@@ -109,7 +126,9 @@ function renderPayouts(){
   else{const frozen=DATA.history?.[week]?.payoutRecord;const amounts=new Map((frozen?.winners||[]).map(w=>[Number(w.id),Number(w.amount)||0]));const shareFor=r=>amounts.has(Number(r.id))?amounts.get(Number(r.id)):PAYOUTS.weekly/fours.length;const distributed=fours.reduce((sum,r)=>sum+shareFor(r),0);const remainder=Number(frozen?.unallocatedRemainder)||0;const money=n=>Number(n).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2});$('weeklyPayout').innerHTML=`<div class="payout-row payout-highlight"><div><strong>Week ${week} · ${fours.length} ${fours.length===1?'winner':'winners'} at 4–0</strong><small>${money(distributed)} distributed${remainder?` · ${money(remainder)} undistributed after rounding down`:''}</small></div><strong>${money(distributed)}</strong></div>${fours.map(r=>`<div class="payout-row payout-entry" data-entry="${r.id}" data-week="${week}" role="button" tabindex="0"><div><strong>${esc(r.name)}</strong><small>Week ${week} record · Tap to view picks</small></div><strong>${money(shareFor(r))}</strong></div>`).join('')}` }
   bindEntryRows($('weeklyPayout'));bindStars($('weeklyPayout'));
   $('weeklyPayout').querySelectorAll('.payout-entry').forEach(row=>row.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();row.click()}});
-  const bonusAward=DATA.history?.[8]?.bonusPayoutRecord;$('halfPayouts').innerHTML=PAYOUTS.half.map(([name,amt])=>`<div class="payout-row"><div><strong>${esc(name)}</strong><small>Per half · awarded in Weeks 1–9 and 10–18</small></div><strong>${amt.toLocaleString()}</strong></div>`).join('') + (bonusAward?`<div class="payout-row payout-highlight"><div><strong>First-Half Survivor Bonus · ${esc(bonusAward.winnerName)}</strong><small>Week 8 · Awarded</small></div><strong>${Number(bonusAward.amount).toLocaleString()}</strong></div>`:'') + (override3.length?`<div class="payout-row payout-highlight"><div><strong>Week 3 Back-to-Back 0’s · Split</strong><small>THE HORSE · $325 &nbsp;|&nbsp; SEAL WITH IT · $325</small></div><strong>$650</strong></div>`:'');
+  const bonusAward=DATA.history?.[8]?.bonusPayoutRecord;
+  const firstHalfAwardees={'Most Wins':'SLIME PIGS','2nd Place':'SPEED NOT ACCURACY','3rd Place':'SIZZLING FAJITAS','47th Place – Alpha Sort':'TOBINOLAS','Last Place':'SEAL WITH IT'};
+  $('halfPayouts').innerHTML=PAYOUTS.half.map(([name,amt])=>`<div class="payout-row"><div><strong>${esc(name)}</strong><small>${firstHalfAwardees[name]?`First half: ${esc(firstHalfAwardees[name])} · second-half award remains open`:'Per half · awarded in Weeks 1–9 and 10–18'}</small></div><strong>${amt.toLocaleString()}</strong></div>`).join('') + (bonusAward?`<div class="payout-row payout-highlight"><div><strong>First-Half Survivor Bonus · ${esc(bonusAward.winnerName)}</strong><small>Week 8 · Awarded</small></div><strong>${Number(bonusAward.amount).toLocaleString()}</strong></div>`:'') + (override3.length?`<div class="payout-row payout-highlight"><div><strong>Week 3 Back-to-Back 0’s · Split</strong><small>THE HORSE · $325 &nbsp;|&nbsp; SEAL WITH IT · $325</small></div><strong>$650</strong></div>`:'');
 }
 function renderLeaderboard(){
   const q=$('search').value.toLowerCase(),f=$('statusFilter').value,favOnly=$('favoriteFilter').checked;
