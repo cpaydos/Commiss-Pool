@@ -75,3 +75,9 @@
 .header-actions{display:flex;align-items:center;gap:8px}
 .close-week-btn{border:1px solid #526078;background:#182235;color:#fff;border-radius:9px;padding:9px 11px;font-weight:700;font-size:12px}
 .close-week-btn:disabled{opacity:.55}
+
+/* Week 10 commissioner controls */
+.commissioner-admin{margin:16px auto 24px;max-width:1180px;padding:0 16px;color:var(--muted);font-size:12px}
+.commissioner-admin summary{cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:var(--panel);font-weight:700;color:var(--text);list-style-position:inside}
+.commissioner-admin-content{margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.commissioner-admin-content p{margin:0 0 10px}

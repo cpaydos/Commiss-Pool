@@ -1,5 +1,5 @@
 const DATA=window.POOL_DATA;
-const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{},DATA.history?.[5]?.scores||{},DATA.history?.[6]?.scores||{},DATA.history?.[7]?.scores||{},DATA.history?.[8]?.scores||{});
+const staticHistoryScores=Object.assign({},DATA.history?.[1]?.scores||{},DATA.history?.[2]?.scores||{},DATA.history?.[3]?.scores||{},DATA.history?.[4]?.scores||{},DATA.history?.[5]?.scores||{},DATA.history?.[6]?.scores||{},DATA.history?.[7]?.scores||{},DATA.history?.[8]?.scores||{},DATA.history?.[9]?.scores||{});
 const state={scores:{},historyScores:staticHistoryScores,lastUpdated:null,overallView:'season'};
 const PAYOUTS={weekly:2500,half:[['Most Wins',1800],['2nd Place',1370],['3rd Place',1000],['47th Place – Alpha Sort',650],['Last Place',650],['1st Back-to-Back 0’s',650],['Bonus',3000]]};
 const REMOVED_ENTRY_IDS=new Set([104]);
@@ -7,7 +7,7 @@ const $=id=>document.getElementById(id);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
 const favoriteOf=g=>g.favorite;
 const gameById=Object.fromEntries(DATA.games.map(g=>[g.id,g]));
-const SEASON={currentWeek:9,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5,6,7,8]};
+const SEASON={currentWeek:10,firstHalf:[1,2,3,4,5,6,7,8,9],secondHalf:[10,11,12,13,14,15,16,17,18],lockedWeeks:[1,2,3,4,5,6,7,8,9]};
 const aliases={
   'MIDD TENN':'MIDDLE TENNESSEE','MIAMI (FL)':'MIAMI','SAN JOSE ST':'SAN JOSE STATE','EASTERN MICH':'EASTERN MICHIGAN','BOISE ST':'BOISE STATE','NORTH DAKOTA ST':'NORTH DAKOTA STATE','KANSAS ST':'KANSAS STATE','OKLAHOMA ST':'OKLAHOMA STATE','OREGON ST':'OREGON STATE','ARIZONA ST':'ARIZONA STATE','GEORGIA ST':'GEORGIA STATE','WASHINGTON ST':'WASHINGTON STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','APP ST':'APPALACHIAN STATE','SOUTH FLORIDA':'SOUTH FLORIDA','FLORIDA ATLANTIC':'FLORIDA ATLANTIC','SAM HOUSTON':'SAM HOUSTON','OLD DOMINION':'OLD DOMINION','UCF':'UCF','UTSA':'UTSA','UL-MONROE':'UL MONROE','SAN DIEGO ST':'SAN DIEGO STATE','FRESNO ST':'FRESNO STATE','BOSTON COLLEGE':'BOSTON COLLEGE','FIU':'FLORIDA INTERNATIONAL','PITT':'PITTSBURGH','UCONN':'CONNECTICUT','PENN ST':'PENN STATE','MISSISSIPPI ST':'MISSISSIPPI STATE','SACRAMENTO ST':'SACRAMENTO STATE','JACKSONVILLE ST':'JACKSONVILLE STATE','GEORGIA ST':'GEORGIA STATE','FRESNO ST':'FRESNO STATE','HAWAII':'HAWAI’I','NEW MEXICO ST':'NEW MEXICO STATE','UTAH ST':'UTAH STATE','TEXAS ST':'TEXAS STATE','UCF':'CENTRAL FLORIDA','UAB':'UAB','UCF':'UCF','UCLA':'UCLA','USC':'USC'
 };
@@ -149,9 +149,9 @@ function overallRows(view){
   }
   const week=Number(view.replace('week',''));return historyForWeek(week)||[];
 }
-function sortOverall(rows){return rows.sort((a,b)=>{if(b.w!==a.w)return b.w-a.w;if(a.l!==b.l)return a.l-b.l;if((b.bonusWins||0)!==(a.bonusWins||0))return(b.bonusWins||0)-(a.bonusWins||0);return a.id-b.id})}
+function sortOverall(rows){return rows.sort((a,b)=>{if(b.w!==a.w)return b.w-a.w;if(a.l!==b.l)return a.l-b.l;return String(a.name||'').localeCompare(String(b.name||''),undefined,{sensitivity:'base'})})}
 function renderOverall(){
-  const view=$('overallWeek').value||'season';state.overallView=view;const rows=sortOverall(overallRows(view));
+  const view=$('overallWeek').value||(SEASON.currentWeek>=10?'second':'season');state.overallView=view;const rows=sortOverall(overallRows(view));
   const currentLabel=view==='season'?`Season Total · through Week ${SEASON.currentWeek}`:view==='first'?`First Half · through Week ${Math.min(SEASON.currentWeek,9)}`:view==='second'?`Second Half · through Week ${SEASON.currentWeek}`:`Week ${view.replace('week','')} · ${SEASON.lockedWeeks.includes(Number(view.replace('week','')))?'Final':'Current'}`;
   $('overallContext').textContent=currentLabel;const favOnly=$('overallFavoriteFilter').checked;const activeRows=rows.filter(r=>!REMOVED_ENTRY_IDS.has(r.id));const filtered=favOnly?activeRows.filter(r=>isFavorite(r.id)):activeRows;const weekNum=view.startsWith('week')?Number(view.slice(4)):null;
   const rankById=new Map(activeRows.map((r,i)=>[r.id,i+1]));
@@ -193,7 +193,7 @@ function bindStars(container){container.querySelectorAll('[data-star]').forEach(
 function populateOverallSelector(){
   const sel=$('overallWeek');
   const options=[['season','Season Total'],['first','First Half'],...SEASON.firstHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`]),['second','Second Half'],...SEASON.secondHalf.map(w=>[`week${w}`,`Week ${w}${SEASON.lockedWeeks.includes(w)?' · Final':''}`])];
-  sel.innerHTML=options.map(([v,l])=>{const n=v.startsWith('week')?Number(v.slice(4)):0;const available=v==='season'||(v==='first'&&SEASON.currentWeek>=1)||(v==='second'&&SEASON.currentWeek>=10)||(n>0&&n<=SEASON.currentWeek);return `<option value="${v}" ${available?'':'disabled'}>${l}</option>`}).join('');sel.value='season'
+  sel.innerHTML=options.map(([v,l])=>{const n=v.startsWith('week')?Number(v.slice(4)):0;const available=v==='season'||(v==='first'&&SEASON.currentWeek>=1)||(v==='second'&&SEASON.currentWeek>=10)||(n>0&&n<=SEASON.currentWeek);return `<option value="${v}" ${available?'':'disabled'}>${l}</option>`}).join('');sel.value=SEASON.currentWeek>=10?'second':'season'
 }
 const FINAL_BONUS_OUT={1:new Set([7,20,30,33,77,90,134]),2:new Set([7,20,30,33,77,90,134]),3:new Set([4,5,9,12,13,18,22,25,28,31,32,36,37,42,50,51,54,56,66,75,78,84,89,91,94,95,97,99,101,102,106,108,115,121,123,124,125,130]),4:new Set([8,16,23,26,27,29,38,40,45,47,48,49,53,57,59,61,62,63,69,71,73,76,80,81,82,83,96,98,107,112,113,117,122,127,133])};
 function priorBonusStatus(id){for(const w of [3,2,1]){if(FINAL_BONUS_OUT[w]?.has(id))return 'eliminated';const rows=historyForWeek(w);const hit=rows?.find(r=>r.id===id);if(hit?.bonus)return hit.bonus;}return null}
@@ -235,6 +235,12 @@ function renderBonus(){
     $('bonusAlive').textContent=`${alive} alive`;
     $('bonusContext').textContent='Week 6 · Final · max favorite 4 points';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
+  }else if(week===10){
+    const eligibleIds=new Set(DATA.week10BonusAliveIdsEnteringWeek||DATA.week10BonusEligibleIds||[]);
+    const arr=(DATA.entries||[]).filter(e=>eligibleIds.has(e.id)&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);
+    $('bonusAlive').textContent=`${arr.length} alive`;
+    $('bonusContext').textContent='Week 10 · Current · max favorite 9 points · all entries eligible';
+    $('bonusList').innerHTML=arr.map(e=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'Bonus pick not loaded'}</div></div></div><div class="alive">ALIVE</div></div>`).join('');
   }else if(week===9){
     $('bonusAlive').textContent='Paused';
     $('bonusContext').textContent='Week 9 · No bonus picks · Returns Week 10';
