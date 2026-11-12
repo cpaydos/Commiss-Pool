@@ -41,3 +41,13 @@
 - The $3,000 first-half survivor bonus for SLIME PIGS remains counted from the Week 8 bonus payout record; it is not added a second time.
 - Points breakdowns show the placement award as a separate first-half line item. Individual weekly tables and second-half totals are unchanged.
 - The Half Payouts panel identifies the first-half recipients for the five placement awards.
+
+
+## Week 10 picks loaded and Week 9 score-mapping correction
+- Loaded 136 of 136 entries from `Week 10 Picks.xlsx`.
+- Loaded 544 regular picks (4 per entry) and 136 bonus selections.
+- All 680 selections matched exactly one of the 75 Week 10 scheduled games; no unmatched or ambiguous team tokens.
+- Week 9 Kentucky–Tennessee corrected to Kentucky 6, Tennessee 34.
+- The 42–51 score remains assigned to Western Kentucky–Middle Tennessee only. This was a wrong-event mapping: Middle Tennessee's score was incorrectly reused for Tennessee.
+- Recalculated Week 9 pick results and the 4–0 bounty; the same nine entries remain 4–0 winners, so the $2,500 split is unchanged.
+- Going forward, never match NCAA scores by a partial team name or one team alone. Match both teams plus game date; specifically keep Tennessee distinct from Middle Tennessee. If the event cannot be uniquely matched, flag it for manual verification rather than importing its score.
