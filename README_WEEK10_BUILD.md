@@ -51,3 +51,10 @@
 - The 42–51 score remains assigned to Western Kentucky–Middle Tennessee only. This was a wrong-event mapping: Middle Tennessee's score was incorrectly reused for Tennessee.
 - Recalculated Week 9 pick results and the 4–0 bounty; the same nine entries remain 4–0 winners, so the $2,500 split is unchanged.
 - Going forward, never match NCAA scores by a partial team name or one team alone. Match both teams plus game date; specifically keep Tennessee distinct from Middle Tennessee. If the event cannot be uniquely matched, flag it for manual verification rather than importing its score.
+
+
+## FAA flight-grounding schedule adjustment
+- Ole Miss at Oklahoma was rescheduled from Saturday, Nov. 14 to Sunday, Nov. 15, 2026.
+- Updated the Week 10 game's date to 2026-11-15 while preserving its game ID, spread (Ole Miss -1.5), total (48.5), all 136 bonus selections, and all 544 regular picks.
+- The ESPN refresh now queries the actual rescheduled date, so it can match both teams and retrieve the completed result.
+- Official final: Oklahoma 24, Ole Miss 17. Source: Ole Miss Athletics official box score.
