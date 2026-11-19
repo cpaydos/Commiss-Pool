@@ -254,11 +254,20 @@ function renderBonus(){
     $('bonusAlive').textContent=`${alive} alive`;
     $('bonusContext').textContent='Week 6 · Final · max favorite 4 points';
     $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded'}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
+  }else if(week===10){
+    const h=DATA.history?.[10];
+    const rows=new Map((h?.rows||[]).map(r=>[r.id,r]));
+    const eligibleIds=new Set(h?.bonusEligibleIdsEnteringWeek||[]);
+    const aliveIds=new Set(h?.bonusAliveIdsAfterWeek||[]);
+    const arr=(h?.entries||[]).filter(e=>eligibleIds.has(e.id)).map(e=>({e,s:rows.get(e.id)?.bonusStatus||(aliveIds.has(e.id)?'alive':'eliminated')})).sort((a,b)=>order[a.s]-order[b.s]||a.e.id-b.e.id);
+    $('bonusAlive').textContent=`${aliveIds.size} alive`;
+    $('bonusContext').textContent=`Week 10 · Final · max favorite ${h?.bonusMax??9} points · ${aliveIds.size} survivors`;
+    $('bonusList').innerHTML=arr.map(({e,s})=>{const label=s==='eliminated'?'OUT':s==='alive'?'ALIVE':s==='live'?'LIVE':'PENDING';const pick=e.bonus?.team?esc(e.bonus.team):'No bonus pick recorded';return `<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">${pick}</div></div></div><div class="${label==='OUT'?'eliminated':label==='ALIVE'?'alive':''}">${label}</div></div>`}).join('');
   }else if(week===11){
     const eligibleIds=new Set(DATA.week11BonusAliveIdsEnteringWeek||DATA.week11BonusEligibleIds||[]);
     const arr=(DATA.entries||[]).filter(e=>eligibleIds.has(e.id)&&!REMOVED_ENTRY_IDS.has(e.id)).sort((a,b)=>a.id-b.id);
     $('bonusAlive').textContent=`${arr.length} alive`;
-    $('bonusContext').textContent='Week 11 · Current · max favorite 8 points · 122 survivors entering';
+    $('bonusContext').textContent='Week 11 · Current · max favorite 8 points · 121 survivors entering';
     $('bonusList').innerHTML=arr.map(e=>`<div class="bonus-row"><div>${starButton(e)}<div class="bonus-copy"><div class="bonus-name">${esc(e.name)}</div><div class="bonus-pick">Bonus pick not loaded</div></div></div><div class="alive">ALIVE</div></div>`).join('');
   }else if(week===9){
     $('bonusAlive').textContent='Paused';
