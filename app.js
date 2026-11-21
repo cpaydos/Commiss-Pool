@@ -141,7 +141,12 @@ function renderLeaderboard(){
 }
 function historyForWeek(week){
   const h=DATA.history?.[week];
-  if(h?.rows)return h.rows;
+  if(h?.rows)return h.rows.map(row=>({
+    ...row,
+    w:Number.isFinite(Number(row.w))?Number(row.w):Number(row.weekRecord?.wins??0),
+    l:Number.isFinite(Number(row.l))?Number(row.l):Number(row.weekRecord?.losses??0),
+    bonus:row.bonus??row.bonusStatus??'pending'
+  }));
   if(h?.entries&&h?.games){
     const gm=Object.fromEntries(h.games.map(g=>[g.id,g]));
     const rows=h.entries.map(e=>{const r=record(e,gm,state.historyScores);return{id:e.id,name:e.name,w:r.w,l:r.l,bonus:bonusStatus(e,gm,state.historyScores)}});
