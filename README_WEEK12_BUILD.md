@@ -19,3 +19,7 @@
 - All 62 bonus selections match the 62 authoritative Week 12 eligible IDs carried forward from the Week 11 score export.
 - SLOPPY STEAKS (entry 111) submitted no regular or bonus picks. It is marked as a no-pick forfeit: after all Week 12 games are final, the app records 0-4. It is excluded from the Week 12 last-place and back-to-back 0-fer prizes.
 - Week 11 Points PDF confirms HOW YA DOON, KELLY ALONE, and LOLO THE MILF each received $833. Historical payout record updated to $833 each ($2,499 total; $1 unallocated).
+
+
+## Corrected picks update (v3)
+Applied the corrected Week 12 Picks workbook. Changes were limited to HANOVER INDIANS (entry 56) and TOMMY PO (entry 127). Revalidated 136 entries, 540 regular picks, 62 bonus picks, 83 games, and all 62 bonus selections matching Week 11 survivors. SLOPPY STEAKS remains the no-pick forfeit and prize-excluded entry.
