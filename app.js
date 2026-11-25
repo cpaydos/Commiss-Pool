@@ -26,7 +26,7 @@ function classifyPick(p,g,scoreMap=state.scores){
   return underdogMargin===-g.spread?'loss':underdogMargin+g.spread>0?'win':'loss';
 }
 function bonusStatus(e,gameMap=gameById,scoreMap=state.scores){if(!e.bonus||!e.bonus.gameId)return 'pending';const p=e.bonus,g=gameMap[p.gameId],sc=g&&scoreMap[g.id];if(!g)return 'pending';if(!sc||sc.status==='scheduled')return 'pending';if(sc.status==='in')return 'live';if(sc.status!=='final')return 'pending';const awayPick=norm(p.team)===norm(g.away),picked=awayPick?sc.awayScore:sc.homeScore,other=awayPick?sc.homeScore:sc.awayScore;return picked>other?'alive':'eliminated'}
-function record(e,gameMap=gameById,scoreMap=state.scores){if(!Array.isArray(e.picks)||e.picks.length===0)return{r:[],w:0,l:0,live:0,pending:4,notLoaded:true};const r=e.picks.map(p=>classifyPick(p,gameMap[p.gameId],scoreMap));return{r,w:r.filter(x=>x==='win').length,l:r.filter(x=>x==='loss').length,live:r.filter(x=>x==='live').length,pending:r.filter(x=>x==='pending').length,notLoaded:false}}
+function record(e,gameMap=gameById,scoreMap=state.scores){if(e.noPickForfeit){const allFinal=DATA.games.every(g=>scoreMap[g.id]?.status==='final');return allFinal?{r:['loss','loss','loss','loss'],w:0,l:4,live:0,pending:0,notLoaded:false,forfeited:true}:{r:[],w:0,l:0,live:0,pending:4,notLoaded:true,forfeited:true}}if(!Array.isArray(e.picks)||e.picks.length===0)return{r:[],w:0,l:0,live:0,pending:4,notLoaded:true};const r=e.picks.map(p=>classifyPick(p,gameMap[p.gameId],scoreMap));return{r,w:r.filter(x=>x==='win').length,l:r.filter(x=>x==='loss').length,live:r.filter(x=>x==='live').length,pending:r.filter(x=>x==='pending').length,notLoaded:false}}
 function sortEntries(arr){return arr.sort((a,b)=>{const ra=record(a),rb=record(b);if(rb.w!==ra.w)return rb.w-ra.w;if(ra.l!==rb.l)return ra.l-rb.l;if(rb.live!==ra.live)return rb.live-ra.live;return a.id-b.id})}
 function isFavorite(id){return getFavorites().has(String(id))}
 function getFavorites(){try{return new Set(JSON.parse(localStorage.getItem('commissFavorites')||'[]').map(String))}catch{return new Set()}}
@@ -35,7 +35,7 @@ function starButton(e){return `<button class="star-btn ${isFavorite(e.id)?'starr
 function render(){renderLeaderboard();renderOverall();renderBonus();renderGames();renderDistribution();renderPayouts();renderPoints();updateHero()}
 function weekRows(week){return historyForWeek(week)||[]}
 function weekPayoutRows(week){
-  if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}
+  if(week===SEASON.currentWeek){if(DATA.entries.some(e=>e.picks?.length))return DATA.entries.filter(e=>!e.noPickForfeit).map(e=>{const r=record(e);return{id:e.id,name:e.name,w:r.w,l:r.l}});return []}
   const rows=weekRows(week)||[];
   // Locked historical bounty records are authoritative if the stored row format ever changes.
   const payout=DATA.history?.[week]?.payoutRecord;
